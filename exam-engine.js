@@ -74,7 +74,23 @@
     if (groups.some(({ questions, required }) => questions.length < required)) {
       throw new Error('剩余题目不足以按指定配额生成一套完整试卷。');
     }
-    return shuffle(groups.flatMap(({ questions, required }) => shuffle(questions).slice(0, required)));
+    const usedFamilies = new Set();
+    const exam = [];
+    for (const { questions, required } of groups) {
+      const distinct = [];
+      const similar = [];
+      for (const question of shuffle(questions)) {
+        if (question.family && usedFamilies.has(question.family)) {
+          similar.push(question);
+        } else {
+          distinct.push(question);
+          if (question.family) usedFamilies.add(question.family);
+          if (distinct.length === required) break;
+        }
+      }
+      exam.push(...distinct, ...similar.slice(0, required - distinct.length));
+    }
+    return shuffle(exam);
   }
 
   function grade(exam, answersById) {
@@ -106,7 +122,7 @@
   }
 
   function emptyProgress() {
-    return { answeredIds: [], attempts: [], draft: null };
+    return { answeredIds: [], attempts: [], draft: null, questionHistory: {} };
   }
 
   function validId(id) {
@@ -124,6 +140,47 @@
       && attempt.answered >= 0 && attempt.answered <= examLength;
   }
 
+  function validOptionIndexes(selected) {
+    return Array.isArray(selected)
+      && selected.every((index) => Number.isInteger(index) && index >= 0 && index < 32);
+  }
+
+  function normalizeQuestionHistory(history) {
+    if (history === undefined) return {};
+    if (!history || typeof history !== 'object' || Array.isArray(history)) {
+      throw new Error('备份中的已做题记录无效。');
+    }
+    return Object.fromEntries(Object.entries(history).map(([id, item]) => {
+      if (!validId(id) || !item || !validOptionIndexes(item.selected) || !item.selected.length
+          || !validDate(item.date) || !Number.isInteger(item.max) || item.max < 1 || item.max > 3
+          || !Number.isInteger(item.score) || item.score < 0 || item.score > item.max
+          || typeof item.hadMistake !== 'boolean') {
+        throw new Error('备份中的已做题记录无效。');
+      }
+      const { selected, score, max, date, hadMistake } = item;
+      return [id, { selected: [...new Set(selected)], score, max, date, hadMistake: hadMistake || score < max }];
+    }));
+  }
+
+  function recordSubmission(progress, results, date) {
+    const history = new Map(Object.entries(progress.questionHistory ?? {}));
+    const answered = new Set(progress.answeredIds);
+    for (const { id, selected, score, max } of results) {
+      if (!selected.length) continue;
+      const previous = history.get(id);
+      const current = { selected, score, max, date, hadMistake: score < max };
+      history.set(id, mergeQuestionRecord(current, previous));
+      answered.add(id);
+    }
+    return { ...progress, answeredIds: [...answered], questionHistory: Object.fromEntries(history) };
+  }
+
+  function mergeQuestionRecord(current, imported) {
+    if (!current || !imported) return current ?? imported;
+    const latest = Date.parse(imported.date) > Date.parse(current.date) ? imported : current;
+    return { ...latest, hadMistake: current.hadMistake || imported.hadMistake };
+  }
+
   function normalizeDraft(draft) {
     if (draft === null || draft === undefined) return null;
     const { questionIds, answers, position, startedAt } = draft;
@@ -136,8 +193,7 @@
     }
     const normalizedAnswers = Object.create(null);
     for (const [id, selected] of Object.entries(answers)) {
-      if (!questionIds.includes(id) || !Array.isArray(selected)
-          || !selected.every((index) => Number.isInteger(index) && index >= 0 && index < 32)) {
+      if (!questionIds.includes(id) || !validOptionIndexes(selected)) {
         throw new Error('记录中的答题选项无效。');
       }
       normalizedAnswers[id] = [...new Set(selected)];
@@ -160,10 +216,12 @@
     const attempts = record.attempts.map(({ id, date, score, answered, total }) => ({
       id, date, score, answered, total,
     }));
+    const questionHistory = normalizeQuestionHistory(record.questionHistory);
     return {
-      answeredIds: [...new Set(record.answeredIds)],
+      answeredIds: [...new Set([...record.answeredIds, ...Object.keys(questionHistory)])],
       attempts: [...new Map(attempts.map((attempt) => [attempt.id, attempt])).values()],
       draft: normalizeDraft(record.draft),
+      questionHistory,
     };
   }
 
@@ -178,12 +236,17 @@
 
   function mergeProgress(current, imported) {
     const byId = new Map([...imported.attempts, ...current.attempts].map((attempt) => [attempt.id, attempt]));
+    const history = new Map(Object.entries(imported.questionHistory ?? {}));
+    for (const [id, entry] of Object.entries(current.questionHistory ?? {})) {
+      history.set(id, mergeQuestionRecord(entry, history.get(id)));
+    }
     return {
-      answeredIds: [...new Set([...current.answeredIds, ...imported.answeredIds])],
+      answeredIds: [...new Set([...current.answeredIds, ...imported.answeredIds, ...history.keys()])],
       attempts: [...byId.values()].sort((left, right) => Date.parse(right.date) - Date.parse(left.date)),
       draft: current.draft ?? imported.draft,
+      questionHistory: Object.fromEntries(history),
     };
   }
 
-  root.HeatExam = { validateBank, availability, makeExam, grade, loadProgress, saveProgress, parseBackup, mergeProgress };
+  root.HeatExam = { validateBank, availability, makeExam, grade, loadProgress, saveProgress, parseBackup, mergeProgress, recordSubmission };
 })(typeof window === 'undefined' ? globalThis : window);

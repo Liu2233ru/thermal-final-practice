@@ -19,6 +19,17 @@
   const typeLabel = (type) => type === "multiple" ? "多选" : "单选";
   const dateFormat = new Intl.DateTimeFormat("zh-CN", { dateStyle: "medium", timeStyle: "short" });
   const examLimitSeconds = 100 * 60;
+  const libraryPageSize = 16;
+  const questionPanel = `
+    <section class="panel question-panel" aria-labelledby="question-heading">
+      <div class="question-header">
+        <p class="question-number" id="question-number" tabindex="-1"></p>
+        <div class="chips" id="question-chips"></div>
+      </div>
+      <h1 class="question-stem" id="question-heading" tabindex="-1"></h1>
+      <div id="question-content"></div>
+      <div class="question-actions" id="question-actions"></div>
+    </section>`;
 
   let bank;
   try {
@@ -30,7 +41,7 @@
   }
 
   const byId = new Map(bank.map((question) => [question.id, question]));
-  let progress = { answeredIds: [], attempts: [], draft: null };
+  let progress = { answeredIds: [], attempts: [], draft: null, questionHistory: {} };
   let storage;
   let skipAnswered = false;
   let screen = "setup";
@@ -40,6 +51,9 @@
   let backupMessage = null;
   let pendingConfirmation = null;
   let timerInterval = null;
+  let libraryScope = "wrong";
+  let libraryFilter = "all";
+  let libraryPage = 0;
 
   function showStorageWarning(message) {
     storageWarning.textContent = message;
@@ -175,6 +189,9 @@
   function renderHistory() {
     const completed = new Set(progress.answeredIds.filter((id) => byId.has(id))).size;
     document.getElementById("history-count").textContent = `已答 ${completed} 题`;
+    const mistakes = Object.entries(progress.questionHistory)
+      .filter(([id, record]) => byId.has(id) && record.hadMistake).length;
+    document.getElementById("wrong-questions").textContent = `错题库 · ${mistakes}`;
     const holder = document.getElementById("history-items");
     holder.replaceChildren();
     if (!progress.attempts.length) {
@@ -199,7 +216,7 @@
       <section class="hero" aria-labelledby="setup-heading">
         <div>
           <h1 id="setup-heading" tabindex="-1">热学期末模拟</h1>
-          <p>按 2025–2026 热学 A 卷结构组卷 · 单选与多选</p>
+          <p>题库 ${bank.length} 题 · 按 2025–2026 热学 A 卷结构组卷</p>
         </div>
         <dl class="hero-stats">
           <div class="hero-stat"><dt>计分题数</dt><dd>60</dd></div>
@@ -223,6 +240,7 @@
         </section>
         <aside class="panel" aria-labelledby="history-heading">
           <div class="panel-heading"><h2 id="history-heading">答题记录</h2><span class="count" id="history-count"></span></div>
+          <div class="button-row library-actions" id="library-actions"></div>
           <p class="panel-copy">记录保存在这个浏览器。换电脑时，可以导出再导入。</p>
           <div id="history-items"></div>
           <div class="button-row backup-actions" id="backup-actions"></div>
@@ -240,6 +258,11 @@
     start.id = "start-exam";
     if (progress.draft) actions.append(button("继续上次作答", "primary", resume));
     actions.append(start);
+    const wrong = button("错题库", "secondary compact", () => openLibrary("wrong"));
+    wrong.id = "wrong-questions";
+    document.getElementById("library-actions").append(
+      wrong, button("已做题", "secondary compact", () => openLibrary("answered"))
+    );
     const backup = document.getElementById("backup-actions");
     backup.append(
       button("导出记录", "secondary compact", exportBackup),
@@ -249,6 +272,156 @@
     showAvailability();
     showBackupNotice();
     if (focus) document.getElementById("setup-heading").focus();
+  }
+
+  function historyFor(id) {
+    return Object.hasOwn(progress.questionHistory, id) ? progress.questionHistory[id] : null;
+  }
+
+  function historyStatus(record) {
+    if (!record) return "legacy";
+    if (record.score === record.max) return "correct";
+    return record.score > 0 ? "partial" : "incorrect";
+  }
+
+  function historyLabel(record) {
+    const status = historyStatus(record);
+    if (status === "legacy") return "旧版记录";
+    if (status === "correct" && record.hadMistake) return "已订正";
+    return labels[status];
+  }
+
+  function sourceLabel(question) {
+    const number = Number.isInteger(question.sourceNumber) ? ` · 第 ${question.sourceNumber} 题` : "";
+    return question.source ? question.source + number : "";
+  }
+
+  function openLibrary(scope) {
+    libraryScope = scope;
+    libraryFilter = "all";
+    libraryPage = 0;
+    renderLibrary();
+  }
+
+  function renderLibrary(restoreId = "") {
+    screen = "library";
+    stopExamTimer("复习题库");
+    view.innerHTML = `
+      <section class="panel library-panel" aria-labelledby="library-heading">
+        <div class="library-heading-row">
+          <h1 id="library-heading" tabindex="-1">${libraryScope === "wrong" ? "错题库" : "已做题"}</h1>
+          <div id="library-navigation" class="button-row"></div>
+        </div>
+        <p class="panel-copy">${libraryScope === "wrong"
+          ? "答错或部分得分的题会在交卷后收入错题库。以后再次作答并拿到满分时，会标为已订正。"
+          : "回看已交卷且实际作答过的题、正确答案及可用解析。"}</p>
+        <div class="library-toolbar">
+          <p id="library-results" class="panel-copy" role="status" tabindex="-1"></p>
+          <label class="library-filter" ${libraryScope === "wrong" ? "" : "hidden"}>复习状态
+            <select id="library-filter">
+              <option value="all">全部错题</option>
+              <option value="pending">待复习</option>
+              <option value="corrected">已订正</option>
+            </select>
+          </label>
+        </div>
+        <ul class="library-list" id="library-list"></ul>
+        <div class="button-row library-pagination" id="library-pagination"></div>
+      </section>`;
+    const nav = document.getElementById("library-navigation");
+    for (const [scope, label] of [["wrong", "错题库"], ["answered", "已做题"]]) {
+      const active = libraryScope === scope;
+      const control = button(label, active ? "primary compact" : "secondary compact", () => openLibrary(scope));
+      control.setAttribute("aria-pressed", String(active));
+      nav.append(control);
+    }
+    nav.append(button("返回首页", "secondary compact", () => showSetup(true)));
+    const filter = document.getElementById("library-filter");
+    filter.value = libraryFilter;
+    filter.addEventListener("change", () => {
+      libraryFilter = filter.value;
+      libraryPage = 0;
+      renderLibraryEntries();
+    });
+    renderLibraryEntries();
+    const restored = restoreId && document.getElementById("saved-" + restoreId);
+    if (!restored) window.scrollTo(0, 0);
+    (restored || document.getElementById("library-heading")).focus();
+  }
+
+  function renderLibraryEntries() {
+    const rows = progress.answeredIds.flatMap((id) => {
+      const question = byId.get(id);
+      if (!question) return [];
+      const record = historyFor(id);
+      if (libraryScope === "wrong" && !record?.hadMistake) return [];
+      if (libraryFilter === "pending" && record?.score === record?.max) return [];
+      if (libraryFilter === "corrected" && record?.score !== record?.max) return [];
+      return [{ question, record }];
+    }).sort((a, b) => (b.record ? Date.parse(b.record.date) : 0) - (a.record ? Date.parse(a.record.date) : 0));
+    const pages = Math.max(1, Math.ceil(rows.length / libraryPageSize));
+    libraryPage = Math.min(libraryPage, pages - 1);
+    const start = libraryPage * libraryPageSize;
+    const holder = document.getElementById("library-list");
+    holder.replaceChildren();
+    for (const { question, record } of rows.slice(start, start + libraryPageSize)) {
+      const row = element("li");
+      const control = button("", "library-question", () => showSavedQuestion(question.id));
+      control.id = "saved-" + question.id;
+      const title = element("span", "library-question-title");
+      appendMath(title, question.stem || sourceLabel(question) || "图片题");
+      const meta = element("span", "library-question-meta");
+      meta.append(
+        element("span", "chip " + historyStatus(record), historyLabel(record)),
+        element("span", "", `${typeLabel(question.type)} · ${question.points} 分`)
+      );
+      if (record) meta.append(element("time", "", dateFormat.format(new Date(record.date))));
+      control.append(title, meta);
+      row.append(control);
+      holder.append(row);
+    }
+    const status = document.getElementById("library-results");
+    status.textContent = rows.length ? `共 ${rows.length} 题` : libraryScope === "wrong"
+      ? "这里还没有符合条件的错题。" : "交卷后即可回看做过的题。";
+    const pagination = document.getElementById("library-pagination");
+    pagination.replaceChildren();
+    if (pages > 1) {
+      const pageButton = (label, offset) => {
+        const control = button(label, "secondary compact", () => {
+          libraryPage += offset;
+          renderLibraryEntries();
+          status.focus();
+        });
+        control.disabled = libraryPage + offset < 0 || libraryPage + offset >= pages;
+        return control;
+      };
+      pagination.append(pageButton("上一页", -1), element("span", "", `${libraryPage + 1} / ${pages} 页`), pageButton("下一页", 1));
+    }
+  }
+
+  function showSavedQuestion(id) {
+    screen = "saved-question";
+    stopExamTimer("复习题库");
+    view.innerHTML = questionPanel;
+    const question = byId.get(id);
+    const record = historyFor(id);
+    const item = {
+      selected: record?.selected ?? [],
+      score: record?.score,
+      max: record?.max,
+      status: historyStatus(record),
+      label: historyLabel(record),
+    };
+    const { focusTarget } = renderQuestion(question, libraryScope === "wrong" ? "错题复习" : "已做题回看", item);
+    if (!record) document.getElementById("question-content").append(
+      element("p", "panel-copy", "这道题来自旧版记录，当时只保存了已做题状态。")
+    );
+    document.getElementById("question-actions").append(
+      button("返回题目列表", "primary", () => renderLibrary(id)),
+      button("返回首页", "secondary", () => showSetup(true))
+    );
+    window.scrollTo(0, 0);
+    focusTarget.focus({ preventScroll: true });
   }
 
   function showBackupNotice() {
@@ -328,7 +501,6 @@
   });
 
   function selectedOptions(question) {
-    if (screen === "result") return result.results[position].selected;
     const selected = progress.draft.answers[question.id];
     return Array.isArray(selected) ? selected : [];
   }
@@ -358,11 +530,12 @@
     updateAnswerCard();
   }
 
-  function buildOptions(question, review) {
+  function buildOptions(question, item) {
+    const review = item !== null;
     const group = element(review ? "div" : "fieldset", "option-list");
     group.setAttribute("aria-labelledby", question.stem.trim() ? "question-heading" : "question-number");
-    const selected = selectedOptions(question);
-    const correct = review ? result.results[position].correct : [];
+    const selected = review ? item.selected : selectedOptions(question);
+    const correct = review ? question.answer : [];
     question.options.forEach((text, index) => {
       const entry = element(review ? "div" : "label", review ? "option review" : "option");
       const optionLetter = element("span", "option-letter", letter(index));
@@ -371,7 +544,7 @@
       const imageSource = question.optionImages?.[index];
       if (imageSource) {
         const img = element("img", "option-image");
-        img.src = imageSource;
+        window.HeatAssets.set(img, imageSource, question.assetPack);
         img.alt = `选项 ${letter(index)} 的公式或示意图`;
         optionText.append(img);
       }
@@ -407,8 +580,8 @@
     return details;
   }
 
-  function showImages(question) {
-    document.getElementById("image-title").textContent = `第 ${position + 1} 题的大图`;
+  function showImages(question, caption) {
+    document.getElementById("image-title").textContent = `${caption}的大图`;
     const content = document.getElementById("image-dialog-content");
     content.replaceChildren();
     const sources = [
@@ -419,7 +592,7 @@
       if (!source) continue;
       const figure = element("figure");
       const image = element("img");
-      image.src = source;
+      window.HeatAssets.set(image, source, question.assetPack);
       image.alt = caption + "原图";
       figure.append(element("figcaption", "", caption), image);
       content.append(figure);
@@ -445,6 +618,54 @@
     });
   }
 
+  function renderQuestion(question, caption, item) {
+    const review = item !== null;
+    const chips = document.getElementById("question-chips");
+    const heading = document.getElementById("question-heading");
+    const numberLabel = document.getElementById("question-number");
+    numberLabel.textContent = caption;
+    chips.append(element("span", "chip type", typeLabel(question.type) + "题"));
+    if (review && item.status !== "legacy") {
+      chips.append(element("span", "chip " + item.status, `${item.score} / ${item.max} 分 · ${item.label ?? labels[item.status]}`));
+    } else {
+      chips.append(element("span", "chip", `${question.points} 分`));
+    }
+    if (question.image || question.optionImages?.some(Boolean)) {
+      chips.append(button("查看大图", "secondary compact image-trigger", () => showImages(question, caption)));
+    }
+    appendMath(heading, question.stem);
+    heading.hidden = !question.stem.trim();
+    heading.closest("section").setAttribute("aria-labelledby", heading.hidden ? "question-number" : "question-heading");
+    const content = document.getElementById("question-content");
+    content.classList.toggle("image-only-question", heading.hidden);
+    if (question.image) {
+      const img = element("img", "question-image");
+      window.HeatAssets.set(img, question.image, question.assetPack);
+      img.alt = question.stem.trim() ? "题目示意图" : "题干图片";
+      content.append(img);
+    }
+    if (question.reference?.trim()) content.append(buildReference(question.reference));
+    const optionGroup = buildOptions(question, item);
+    content.append(optionGroup);
+    if (review) {
+      const explanation = question.explanation?.trim();
+      const feedback = element("section", "answer-explanation");
+      feedback.append(
+        element("h2", "", explanation ? "解析" : "题库答案"),
+        element("p", "correct-choices", `正确选项 ${question.answer.map(letter).join("、")}`)
+      );
+      if (explanation) {
+        const explanationText = element("p", "answer-explanation-text");
+        appendMath(explanationText, explanation);
+        feedback.append(explanationText);
+      }
+      content.append(feedback);
+      const source = sourceLabel(question);
+      if (source) content.append(element("p", "question-source", source));
+    }
+    return { optionGroup, focusTarget: heading.hidden ? numberLabel : heading };
+  }
+
   function renderExam(focus = false) {
     const review = screen === "result";
     if (review) stopExamTimer("交卷结果");
@@ -452,15 +673,7 @@
     view.innerHTML = `
       <div id="result-summary"></div>
       <div class="columns">
-        <section class="panel question-panel" aria-labelledby="question-heading">
-          <div class="question-header">
-            <p class="question-number" id="question-number" tabindex="-1"></p>
-            <div class="chips" id="question-chips"></div>
-          </div>
-          <h1 class="question-stem" id="question-heading" tabindex="-1"></h1>
-          <div id="question-content"></div>
-          <div class="question-actions" id="question-actions"></div>
-        </section>
+        ${questionPanel}
         <aside class="panel answer-panel" aria-labelledby="answer-card-heading">
           <div class="panel-heading">
             <h2 id="answer-card-heading">${review ? "作答结果" : "答题卡"}</h2>
@@ -474,39 +687,9 @@
       </div>`;
 
     const question = currentExam[position];
-    const chips = document.getElementById("question-chips");
-    const heading = document.getElementById("question-heading");
-    const numberLabel = document.getElementById("question-number");
-    numberLabel.textContent = `第 ${position + 1} / ${currentExam.length} 题`;
-    chips.append(element("span", "chip type", typeLabel(question.type) + "题"));
-    if (review) {
-      const item = result.results[position];
-      chips.append(element("span", "chip " + item.status, `${item.score} / ${question.points} 分 · ${labels[item.status]}`));
-      renderSummary();
-    } else {
-      chips.append(element("span", "chip", `${question.points} 分`));
-    }
-    if (question.image || question.optionImages?.some(Boolean)) {
-      chips.append(button("查看大图", "secondary compact image-trigger", () => showImages(question)));
-    }
-    appendMath(heading, question.stem);
-    heading.hidden = !question.stem.trim();
-    heading.closest("section").setAttribute("aria-labelledby", heading.hidden ? "question-number" : "question-heading");
-    const content = document.getElementById("question-content");
-    content.classList.toggle("image-only-question", heading.hidden);
-    if (question.image) {
-      const img = element("img", "question-image");
-      img.src = question.image;
-      img.alt = "题目示意图";
-      content.append(img);
-    }
-    if (question.reference?.trim()) content.append(buildReference(question.reference));
-    const optionGroup = buildOptions(question, review);
-    content.append(optionGroup);
-    if (review && question.source) {
-      const number = Number.isInteger(question.sourceNumber) ? ` · 第 ${question.sourceNumber} 题` : "";
-      content.append(element("p", "question-source", question.source + number));
-    }
+    const item = review ? result.results[position] : null;
+    const { optionGroup, focusTarget } = renderQuestion(question, `第 ${position + 1} / ${currentExam.length} 题`, item);
+    if (review) renderSummary();
 
     const actions = document.getElementById("question-actions");
     const previous = button("← 上一题", "secondary", () => go(position - 1));
@@ -532,13 +715,15 @@
     updateAnswerCard();
     const answerActions = document.getElementById("answer-actions");
     if (review) {
-      answerActions.append(button("返回首页", "primary", () => showSetup(true)));
+      answerActions.append(
+        button("查看错题库", "secondary", () => openLibrary("wrong")),
+        button("返回首页", "primary", () => showSetup(true))
+      );
     } else {
       answerActions.append(button("保存并返回", "secondary", () => showSetup(true)), button("交卷", "primary", confirmSubmit));
     }
     if (focus) {
       window.scrollTo(0, 0);
-      const focusTarget = heading.hidden ? numberLabel : heading;
       focusTarget.focus({ preventScroll: true });
     }
   }
@@ -574,11 +759,11 @@
     const answers = progress.draft.answers;
     const elapsedSeconds = elapsedExamSeconds();
     result = { ...engine.grade(currentExam, answers), elapsedSeconds };
-    const answered = currentExam.filter((question) => answers[question.id]?.length > 0).map((question) => question.id);
+    const answered = currentExam.length - result.unanswered;
     const date = new Date().toISOString();
     const id = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    progress.answeredIds = Array.from(new Set([...progress.answeredIds, ...answered]));
-    progress.attempts.unshift({ id, date, score: result.score, answered: answered.length, total: currentExam.length });
+    progress = engine.recordSubmission(progress, result.results, date);
+    progress.attempts.unshift({ id, date, score: result.score, answered, total: currentExam.length });
     progress.draft = null;
     persist();
     position = 0;
@@ -628,6 +813,8 @@
       if (screen === "setup") {
         renderHistory();
         showAvailability();
+      } else if (screen === "library") {
+        renderLibraryEntries();
       }
     } catch (error) {
       console.error(error);
