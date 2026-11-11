@@ -4,6 +4,7 @@
   const engine = window.HeatExam;
   const view = document.getElementById("view");
   const headerState = document.getElementById("header-state");
+  const siteHeader = headerState.closest("header");
   const storageWarning = document.getElementById("storage-warning");
   const backupInput = document.getElementById("backup-input");
   const dialog = document.getElementById("confirm-dialog");
@@ -17,6 +18,7 @@
   };
   const typeLabel = (type) => type === "multiple" ? "多选" : "单选";
   const dateFormat = new Intl.DateTimeFormat("zh-CN", { dateStyle: "medium", timeStyle: "short" });
+  const examLimitSeconds = 100 * 60;
 
   let bank;
   try {
@@ -37,6 +39,7 @@
   let result = null;
   let backupMessage = null;
   let pendingConfirmation = null;
+  let timerInterval = null;
 
   function showStorageWarning(message) {
     storageWarning.textContent = message;
@@ -75,6 +78,55 @@
     if (className) node.className = className;
     if (content !== undefined) node.textContent = content;
     return node;
+  }
+
+  function appendMath(node, text) {
+    if (window.HeatMath?.append) window.HeatMath.append(node, text);
+    else node.append(document.createTextNode(text));
+  }
+
+  function elapsedExamSeconds() {
+    const start = Date.parse(progress.draft.startedAt);
+    return Number.isFinite(start) ? Math.max(0, Math.floor((Date.now() - start) / 1000)) : 0;
+  }
+
+  function formatClock(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor(seconds / 60) % 60;
+    return [hours, minutes, seconds % 60].map((part) => String(part).padStart(2, "0")).join(":");
+  }
+
+  function formatOvertime(seconds) {
+    return `已超时 ${Math.floor(seconds / 60)} 分 ${String(seconds % 60).padStart(2, "0")} 秒`;
+  }
+
+  function updateExamTimer() {
+    const remaining = examLimitSeconds - elapsedExamSeconds();
+    const overdue = remaining <= 0;
+    const display = overdue ? formatOvertime(-remaining) : `剩余 ${formatClock(remaining)}`;
+    if (headerState.textContent !== display) headerState.textContent = display;
+    headerState.classList.toggle("overdue", overdue);
+  }
+
+  function startExamTimer() {
+    if (timerInterval === null) {
+      siteHeader.classList.add("exam-active");
+      headerState.classList.add("exam-clock");
+      headerState.setAttribute("role", "timer");
+      timerInterval = window.setInterval(updateExamTimer, 1000);
+    }
+    updateExamTimer();
+  }
+
+  function stopExamTimer(stateLabel) {
+    if (timerInterval !== null) {
+      window.clearInterval(timerInterval);
+      timerInterval = null;
+    }
+    siteHeader.classList.remove("exam-active");
+    headerState.classList.remove("exam-clock", "overdue");
+    headerState.removeAttribute("role");
+    headerState.textContent = stateLabel;
   }
 
   function button(content, style, callback) {
@@ -142,7 +194,7 @@
 
   function showSetup(focus = false) {
     screen = "setup";
-    headerState.textContent = "模拟考试";
+    stopExamTimer("模拟考试");
     view.innerHTML = `
       <section class="hero" aria-labelledby="setup-heading">
         <div>
@@ -157,7 +209,7 @@
       <div class="columns setup-columns">
         <section class="panel" aria-labelledby="start-heading">
           <h2 id="start-heading">开始模拟考试</h2>
-          <p class="panel-copy">从题库随机抽题，交卷后查看得分和正确答案。</p>
+          <p class="panel-copy">每套限时 100 分钟，超时后仍可作答。交卷后查看得分和正确答案。</p>
           <label class="setting" for="skip-answered">
             <span><strong>跳过做过的题</strong><small>已交卷且作答过的题会从本次抽题中排除。</small></span>
             <input class="switch" type="checkbox" id="skip-answered" role="switch">
@@ -314,7 +366,8 @@
     question.options.forEach((text, index) => {
       const entry = element(review ? "div" : "label", review ? "option review" : "option");
       const optionLetter = element("span", "option-letter", letter(index));
-      const optionText = element("span", "option-text", text);
+      const optionText = element("span", "option-text");
+      appendMath(optionText, text);
       const imageSource = question.optionImages?.[index];
       if (imageSource) {
         const img = element("img", "option-image");
@@ -344,6 +397,14 @@
       group.append(entry);
     });
     return group;
+  }
+
+  function buildReference(text) {
+    const details = element("details", "formula-reference");
+    const content = element("div", "formula-reference-body");
+    appendMath(content, text);
+    details.append(element("summary", "", "参考公式（不计分）"), content);
+    return details;
   }
 
   function showImages(question) {
@@ -386,7 +447,8 @@
 
   function renderExam(focus = false) {
     const review = screen === "result";
-    headerState.textContent = review ? "交卷结果" : "正在作答";
+    if (review) stopExamTimer("交卷结果");
+    else startExamTimer();
     view.innerHTML = `
       <div id="result-summary"></div>
       <div class="columns">
@@ -427,7 +489,7 @@
     if (question.image || question.optionImages?.some(Boolean)) {
       chips.append(button("查看大图", "secondary compact image-trigger", () => showImages(question)));
     }
-    heading.textContent = question.stem;
+    appendMath(heading, question.stem);
     heading.hidden = !question.stem.trim();
     heading.closest("section").setAttribute("aria-labelledby", heading.hidden ? "question-number" : "question-heading");
     const content = document.getElementById("question-content");
@@ -438,6 +500,7 @@
       img.alt = "题目示意图";
       content.append(img);
     }
+    if (question.reference?.trim()) content.append(buildReference(question.reference));
     const optionGroup = buildOptions(question, review);
     content.append(optionGroup);
     if (review && question.source) {
@@ -490,8 +553,12 @@
       element("span", "chip correct", `全对 ${result.full} 题`),
       element("span", "chip partial", `部分得分 ${result.partial} 题`),
       element("span", "chip incorrect", `答错 ${currentExam.length - result.full - result.partial - result.unanswered} 题`),
-      element("span", "chip", `未答 ${result.unanswered} 题`)
+      element("span", "chip", `未答 ${result.unanswered} 题`),
+      element("span", "chip", `用时 ${formatClock(result.elapsedSeconds)}`)
     );
+    if (result.elapsedSeconds >= examLimitSeconds) {
+      counts.append(element("span", "chip incorrect", formatOvertime(result.elapsedSeconds - examLimitSeconds)));
+    }
     summary.append(score, counts);
   }
 
@@ -505,7 +572,8 @@
 
   function submit() {
     const answers = progress.draft.answers;
-    result = engine.grade(currentExam, answers);
+    const elapsedSeconds = elapsedExamSeconds();
+    result = { ...engine.grade(currentExam, answers), elapsedSeconds };
     const answered = currentExam.filter((question) => answers[question.id]?.length > 0).map((question) => question.id);
     const date = new Date().toISOString();
     const id = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -564,6 +632,10 @@
     } catch (error) {
       console.error(error);
     }
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && screen === "exam") updateExamTimer();
   });
 
   document.getElementById("home-button").addEventListener("click", () => showSetup(true));
