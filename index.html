@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15345e">
+  <meta name="description" content="按 2025–2026 热学 A 卷配额抽题的期末模拟考试。">
+  <title>热学期末模拟</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="exam-engine.js" defer></script>
+  <script src="questions-a.js" defer></script>
+  <script src="questions-b.js" defer></script>
+  <script src="questions-d.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要内容</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="wordmark" id="home-button" type="button" aria-label="热学期末模拟首页">
+        <span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>热学期末模拟</span>
+      </button>
+      <span class="header-state" id="header-state">模拟考试</span>
+    </div>
+  </header>
+  <main id="content" class="shell" tabindex="-1">
+    <p id="storage-warning" class="notice warning" role="status" hidden></p>
+    <div id="view"></div>
+    <noscript><p class="notice warning">请在浏览器中启用 JavaScript 以使用模拟考试。</p></noscript>
+  </main>
+  <dialog class="dialog" id="confirm-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-detail">
+    <form method="dialog">
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-detail"></p>
+      <div class="button-row dialog-actions">
+        <button type="submit" class="button secondary" value="cancel" autofocus>取消</button>
+        <button type="submit" class="button primary" value="confirm" id="dialog-confirm"></button>
+      </div>
+    </form>
+  </dialog>
+  <dialog class="dialog image-dialog" id="image-dialog" aria-labelledby="image-title">
+    <div class="image-dialog-heading">
+      <h2 id="image-title"></h2>
+      <form method="dialog">
+        <button type="submit" class="button secondary compact" autofocus>关闭大图</button>
+      </form>
+    </div>
+    <div class="image-dialog-content" id="image-dialog-content"></div>
+  </dialog>
+  <input type="file" id="backup-input" accept=".json,application/json" hidden>
+</body>
+</html>
