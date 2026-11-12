@@ -70,21 +70,61 @@
   }
 
   function persist() {
-    if (!storage) return;
+    if (!storage) return "temporary";
     try {
-      refreshProgress();
+      if (!refreshProgress()) return "reset";
       engine.saveProgress(storage, progress);
       storageWarning.hidden = true;
+      return "saved";
     } catch (error) {
       console.error(error);
       showStorageWarning("本地记录保存失败。本次仍可做题，关页前可回首页导出记录。");
+      return "temporary";
     }
   }
 
   function refreshProgress() {
-    if (!storage) return;
+    if (!storage) return true;
     const latest = engine.loadProgress(storage);
-    progress = { ...engine.mergeProgress(progress, latest), draft: progress.draft };
+    const wasReset = (progress.resetId ?? null) !== (latest.resetId ?? null);
+    progress = engine.syncProgress(progress, latest);
+    if (wasReset) showClearedRecords("本地记录已在其他标签页清空。");
+    return !wasReset;
+  }
+
+  function refreshForAction() {
+    try {
+      return refreshProgress();
+    } catch (error) {
+      console.error(error);
+      showStorageWarning("无法读取最新的本地记录，本次将使用当前已载入的答题记录。");
+      return true;
+    }
+  }
+
+  function showClearedRecords(message) {
+    pendingConfirmation = null;
+    if (dialog.open) dialog.close();
+    if (imageDialog.open) imageDialog.close();
+    currentExam = [];
+    position = 0;
+    result = null;
+    storageWarning.hidden = true;
+    backupMessage = { text: message, tone: "success" };
+    showSetup(true);
+  }
+
+  function clearLocalRecords() {
+    try {
+      const local = window.localStorage;
+      progress = engine.clearProgress(local);
+      storage = local;
+      showClearedRecords("已清空本地记录。");
+    } catch (error) {
+      console.error(error);
+      backupMessage = { text: "清空失败，请检查浏览器是否允许保存本地记录。", tone: "error" };
+      showBackupNotice();
+    }
   }
 
   function element(tag, className, content) {
@@ -266,7 +306,14 @@
     const backup = document.getElementById("backup-actions");
     backup.append(
       button("导出记录", "secondary compact", exportBackup),
-      button("导入记录", "secondary compact", () => backupInput.click())
+      button("导入记录", "secondary compact", () => backupInput.click()),
+      button("清空本地记录", "danger-outline compact", () => confirmAction(
+        "清空本地记录？",
+        "将删除此浏览器中本网站的成绩、已做题、错题和未交卷的作答。需要留存时，可以先导出记录。",
+        "确认清空",
+        clearLocalRecords,
+        true
+      ))
     );
     renderHistory();
     showAvailability();
@@ -303,7 +350,7 @@
     renderLibrary();
   }
 
-  function renderLibrary(restoreId = "") {
+  function renderLibrary(restoreId = "", feedback = "") {
     screen = "library";
     stopExamTimer("复习题库");
     view.innerHTML = `
@@ -313,7 +360,7 @@
           <div id="library-navigation" class="button-row"></div>
         </div>
         <p class="panel-copy">${libraryScope === "wrong"
-          ? "答错或部分得分的题会在交卷后收入错题库。以后再次作答并拿到满分时，会标为已订正。"
+          ? "答错或部分得分的题会在交卷后收入错题库。移出的题仍可在「已做题」中回看。"
           : "回看已交卷且实际作答过的题、正确答案及可用解析。"}</p>
         <div class="library-toolbar">
           <p id="library-results" class="panel-copy" role="status" tabindex="-1"></p>
@@ -343,13 +390,13 @@
       libraryPage = 0;
       renderLibraryEntries();
     });
-    renderLibraryEntries();
+    renderLibraryEntries(feedback);
     const restored = restoreId && document.getElementById("saved-" + restoreId);
     if (!restored) window.scrollTo(0, 0);
-    (restored || document.getElementById("library-heading")).focus();
+    (restored || document.getElementById(feedback ? "library-results" : "library-heading")).focus();
   }
 
-  function renderLibraryEntries() {
+  function renderLibraryEntries(feedback = "") {
     const rows = progress.answeredIds.flatMap((id) => {
       const question = byId.get(id);
       if (!question) return [];
@@ -365,7 +412,7 @@
     const holder = document.getElementById("library-list");
     holder.replaceChildren();
     for (const { question, record } of rows.slice(start, start + libraryPageSize)) {
-      const row = element("li");
+      const row = element("li", "library-entry");
       const control = button("", "library-question", () => showSavedQuestion(question.id));
       control.id = "saved-" + question.id;
       const title = element("span", "library-question-title");
@@ -378,11 +425,18 @@
       if (record) meta.append(element("time", "", dateFormat.format(new Date(record.date))));
       control.append(title, meta);
       row.append(control);
+      if (libraryScope === "wrong") {
+        title.id = "saved-title-" + question.id;
+        const remove = button("移出错题库", "danger-outline compact", () => removeSavedWrong(question.id));
+        remove.setAttribute("aria-describedby", title.id);
+        row.append(remove);
+      }
       holder.append(row);
     }
     const status = document.getElementById("library-results");
-    status.textContent = rows.length ? `共 ${rows.length} 题` : libraryScope === "wrong"
+    const count = rows.length ? `共 ${rows.length} 题` : libraryScope === "wrong"
       ? "这里还没有符合条件的错题。" : "交卷后即可回看做过的题。";
+    status.textContent = feedback ? feedback + " " + count : count;
     const pagination = document.getElementById("library-pagination");
     pagination.replaceChildren();
     if (pages > 1) {
@@ -396,6 +450,24 @@
         return control;
       };
       pagination.append(pageButton("上一页", -1), element("span", "", `${libraryPage + 1} / ${pages} 页`), pageButton("下一页", 1));
+    }
+  }
+
+  function removeSavedWrong(id) {
+    if (!refreshForAction()) return;
+    const row = document.getElementById("saved-" + id)?.parentElement;
+    const neighbor = row?.nextElementSibling ?? row?.previousElementSibling;
+    const nextId = neighbor?.querySelector(".library-question")?.id;
+    progress = engine.removeWrongQuestion(progress, id);
+    const outcome = persist();
+    if (outcome === "reset") return;
+    const feedback = outcome === "saved" ? "已移出错题库。" : "已移出当前错题库，浏览器未能保存。";
+    if (screen === "library") {
+      renderLibraryEntries(feedback);
+      const restored = nextId && document.getElementById(nextId);
+      (restored || document.getElementById("library-results")).focus();
+    } else {
+      renderLibrary("", feedback);
     }
   }
 
@@ -416,10 +488,14 @@
     if (!record) document.getElementById("question-content").append(
       element("p", "panel-copy", "这道题来自旧版记录，当时只保存了已做题状态。")
     );
-    document.getElementById("question-actions").append(
+    const actions = document.getElementById("question-actions");
+    actions.append(
       button("返回题目列表", "primary", () => renderLibrary(id)),
       button("返回首页", "secondary", () => showSetup(true))
     );
+    if (libraryScope === "wrong" && record?.hadMistake) {
+      actions.append(button("移出错题库", "danger-outline", () => removeSavedWrong(id)));
+    }
     window.scrollTo(0, 0);
     focusTarget.focus({ preventScroll: true });
   }
@@ -433,13 +509,9 @@
   }
 
   function begin() {
+    if (!refreshForAction()) return;
     const startNewExam = () => {
-      try {
-        refreshProgress();
-      } catch (error) {
-        console.error(error);
-        showStorageWarning("无法读取最新的本地记录，本次将使用当前已载入的答题记录。");
-      }
+      if (!refreshForAction()) return;
       let nextExam;
       try {
         nextExam = engine.makeExam(bank, availableIds());
@@ -460,8 +532,7 @@
       result = null;
       backupMessage = null;
       screen = "exam";
-      persist();
-      renderExam(true);
+      if (persist() !== "reset") renderExam(true);
     };
     if (progress.draft) {
       confirmAction("开始新的一套？", "开始新卷会覆盖当前尚未交卷的作答。", "开始新卷", startNewExam);
@@ -471,6 +542,7 @@
   }
 
   function resume() {
+    if (!refreshForAction() || !progress.draft) return;
     const draft = progress.draft;
     const selected = draft.questionIds.map((id) => byId.get(id));
     if (selected.length !== 60 || selected.some((question) => !question)) {
@@ -485,10 +557,13 @@
     renderExam(true);
   }
 
-  function confirmAction(title, detail, action, callback) {
+  function confirmAction(title, detail, action, callback, destructive = false) {
     document.getElementById("dialog-title").textContent = title;
     document.getElementById("dialog-detail").textContent = detail;
-    document.getElementById("dialog-confirm").textContent = action;
+    const confirm = document.getElementById("dialog-confirm");
+    confirm.textContent = action;
+    confirm.classList.toggle("primary", !destructive);
+    confirm.classList.toggle("danger", destructive);
     pendingConfirmation = callback;
     dialog.returnValue = "";
     dialog.showModal();
@@ -514,20 +589,20 @@
     position = index;
     if (screen === "exam") {
       progress.draft.position = index;
-      persist();
+      if (persist() === "reset") return;
     }
     renderExam(true);
   }
 
   function saveSelection(question, group) {
+    if (screen !== "exam" || !progress.draft) return;
     const checked = Array.from(group.querySelectorAll("input:checked"), (input) => Number(input.value));
     if (checked.length) {
       progress.draft.answers[question.id] = checked;
     } else {
       delete progress.draft.answers[question.id];
     }
-    persist();
-    updateAnswerCard();
+    if (persist() !== "reset") updateAnswerCard();
   }
 
   function buildOptions(question, item) {
@@ -748,6 +823,7 @@
   }
 
   function confirmSubmit() {
+    if (!refreshForAction() || screen !== "exam" || !progress.draft) return;
     const unanswered = currentExam.length - answeredCount();
     const detail = unanswered
       ? `还有 ${unanswered} 道题未答。交卷后可以查看得分和正确答案。`
@@ -756,6 +832,7 @@
   }
 
   function submit() {
+    if (screen !== "exam" || !progress.draft) return;
     const answers = progress.draft.answers;
     const elapsedSeconds = elapsedExamSeconds();
     result = { ...engine.grade(currentExam, answers), elapsedSeconds };
@@ -765,7 +842,7 @@
     progress = engine.recordSubmission(progress, result.results, date);
     progress.attempts.unshift({ id, date, score: result.score, answered, total: currentExam.length });
     progress.draft = null;
-    persist();
+    if (persist() === "reset") return;
     position = 0;
     screen = "result";
     renderExam();
@@ -777,6 +854,7 @@
   }
 
   function exportBackup() {
+    if (!refreshForAction()) return;
     const data = JSON.stringify({ version: 1, ...progress }, null, 2);
     const url = URL.createObjectURL(new Blob([data], { type: "application/json" }));
     const anchor = element("a");
@@ -795,10 +873,19 @@
     backupInput.value = "";
     if (!file) return;
     try {
+      refreshForAction();
+      const resetId = progress.resetId ?? null;
       const imported = engine.parseBackup(await file.text());
+      if (!refreshForAction() || (progress.resetId ?? null) !== resetId) {
+        backupMessage = { text: "本地记录刚刚清空，请重新选择要导入的备份。", tone: "warning" };
+        showBackupNotice();
+        return;
+      }
       progress = engine.mergeProgress(progress, imported);
-      persist();
-      backupMessage = { text: "已导入答题记录。", tone: "success" };
+      const outcome = persist();
+      if (outcome === "reset") return;
+      backupMessage = outcome === "saved" ? { text: "已导入答题记录。", tone: "success" }
+        : { text: "答题记录已载入，浏览器未能保存。", tone: "warning" };
     } catch (error) {
       console.error(error);
       backupMessage = { text: "导入失败。请选择由本网站导出的答题记录文件。", tone: "error" };
@@ -809,7 +896,7 @@
   window.addEventListener("storage", (event) => {
     if (!storage || event.storageArea !== storage) return;
     try {
-      refreshProgress();
+      if (!refreshProgress()) return;
       if (screen === "setup") {
         renderHistory();
         showAvailability();
@@ -822,7 +909,7 @@
   });
 
   document.addEventListener("visibilitychange", () => {
-    if (!document.hidden && screen === "exam") updateExamTimer();
+    if (!document.hidden && screen === "exam" && refreshForAction()) updateExamTimer();
   });
 
   document.getElementById("home-button").addEventListener("click", () => showSetup(true));

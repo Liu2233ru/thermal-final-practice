@@ -1,7 +1,8 @@
 (function (root) {
   'use strict';
 
-  const storageKey = 'heat-exam-progress-v1';
+  const storageKey = 'heat-exam-progress-v2';
+  const legacyStorageKey = 'heat-exam-progress-v1';
   const blueprint = [
     { type: 'single', points: 1, required: 28 },
     { type: 'single', points: 2, required: 19 },
@@ -154,12 +155,42 @@
       if (!validId(id) || !item || !validOptionIndexes(item.selected) || !item.selected.length
           || !validDate(item.date) || !Number.isInteger(item.max) || item.max < 1 || item.max > 3
           || !Number.isInteger(item.score) || item.score < 0 || item.score > item.max
-          || typeof item.hadMistake !== 'boolean') {
+          || typeof item.hadMistake !== 'boolean'
+          || (item.wrongUpdatedAt !== undefined && !validDate(item.wrongUpdatedAt))) {
         throw new Error('备份中的已做题记录无效。');
       }
-      const { selected, score, max, date, hadMistake } = item;
-      return [id, { selected: [...new Set(selected)], score, max, date, hadMistake: hadMistake || score < max }];
+      const { selected, score, max, date, hadMistake, wrongUpdatedAt } = item;
+      const normalized = { selected: [...new Set(selected)], score, max, date, hadMistake };
+      if (wrongUpdatedAt) normalized.wrongUpdatedAt = wrongUpdatedAt;
+      else normalized.hadMistake = hadMistake || score < max;
+      return [id, normalized];
     }));
+  }
+
+  function wrongUpdate(record) {
+    if (!record) return null;
+    if (record.wrongUpdatedAt) return { date: record.wrongUpdatedAt, member: record.hadMistake };
+    if (record.hadMistake) return { date: record.date, member: true };
+    return null;
+  }
+
+  function nextWrongUpdate(date, previous) {
+    const previousDate = wrongUpdate(previous)?.date;
+    const previousTime = Date.parse(previousDate);
+    return previousTime >= Date.parse(date) ? new Date(previousTime + 1).toISOString() : date;
+  }
+
+  function removeWrongQuestion(progress, id, date = new Date().toISOString()) {
+    const history = progress.questionHistory ?? {};
+    const previous = Object.hasOwn(history, id) ? history[id] : null;
+    if (!previous?.hadMistake) return progress;
+    return {
+      ...progress,
+      questionHistory: {
+        ...history,
+        [id]: { ...previous, hadMistake: false, wrongUpdatedAt: nextWrongUpdate(date, previous) },
+      },
+    };
   }
 
   function recordSubmission(progress, results, date) {
@@ -169,6 +200,7 @@
       if (!selected.length) continue;
       const previous = history.get(id);
       const current = { selected, score, max, date, hadMistake: score < max };
+      if (current.hadMistake) current.wrongUpdatedAt = nextWrongUpdate(date, previous);
       history.set(id, mergeQuestionRecord(current, previous));
       answered.add(id);
     }
@@ -178,7 +210,11 @@
   function mergeQuestionRecord(current, imported) {
     if (!current || !imported) return current ?? imported;
     const latest = Date.parse(imported.date) > Date.parse(current.date) ? imported : current;
-    return { ...latest, hadMistake: current.hadMistake || imported.hadMistake };
+    const updates = [wrongUpdate(current), wrongUpdate(imported)].filter(Boolean);
+    const review = updates.sort((left, right) =>
+      Date.parse(right.date) - Date.parse(left.date) || Number(left.member) - Number(right.member)
+    )[0];
+    return review ? { ...latest, hadMistake: review.member, wrongUpdatedAt: review.date } : latest;
   }
 
   function normalizeDraft(draft) {
@@ -210,7 +246,8 @@
     }
     if (!record || record.version !== 1 || !Array.isArray(record.answeredIds)
         || !record.answeredIds.every(validId) || !Array.isArray(record.attempts)
-        || !record.attempts.every(validAttempt)) {
+        || !record.attempts.every(validAttempt)
+        || (record.resetId !== undefined && !validId(record.resetId))) {
       throw new Error('备份格式有误或版本不受支持。');
     }
     const attempts = record.attempts.map(({ id, date, score, answered, total }) => ({
@@ -222,16 +259,32 @@
       attempts: [...new Map(attempts.map((attempt) => [attempt.id, attempt])).values()],
       draft: normalizeDraft(record.draft),
       questionHistory,
+      ...(record.resetId ? { resetId: record.resetId } : {}),
     };
   }
 
   function loadProgress(storage) {
-    const text = storage.getItem(storageKey);
+    const text = storage.getItem(storageKey) ?? storage.getItem(legacyStorageKey);
     return text === null ? emptyProgress() : parseBackup(text);
   }
 
   function saveProgress(storage, progress) {
     storage.setItem(storageKey, JSON.stringify({ version: 1, ...progress }));
+  }
+
+  function clearProgress(storage) {
+    const resetId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const progress = { ...emptyProgress(), resetId };
+    if (storage) {
+      saveProgress(storage, progress);
+      storage.removeItem(legacyStorageKey);
+    }
+    return progress;
+  }
+
+  function syncProgress(current, saved) {
+    if (current.resetId !== saved.resetId) return saved;
+    return { ...mergeProgress(current, saved), draft: current.draft };
   }
 
   function mergeProgress(current, imported) {
@@ -245,8 +298,12 @@
       attempts: [...byId.values()].sort((left, right) => Date.parse(right.date) - Date.parse(left.date)),
       draft: current.draft ?? imported.draft,
       questionHistory: Object.fromEntries(history),
+      ...(current.resetId ? { resetId: current.resetId } : {}),
     };
   }
 
-  root.HeatExam = { validateBank, availability, makeExam, grade, loadProgress, saveProgress, parseBackup, mergeProgress, recordSubmission };
+  root.HeatExam = {
+    validateBank, availability, makeExam, grade, loadProgress, saveProgress, parseBackup, mergeProgress,
+    recordSubmission, clearProgress, syncProgress, removeWrongQuestion,
+  };
 })(typeof window === 'undefined' ? globalThis : window);

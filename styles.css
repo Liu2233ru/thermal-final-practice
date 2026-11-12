@@ -243,6 +243,10 @@ img { display: block; max-width: 100%; height: auto; }
 .button.primary:not(:disabled):hover { background: var(--brand-dark); }
 .button.secondary { background: #fff; border-color: #ccdaeb; color: #233d60; }
 .button.secondary:not(:disabled):hover { border-color: #7299cd; background: #f4f8ff; }
+.button.danger { background: var(--red); color: #fff; }
+.button.danger:not(:disabled):hover { background: #8f292d; }
+.button.danger-outline { background: #fff; border-color: #e6babc; color: var(--red); }
+.button.danger-outline:not(:disabled):hover { background: var(--red-tint); border-color: var(--red); }
 .button:disabled { background: #edf1f6; color: #64778e; border-color: var(--line); }
 .button.compact { min-height: 37px; padding: 5px 10px; font-size: 13px; }
 .backup-actions { margin-top: 16px; }
@@ -422,6 +426,7 @@ img { display: block; max-width: 100%; height: auto; }
   font: inherit;
 }
 .library-list { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; }
+.library-entry:has(> .danger-outline) { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }
 .button.library-question {
   display: grid;
   justify-content: stretch;
