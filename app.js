@@ -5,6 +5,7 @@
   const view = document.getElementById("view");
   const headerState = document.getElementById("header-state");
   const siteHeader = headerState.closest("header");
+  const sectionNav = siteHeader.querySelector(".workspace-nav");
   const storageWarning = document.getElementById("storage-warning");
   const backupInput = document.getElementById("backup-input");
   const dialog = document.getElementById("confirm-dialog");
@@ -41,6 +42,8 @@
   }
 
   const byId = new Map(bank.map((question) => [question.id, question]));
+  const eligibleCount = bank.filter((question) => question.archiveOnly !== true).length;
+  const sourceOptions = [...new Set(bank.flatMap((question) => questionSources(question).map((item) => item.source)))];
   let progress = { answeredIds: [], attempts: [], draft: null, questionHistory: {} };
   let storage;
   let skipAnswered = false;
@@ -54,6 +57,12 @@
   let libraryScope = "wrong";
   let libraryFilter = "all";
   let libraryPage = 0;
+  const bankFilters = { search: "", source: "", type: "", points: "" };
+  let bankPage = 0;
+  let recordsPage = 0;
+  let activeAttemptId = "";
+  let attemptFilter = "all";
+  let attemptQuestionPage = 0;
 
   function showStorageWarning(message) {
     storageWarning.textContent = message;
@@ -109,6 +118,8 @@
     currentExam = [];
     position = 0;
     result = null;
+    activeAttemptId = "";
+    recordsPage = 0;
     storageWarning.hidden = true;
     backupMessage = { text: message, tone: "success" };
     showSetup(true);
@@ -190,6 +201,13 @@
     return node;
   }
 
+  function activateSection(section) {
+    for (const node of sectionNav.querySelectorAll("[data-section]")) {
+      if (node.dataset.section === section) node.setAttribute("aria-current", "page");
+      else node.removeAttribute("aria-current");
+    }
+  }
+
   function notice(message, tone = "warning") {
     const node = document.getElementById("setup-notice");
     node.textContent = message || "";
@@ -242,8 +260,10 @@
     for (const entry of progress.attempts.slice().sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5)) {
       const item = element("li");
       const date = new Date(entry.date);
-      const label = Number.isNaN(date.getTime()) ? "模拟考试" : dateFormat.format(date);
-      item.append(element("span", "", label), element("strong", "", `${entry.score} / 100`));
+      const label = dateFormat.format(date);
+      const record = button("", "record-link", () => openAttempt(entry.id));
+      record.append(element("span", "", label), element("strong", "", `${entry.score} / 100`));
+      item.append(record);
       list.append(item);
     }
     holder.append(list);
@@ -251,12 +271,13 @@
 
   function showSetup(focus = false) {
     screen = "setup";
+    activateSection("exam");
     stopExamTimer("模拟考试");
     view.innerHTML = `
       <section class="hero" aria-labelledby="setup-heading">
         <div>
           <h1 id="setup-heading" tabindex="-1">热学期末模拟</h1>
-          <p>题库 ${bank.length} 题 · 按 2025–2026 热学 A 卷结构组卷</p>
+          <p>可抽题目 ${eligibleCount} 道 · 按 2025–2026 热学 A 卷结构组卷</p>
         </div>
         <dl class="hero-stats">
           <div class="hero-stat"><dt>计分题数</dt><dd>60</dd></div>
@@ -279,7 +300,7 @@
           <div class="button-row setup-actions" id="setup-actions"></div>
         </section>
         <aside class="panel" aria-labelledby="history-heading">
-          <div class="panel-heading"><h2 id="history-heading">答题记录</h2><span class="count" id="history-count"></span></div>
+          <div class="panel-heading"><h2 id="history-heading">最近考试</h2><span class="count" id="history-count"></span></div>
           <div class="button-row library-actions" id="library-actions"></div>
           <p class="panel-copy">记录保存在这个浏览器。换电脑时，可以导出再导入。</p>
           <div id="history-items"></div>
@@ -301,7 +322,8 @@
     const wrong = button("错题库", "secondary compact", () => openLibrary("wrong"));
     wrong.id = "wrong-questions";
     document.getElementById("library-actions").append(
-      wrong, button("已做题", "secondary compact", () => openLibrary("answered"))
+      wrong, button("已做题", "secondary compact", () => openLibrary("answered")),
+      button("全部记录", "secondary compact", () => showRecords())
     );
     const backup = document.getElementById("backup-actions");
     backup.append(
@@ -338,9 +360,40 @@
     return labels[status];
   }
 
-  function sourceLabel(question) {
-    const number = Number.isInteger(question.sourceNumber) ? ` · 第 ${question.sourceNumber} 题` : "";
-    return question.source ? question.source + number : "";
+  function questionSources(question) {
+    return [question, ...(question.sourceAliases || [])].filter((item) => typeof item?.source === "string" && item.source);
+  }
+
+  function sourceLabel(source) {
+    const number = Number.isInteger(source.sourceNumber) ? ` · 第 ${source.sourceNumber} 题` : "";
+    return source.source + number;
+  }
+
+  function appendPreview(title, question) {
+    if (question.stem.trim()) {
+      appendMath(title, question.stem);
+    } else if (question.image) {
+      const preview = element("img", "question-preview-image");
+      preview.alt = "原题题干";
+      window.HeatAssets.set(preview, question.image, question.assetPack);
+      title.append(preview);
+    } else {
+      title.textContent = "查看题目";
+    }
+  }
+
+  function appendSourceLine(parent, question) {
+    if (question.source) parent.append(element("span", "library-source", question.source));
+  }
+
+  function populatePager(holder, index, pages, navigate) {
+    holder.replaceChildren();
+    if (pages <= 1) return;
+    const previous = button("上一页", "secondary compact", () => navigate(index - 1));
+    const next = button("下一页", "secondary compact", () => navigate(index + 1));
+    previous.disabled = index === 0;
+    next.disabled = index >= pages - 1;
+    holder.append(previous, element("span", "", `${index + 1} / ${pages} 页`), next);
   }
 
   function openLibrary(scope) {
@@ -352,6 +405,7 @@
 
   function renderLibrary(restoreId = "", feedback = "") {
     screen = "library";
+    activateSection("library");
     stopExamTimer("复习题库");
     view.innerHTML = `
       <section class="panel library-panel" aria-labelledby="library-heading">
@@ -416,7 +470,7 @@
       const control = button("", "library-question", () => showSavedQuestion(question.id));
       control.id = "saved-" + question.id;
       const title = element("span", "library-question-title");
-      appendMath(title, question.stem || sourceLabel(question) || "图片题");
+      appendPreview(title, question);
       const meta = element("span", "library-question-meta");
       meta.append(
         element("span", "chip " + historyStatus(record), historyLabel(record)),
@@ -424,6 +478,7 @@
       );
       if (record) meta.append(element("time", "", dateFormat.format(new Date(record.date))));
       control.append(title, meta);
+      appendSourceLine(control, question);
       row.append(control);
       if (libraryScope === "wrong") {
         title.id = "saved-title-" + question.id;
@@ -437,20 +492,11 @@
     const count = rows.length ? `共 ${rows.length} 题` : libraryScope === "wrong"
       ? "这里还没有符合条件的错题。" : "交卷后即可回看做过的题。";
     status.textContent = feedback ? feedback + " " + count : count;
-    const pagination = document.getElementById("library-pagination");
-    pagination.replaceChildren();
-    if (pages > 1) {
-      const pageButton = (label, offset) => {
-        const control = button(label, "secondary compact", () => {
-          libraryPage += offset;
-          renderLibraryEntries();
-          status.focus();
-        });
-        control.disabled = libraryPage + offset < 0 || libraryPage + offset >= pages;
-        return control;
-      };
-      pagination.append(pageButton("上一页", -1), element("span", "", `${libraryPage + 1} / ${pages} 页`), pageButton("下一页", 1));
-    }
+    populatePager(document.getElementById("library-pagination"), libraryPage, pages, (page) => {
+      libraryPage = page;
+      renderLibraryEntries();
+      status.focus();
+    });
   }
 
   function removeSavedWrong(id) {
@@ -500,6 +546,375 @@
     focusTarget.focus({ preventScroll: true });
   }
 
+  function normalizeSearch(text) {
+    return text.normalize("NFKC").toLowerCase().replace(/[\s·、，]/g, "");
+  }
+
+  function showBank(restoreId = "") {
+    screen = "bank";
+    activateSection("bank");
+    stopExamTimer("题库全览");
+    view.innerHTML = `
+      <section class="page-heading" aria-labelledby="bank-heading">
+        <div>
+          <h1 id="bank-heading" tabindex="-1">题库全览</h1>
+          <p class="panel-copy">按题干、题型或来源找题，打开后可看答案和解析。</p>
+        </div>
+        <p class="page-count">${bank.length} 道题${eligibleCount < bank.length ? ` · ${eligibleCount} 道可抽取` : ""}</p>
+      </section>
+      <div class="browse-layout">
+        <aside class="panel bank-controls" aria-labelledby="bank-controls-heading">
+          <h2 id="bank-controls-heading">筛选题目</h2>
+          <label for="bank-search">搜索</label>
+          <input id="bank-search" type="search" placeholder="题干、来源或原卷题号" autocomplete="off">
+          <label for="bank-source">题目来源</label>
+          <select id="bank-source"><option value="">全部来源</option></select>
+          <label for="bank-type">题型</label>
+          <select id="bank-type">
+            <option value="">全部题型</option><option value="single">单选</option><option value="multiple">多选</option>
+          </select>
+          <label for="bank-points">分值</label>
+          <select id="bank-points">
+            <option value="">全部分值</option><option value="1">1 分</option><option value="2">2 分</option><option value="3">3 分</option>
+          </select>
+          <div id="bank-clear"></div>
+        </aside>
+        <section class="panel browse-content" aria-label="题目列表">
+          <p id="bank-results" class="browse-results" role="status" tabindex="-1"></p>
+          <ul class="library-list" id="bank-list"></ul>
+          <div class="button-row library-pagination" id="bank-pagination"></div>
+        </section>
+      </div>`;
+    const source = document.getElementById("bank-source");
+    for (const name of sourceOptions) {
+      const option = element("option", "", name);
+      option.value = name;
+      source.append(option);
+    }
+    for (const key of Object.keys(bankFilters)) {
+      const input = document.getElementById("bank-" + key);
+      input.value = bankFilters[key];
+      input.addEventListener(key === "search" ? "input" : "change", () => {
+        bankFilters[key] = input.value;
+        bankPage = 0;
+        renderBankEntries();
+      });
+    }
+    document.getElementById("bank-clear").append(button("清除筛选", "secondary compact", () => {
+      for (const key of Object.keys(bankFilters)) {
+        bankFilters[key] = "";
+        document.getElementById("bank-" + key).value = "";
+      }
+      bankPage = 0;
+      renderBankEntries();
+      document.getElementById("bank-search").focus();
+    }));
+    renderBankEntries();
+    const restored = restoreId && document.getElementById("bank-question-" + restoreId);
+    if (!restored) window.scrollTo(0, 0);
+    (restored || document.getElementById("bank-heading")).focus();
+  }
+
+  function renderBankEntries() {
+    const words = bankFilters.search.trim().split(/\s+/).map(normalizeSearch).filter(Boolean);
+    const matches = bank.filter((question) => {
+      if (bankFilters.type && question.type !== bankFilters.type) return false;
+      if (bankFilters.points && String(question.points) !== bankFilters.points) return false;
+      const sources = questionSources(question);
+      if (bankFilters.source && !sources.some(({ source }) => source === bankFilters.source)) return false;
+      if (!words.length) return true;
+      const searchable = normalizeSearch([question.stem, ...question.options, ...sources.map(sourceLabel)].join(" "));
+      return words.every((word) => searchable.includes(word));
+    });
+    const pages = Math.max(1, Math.ceil(matches.length / libraryPageSize));
+    bankPage = Math.min(bankPage, pages - 1);
+    const holder = document.getElementById("bank-list");
+    holder.replaceChildren();
+    for (const question of matches.slice(bankPage * libraryPageSize, (bankPage + 1) * libraryPageSize)) {
+      const row = element("li", "library-entry");
+      const control = button("", "library-question", () => showBankQuestion(question));
+      control.id = "bank-question-" + question.id;
+      const title = element("span", "library-question-title");
+      appendPreview(title, question);
+      const meta = element("span", "library-question-meta", `${typeLabel(question.type)} · ${question.points} 分`);
+      if (question.archiveOnly === true) meta.append(element("span", "chip", "仅供查阅"));
+      control.append(title, meta);
+      appendSourceLine(control, bankFilters.source ? { source: bankFilters.source } : question);
+      row.append(control);
+      holder.append(row);
+    }
+    const status = document.getElementById("bank-results");
+    status.textContent = matches.length ? `共 ${matches.length} 题` : "没有符合条件的题目。";
+    populatePager(document.getElementById("bank-pagination"), bankPage, pages, (page) => {
+      bankPage = page;
+      renderBankEntries();
+      status.focus();
+    });
+  }
+
+  function showBankQuestion(question) {
+    screen = "bank-question";
+    view.innerHTML = questionPanel;
+    const { focusTarget } = renderQuestion(question, "题库题目", { selected: [] });
+    document.getElementById("question-actions").append(
+      button("返回题库全览", "primary", () => showBank(question.id))
+    );
+    window.scrollTo(0, 0);
+    focusTarget.focus({ preventScroll: true });
+  }
+
+  function summaryMetrics(entries) {
+    const metrics = element("dl", "metric-grid");
+    for (const [label, value] of entries) {
+      const metric = element("div", "metric");
+      metric.append(element("dt", "", label), element("dd", "", value));
+      metrics.append(metric);
+    }
+    return metrics;
+  }
+
+  function showRecords(restoreId = "") {
+    screen = "records";
+    activateSection("records");
+    stopExamTimer("考试记录");
+    view.innerHTML = `
+      <section class="page-heading" aria-labelledby="records-heading">
+        <div>
+          <h1 id="records-heading" tabindex="-1">考试记录</h1>
+          <p class="panel-copy">按提交时间回看每套试卷的成绩和作答。</p>
+        </div>
+      </section>
+      <div id="record-metrics"></div>
+      <section class="panel browse-content" aria-label="已提交试卷">
+        <p id="records-results" class="browse-results" role="status" tabindex="-1"></p>
+        <ul class="library-list" id="records-list"></ul>
+        <div class="button-row library-pagination" id="records-pagination"></div>
+      </section>`;
+    renderRecordEntries();
+    const restored = restoreId && document.getElementById("attempt-" + restoreId);
+    if (!restored) window.scrollTo(0, 0);
+    (restored || document.getElementById("records-heading")).focus();
+  }
+
+  function renderRecordEntries() {
+    const entries = progress.attempts.slice().sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    const scores = entries.map((entry) => entry.score);
+    document.getElementById("record-metrics").replaceChildren(summaryMetrics([
+      ["完成试卷", `${entries.length} 套`],
+      ["平均分", entries.length ? `${(scores.reduce((sum, score) => sum + score, 0) / entries.length).toFixed(1)} 分` : "—"],
+      ["最高分", entries.length ? `${scores.reduce((highest, score) => Math.max(highest, score), 0)} 分` : "—"],
+    ]));
+    const pages = Math.max(1, Math.ceil(entries.length / libraryPageSize));
+    recordsPage = Math.min(recordsPage, pages - 1);
+    const holder = document.getElementById("records-list");
+    holder.replaceChildren();
+    for (const entry of entries.slice(recordsPage * libraryPageSize, (recordsPage + 1) * libraryPageSize)) {
+      const row = element("li", "library-entry");
+      const control = button("", "library-question record-row", () => openAttempt(entry.id));
+      control.id = "attempt-" + entry.id;
+      const title = element("span", "library-question-title", dateFormat.format(new Date(entry.date)));
+      const meta = element("span", "library-question-meta");
+      meta.append(
+        element("span", "", `已答 ${entry.answered} / ${entry.total} 题`),
+        element("span", "", entry.results ? `用时 ${formatClock(entry.elapsedSeconds)}` : "旧版成绩记录")
+      );
+      control.append(title, element("strong", "record-score", `${entry.score} / 100`), meta);
+      row.append(control);
+      holder.append(row);
+    }
+    const status = document.getElementById("records-results");
+    status.textContent = entries.length ? `共 ${entries.length} 套试卷` : "交卷后即可回看考试记录。";
+    populatePager(document.getElementById("records-pagination"), recordsPage, pages, (page) => {
+      recordsPage = page;
+      renderRecordEntries();
+      status.focus();
+    });
+  }
+
+  function openAttempt(id) {
+    if (!refreshForAction()) return;
+    activeAttemptId = id;
+    attemptFilter = "all";
+    attemptQuestionPage = 0;
+    showAttempt();
+  }
+
+  function showAttempt(restoreIndex = -1) {
+    const attempt = progress.attempts.find((entry) => entry.id === activeAttemptId);
+    if (!attempt) {
+      showRecords();
+      return;
+    }
+    screen = "attempt";
+    activateSection("records");
+    stopExamTimer("试卷详情");
+    view.innerHTML = `
+      <section class="page-heading" aria-labelledby="attempt-heading">
+        <div>
+          <h1 id="attempt-heading" tabindex="-1">试卷详情</h1>
+          <p id="attempt-date" class="panel-copy"></p>
+        </div>
+        <div id="attempt-navigation" class="button-row"></div>
+      </section>
+      <div id="attempt-metrics"></div>
+      <div id="attempt-detail"></div>`;
+    document.getElementById("attempt-date").textContent = dateFormat.format(new Date(attempt.date));
+    document.getElementById("attempt-navigation").append(button("返回考试记录", "secondary", () => showRecords(attempt.id)));
+    document.getElementById("attempt-metrics").append(summaryMetrics([
+      ["成绩", `${attempt.score} / 100`],
+      ["用时", attempt.results ? formatClock(attempt.elapsedSeconds) : "旧版未记录"],
+      ["作答", `${attempt.answered} / ${attempt.total} 题`],
+    ]));
+    const detail = document.getElementById("attempt-detail");
+    if (!attempt.results) {
+      const panel = element("section", "panel browse-content");
+      panel.append(
+        element("h2", "", "旧版成绩记录"),
+        element("p", "panel-copy", "这套试卷保留了提交时间、总分和作答题数。逐题作答、用时和分析从 V4 开始记录。")
+      );
+      detail.append(panel);
+    } else {
+      const summary = engine.summarizeResults(attempt.results);
+      const table = buildAnalysis(attempt.results);
+      detail.append(table);
+      const panel = element("section", "panel browse-content");
+      panel.innerHTML = `
+        <div class="library-heading-row">
+          <h2>逐题记录</h2>
+          <label class="library-filter" for="attempt-filter">筛选结果
+            <select id="attempt-filter">
+              <option value="all">全部题目</option><option value="missed">错题及部分得分</option>
+              <option value="incorrect">仅答错</option><option value="partial">仅部分得分</option>
+              <option value="unanswered">未作答</option><option value="correct">仅答对</option>
+            </select>
+          </label>
+        </div>
+        <div id="attempt-counts" class="result-counts"></div>
+        <p id="attempt-results" class="browse-results" role="status" tabindex="-1"></p>
+        <ul class="library-list" id="attempt-questions"></ul>
+        <div class="button-row library-pagination" id="attempt-pagination"></div>`;
+      detail.append(panel);
+      document.getElementById("attempt-counts").append(...scoreChips(summary));
+      const filter = document.getElementById("attempt-filter");
+      filter.value = attemptFilter;
+      filter.addEventListener("change", () => {
+        attemptFilter = filter.value;
+        attemptQuestionPage = 0;
+        renderAttemptEntries(attempt, summary.results);
+      });
+      renderAttemptEntries(attempt, summary.results);
+    }
+    const restored = restoreIndex >= 0 && document.getElementById("attempt-question-" + restoreIndex);
+    if (!restored) window.scrollTo(0, 0);
+    (restored || document.getElementById("attempt-heading")).focus();
+  }
+
+  function buildAnalysis(items) {
+    const section = element("section", "panel analysis-panel");
+    section.append(element("h2", "", "试卷分析"));
+    const byType = new Map();
+    const byPoints = new Map();
+    for (const item of items) {
+      const type = item.type ?? byId.get(item.id)?.type;
+      const label = type ? typeLabel(type) : "未知题型";
+      if (!byType.has(label)) byType.set(label, []);
+      if (!byPoints.has(item.max)) byPoints.set(item.max, []);
+      byType.get(label).push(item);
+      byPoints.get(item.max).push(item);
+    }
+    const grid = element("div", "analysis-grid");
+    for (const [heading, groups] of [
+      ["按题型", [...byType.entries()].sort(([left], [right]) => left.localeCompare(right, "zh-CN"))],
+      ["按分值", [...byPoints.entries()].sort(([left], [right]) => left - right).map(([points, group]) => [`${points} 分题`, group])],
+    ]) {
+      const block = element("div", "analysis-block");
+      block.append(element("h3", "", heading));
+      for (const [label, group] of groups) {
+        const points = group.reduce((sum, item) => sum + item.max, 0);
+        const scored = group.reduce((sum, item) => sum + item.score, 0);
+        const row = element("div", "analysis-item");
+        const text = element("div", "analysis-label");
+        text.append(element("span", "", `${label} · ${group.length} 题`), element("strong", "", `${scored} / ${points} 分`));
+        const meter = element("meter", "analysis-meter");
+        meter.min = 0;
+        meter.max = points;
+        meter.value = scored;
+        meter.setAttribute("aria-label", `${label}得分`);
+        row.append(text, meter);
+        block.append(row);
+      }
+      grid.append(block);
+    }
+    section.append(grid);
+    return section;
+  }
+
+  function renderAttemptEntries(attempt, items) {
+    const matches = items.map((item, index) => ({ item, index })).filter(({ item }) =>
+      attemptFilter === "all" || item.status === attemptFilter ||
+      (attemptFilter === "missed" && (item.status === "incorrect" || item.status === "partial"))
+    );
+    const pages = Math.max(1, Math.ceil(matches.length / libraryPageSize));
+    attemptQuestionPage = Math.min(attemptQuestionPage, pages - 1);
+    const holder = document.getElementById("attempt-questions");
+    holder.replaceChildren();
+    for (const { item, index } of matches.slice(attemptQuestionPage * libraryPageSize, (attemptQuestionPage + 1) * libraryPageSize)) {
+      const question = byId.get(item.id);
+      const row = element("li", "library-entry");
+      const control = button("", "library-question", () => showAttemptQuestion(attempt, index));
+      control.id = "attempt-question-" + index;
+      const title = element("span", "library-question-title");
+      title.append(element("span", "attempt-question-number", `第 ${index + 1} 题`), document.createTextNode(" "));
+      if (question) appendPreview(title, question);
+      else title.append(document.createTextNode("此题的题干已移出当前题库。"));
+      const meta = element("span", "library-question-meta");
+      meta.append(
+        element("span", "chip " + item.status, labels[item.status]),
+        element("span", "", `${item.score} / ${item.max} 分`),
+        element("span", "", `作答 ${item.selected.map(letter).join("、") || "未选"}`),
+        element("span", "", `正确 ${item.correct.map(letter).join("、")}`)
+      );
+      control.append(title, meta);
+      if (question) appendSourceLine(control, question);
+      row.append(control);
+      holder.append(row);
+    }
+    const status = document.getElementById("attempt-results");
+    status.textContent = matches.length ? `共 ${matches.length} 题` : "没有符合条件的题目。";
+    populatePager(document.getElementById("attempt-pagination"), attemptQuestionPage, pages, (page) => {
+      attemptQuestionPage = page;
+      renderAttemptEntries(attempt, items);
+      status.focus();
+    });
+  }
+
+  function showAttemptQuestion(attempt, index) {
+    screen = "attempt-question";
+    const item = engine.summarizeResults([attempt.results[index]]).results[0];
+    const question = byId.get(item.id);
+    const caption = `试卷第 ${index + 1} / ${attempt.total} 题`;
+    let focusTarget;
+    if (question) {
+      view.innerHTML = questionPanel;
+      ({ focusTarget } = renderQuestion(question, caption, item));
+    } else {
+      const panel = element("section", "panel question-panel");
+      focusTarget = element("h1", "", caption);
+      focusTarget.tabIndex = -1;
+      panel.append(
+        focusTarget,
+        element("p", "panel-copy", "此题的题干已移出当前题库。"),
+        element("p", "panel-copy", `作答 ${item.selected.map(letter).join("、") || "未选"} · 正确 ${item.correct.map(letter).join("、")} · 得分 ${item.score} / ${item.max}`),
+        element("div", "question-actions")
+      );
+      panel.lastElementChild.id = "question-actions";
+      view.replaceChildren(panel);
+    }
+    document.getElementById("question-actions").append(button("返回试卷详情", "primary", () => showAttempt(index)));
+    window.scrollTo(0, 0);
+    focusTarget.focus({ preventScroll: true });
+  }
+
   function showBackupNotice() {
     const node = document.getElementById("backup-notice");
     if (!node) return;
@@ -545,7 +960,8 @@
     if (!refreshForAction() || !progress.draft) return;
     const draft = progress.draft;
     const selected = draft.questionIds.map((id) => byId.get(id));
-    if (selected.length !== 60 || selected.some((question) => !question)) {
+    if (selected.length !== 60 || selected.some((question) => !question)
+        || selected.reduce((total, question) => total + question.points, 0) !== 100) {
       notice("题库已更新，这份暂存试卷无法继续。可以重新组卷。");
       return;
     }
@@ -610,7 +1026,7 @@
     const group = element(review ? "div" : "fieldset", "option-list");
     group.setAttribute("aria-labelledby", question.stem.trim() ? "question-heading" : "question-number");
     const selected = review ? item.selected : selectedOptions(question);
-    const correct = review ? question.answer : [];
+    const correct = review ? (item.correct ?? question.answer) : [];
     question.options.forEach((text, index) => {
       const entry = element(review ? "div" : "label", review ? "option review" : "option");
       const optionLetter = element("span", "option-letter", letter(index));
@@ -699,8 +1115,8 @@
     const heading = document.getElementById("question-heading");
     const numberLabel = document.getElementById("question-number");
     numberLabel.textContent = caption;
-    chips.append(element("span", "chip type", typeLabel(question.type) + "题"));
-    if (review && item.status !== "legacy") {
+    chips.append(element("span", "chip type", typeLabel(item?.type ?? question.type) + "题"));
+    if (review && Number.isInteger(item.score)) {
       chips.append(element("span", "chip " + item.status, `${item.score} / ${item.max} 分 · ${item.label ?? labels[item.status]}`));
     } else {
       chips.append(element("span", "chip", `${question.points} 分`));
@@ -725,24 +1141,29 @@
     if (review) {
       const explanation = question.explanation?.trim();
       const feedback = element("section", "answer-explanation");
+      const correct = item.correct ?? question.answer;
       feedback.append(
         element("h2", "", explanation ? "解析" : "题库答案"),
-        element("p", "correct-choices", `正确选项 ${question.answer.map(letter).join("、")}`)
+        element("p", "correct-choices", `正确选项 ${correct.map(letter).join("、")}`)
       );
+      if (correct.length !== question.answer.length || !correct.every((index) => question.answer.includes(index))) {
+        feedback.append(element("p", "panel-copy", `上方为交卷时的答案。当前题库修订为 ${question.answer.map(letter).join("、")}，下方解析采用修订后的答案。`));
+      }
       if (explanation) {
         const explanationText = element("p", "answer-explanation-text");
         appendMath(explanationText, explanation);
         feedback.append(explanationText);
       }
       content.append(feedback);
-      const source = sourceLabel(question);
-      if (source) content.append(element("p", "question-source", source));
+      const sources = [...new Set(questionSources(question).map(sourceLabel))];
+      if (sources.length) content.append(element("p", "question-source", `来源　${sources.join(" / ")}`));
     }
     return { optionGroup, focusTarget: heading.hidden ? numberLabel : heading };
   }
 
   function renderExam(focus = false) {
     const review = screen === "result";
+    activateSection("exam");
     if (review) stopExamTimer("交卷结果");
     else startExamTimer();
     view.innerHTML = `
@@ -791,6 +1212,7 @@
     const answerActions = document.getElementById("answer-actions");
     if (review) {
       answerActions.append(
+        button("查看本次记录", "secondary", () => openAttempt(activeAttemptId)),
         button("查看错题库", "secondary", () => openLibrary("wrong")),
         button("返回首页", "primary", () => showSetup(true))
       );
@@ -803,6 +1225,15 @@
     }
   }
 
+  function scoreChips(summary) {
+    return [
+      element("span", "chip correct", `全对 ${summary.full} 题`),
+      element("span", "chip partial", `部分得分 ${summary.partial} 题`),
+      element("span", "chip incorrect", `答错 ${summary.results.length - summary.full - summary.partial - summary.unanswered} 题`),
+      element("span", "chip", `未答 ${summary.unanswered} 题`),
+    ];
+  }
+
   function renderSummary() {
     const summary = document.getElementById("result-summary");
     summary.className = "panel result-strip";
@@ -810,10 +1241,7 @@
     score.append(element("strong", "", result.score), document.createTextNode(" / 100 分"));
     const counts = element("div", "result-counts");
     counts.append(
-      element("span", "chip correct", `全对 ${result.full} 题`),
-      element("span", "chip partial", `部分得分 ${result.partial} 题`),
-      element("span", "chip incorrect", `答错 ${currentExam.length - result.full - result.partial - result.unanswered} 题`),
-      element("span", "chip", `未答 ${result.unanswered} 题`),
+      ...scoreChips(result),
       element("span", "chip", `用时 ${formatClock(result.elapsedSeconds)}`)
     );
     if (result.elapsedSeconds >= examLimitSeconds) {
@@ -840,10 +1268,14 @@
     const date = new Date().toISOString();
     const id = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     progress = engine.recordSubmission(progress, result.results, date);
-    progress.attempts.unshift({ id, date, score: result.score, answered, total: currentExam.length });
+    progress.attempts.unshift({
+      id, date, score: result.score, answered, total: currentExam.length, elapsedSeconds,
+      results: result.results.map(({ status, ...item }) => item),
+    });
     progress.draft = null;
     if (persist() === "reset") return;
     position = 0;
+    activeAttemptId = id;
     screen = "result";
     renderExam();
     const summary = document.getElementById("result-summary");
@@ -902,6 +1334,8 @@
         showAvailability();
       } else if (screen === "library") {
         renderLibraryEntries();
+      } else if (screen === "records") {
+        renderRecordEntries();
       }
     } catch (error) {
       console.error(error);
@@ -913,5 +1347,14 @@
   });
 
   document.getElementById("home-button").addEventListener("click", () => showSetup(true));
+  const sectionActions = {
+    exam: () => showSetup(true),
+    bank: () => showBank(),
+    records: () => showRecords(),
+    library: () => openLibrary("wrong"),
+  };
+  for (const control of sectionNav.querySelectorAll("[data-section]")) {
+    control.addEventListener("click", sectionActions[control.dataset.section]);
+  }
   showSetup();
 })();

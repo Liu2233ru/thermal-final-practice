@@ -47,10 +47,15 @@
 
   function eligibleGroups(bank, excludedIds) {
     const excluded = new Set(excludedIds);
+    for (const question of bank) {
+      if (question.archiveOnly === true && question.duplicateOf && excluded.has(question.id)) {
+        excluded.add(question.duplicateOf);
+      }
+    }
     return blueprint.map((group) => ({
       ...group,
       questions: bank.filter((question) => question.type === group.type
-        && question.points === group.points && !excluded.has(question.id)),
+        && question.points === group.points && question.archiveOnly !== true && !excluded.has(question.id)),
     }));
   }
 
@@ -95,29 +100,40 @@
   }
 
   function grade(exam, answersById) {
-    const summary = { score: 0, full: 0, partial: 0, zero: 0, unanswered: 0, results: [] };
-    for (const question of exam) {
+    const results = exam.map((question) => {
       const raw = answersById[question.id];
       const selected = Array.isArray(raw) ? [...new Set(raw)] : [];
       const correct = question.answer.slice();
       const validChoices = selected.every((index) => correct.includes(index));
-      let status = 'incorrect';
       let score = 0;
-      if (selected.length === 0) {
+      if (selected.length && validChoices && selected.length === correct.length) {
+        score = question.points;
+      } else if (selected.length && validChoices && question.type === 'multiple') {
+        score = 1;
+      }
+      return { id: question.id, type: question.type, score, max: question.points, selected, correct };
+    });
+    return summarizeResults(results);
+  }
+
+  function summarizeResults(results) {
+    const summary = { score: 0, full: 0, partial: 0, zero: 0, unanswered: 0, results: [] };
+    for (const item of results) {
+      const { selected, score, max } = item;
+      let status = 'incorrect';
+      if (!selected.length) {
         status = 'unanswered';
         summary.unanswered++;
-      } else if (validChoices && selected.length === correct.length) {
+      } else if (score === max) {
         status = 'correct';
-        score = question.points;
         summary.full++;
-      } else if (validChoices && question.type === 'multiple') {
+      } else if (score > 0) {
         status = 'partial';
-        score = 1;
         summary.partial++;
       }
-      if (score === 0) summary.zero++;
+      if (!score) summary.zero++;
       summary.score += score;
-      summary.results.push({ id: question.id, score, max: question.points, selected, correct, status });
+      summary.results.push({ ...item, status });
     }
     return summary;
   }
@@ -144,6 +160,38 @@
   function validOptionIndexes(selected) {
     return Array.isArray(selected)
       && selected.every((index) => Number.isInteger(index) && index >= 0 && index < 32);
+  }
+
+  function normalizeAttempt(attempt) {
+    const { id, date, score, answered, total, elapsedSeconds, results } = attempt;
+    const summary = { id, date, score, answered, total };
+    if (elapsedSeconds === undefined && results === undefined) return summary;
+    if (!Number.isSafeInteger(elapsedSeconds) || elapsedSeconds < 0
+        || !Array.isArray(results) || results.length !== total) {
+      throw new Error('备份中的试卷明细无效。');
+    }
+    const seen = new Set();
+    const items = results.map((item) => {
+      if (!item || !validId(item.id) || seen.has(item.id)
+          || !validOptionIndexes(item.selected) || !validOptionIndexes(item.correct)
+          || !item.correct.length || !Number.isInteger(item.max) || item.max < 1 || item.max > 3
+          || (item.type !== undefined && !blueprint.some(({ type, points }) => type === item.type && points === item.max))
+          || !Number.isInteger(item.score) || item.score < 0 || item.score > item.max
+          || (!item.selected.length && item.score > 0)) {
+        throw new Error('备份中的试卷明细无效。');
+      }
+      seen.add(item.id);
+      return {
+        id: item.id, ...(item.type ? { type: item.type } : {}), score: item.score, max: item.max,
+        selected: [...new Set(item.selected)], correct: [...new Set(item.correct)],
+      };
+    });
+    const scored = summarizeResults(items);
+    if (scored.score !== score || total - scored.unanswered !== answered
+        || items.reduce((sum, item) => sum + item.max, 0) !== 100) {
+      throw new Error('备份中的试卷明细与成绩不一致。');
+    }
+    return { ...summary, elapsedSeconds, results: items };
   }
 
   function normalizeQuestionHistory(history) {
@@ -250,13 +298,14 @@
         || (record.resetId !== undefined && !validId(record.resetId))) {
       throw new Error('备份格式有误或版本不受支持。');
     }
-    const attempts = record.attempts.map(({ id, date, score, answered, total }) => ({
-      id, date, score, answered, total,
-    }));
+    const attempts = new Map();
+    for (const entry of record.attempts.map(normalizeAttempt)) {
+      if (entry.results || !attempts.get(entry.id)?.results) attempts.set(entry.id, entry);
+    }
     const questionHistory = normalizeQuestionHistory(record.questionHistory);
     return {
       answeredIds: [...new Set([...record.answeredIds, ...Object.keys(questionHistory)])],
-      attempts: [...new Map(attempts.map((attempt) => [attempt.id, attempt])).values()],
+      attempts: [...attempts.values()],
       draft: normalizeDraft(record.draft),
       questionHistory,
       ...(record.resetId ? { resetId: record.resetId } : {}),
@@ -288,7 +337,10 @@
   }
 
   function mergeProgress(current, imported) {
-    const byId = new Map([...imported.attempts, ...current.attempts].map((attempt) => [attempt.id, attempt]));
+    const byId = new Map();
+    for (const attempt of [...imported.attempts, ...current.attempts]) {
+      if (attempt.results || !byId.get(attempt.id)?.results) byId.set(attempt.id, attempt);
+    }
     const history = new Map(Object.entries(imported.questionHistory ?? {}));
     for (const [id, entry] of Object.entries(current.questionHistory ?? {})) {
       history.set(id, mergeQuestionRecord(entry, history.get(id)));
@@ -304,6 +356,6 @@
 
   root.HeatExam = {
     validateBank, availability, makeExam, grade, loadProgress, saveProgress, parseBackup, mergeProgress,
-    recordSubmission, clearProgress, syncProgress, removeWrongQuestion,
+    recordSubmission, clearProgress, syncProgress, removeWrongQuestion, summarizeResults,
   };
 })(typeof window === 'undefined' ? globalThis : window);

@@ -1,210 +1,4085 @@
 window.HEAT_BANK = (window.HEAT_BANK || []).concat([
-  {"id":"p-10","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":10,"image":"assets/p/010-stem.webp","optionImages":["assets/p/010-a.webp","assets/p/010-b.webp","assets/p/010-c.webp","assets/p/010-d.webp"],"explanation":"室温刚性双原子理想气体有 5 个二次自由度，所以 \\(C_{V,m}=5R/2\\)、\\(C_{p,m}=7R/2\\)。等压过程中 \\(W=nR\\Delta T\\)，而 \\(Q=nC_{p,m}\\Delta T\\)，两者比值为 \\(2/7\\)。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-13","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":13,"image":"assets/p/013-stem.webp","optionImages":["assets/p/013-a.webp","assets/p/013-b.webp","assets/p/013-c.webp","assets/p/013-d.webp"],"assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-15","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":15,"image":"assets/p/015-stem.webp","optionImages":["assets/p/015-a.webp","assets/p/015-b.webp","assets/p/015-c.webp","assets/p/015-d.webp"],"explanation":"绝热表示过程没有热交换。可逆绝热的熵变为零，不可逆绝热过程仍会产生熵，例如理想气体绝热自由膨胀。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-18","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":18,"image":"assets/p/018-stem.webp","optionImages":["assets/p/018-a.webp","assets/p/018-b.webp","assets/p/018-c.webp","assets/p/018-d.webp"],"assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-21","type":"single","points":2,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":21,"image":"assets/p/021-stem.webp","optionImages":["assets/p/021-a.webp","assets/p/021-b.webp","assets/p/021-c.webp","assets/p/021-d.webp"],"explanation":"同一容器内各组分温度和体积相同，由 \\(p_i=N_ik_BT/V\\) 可知分压正比于分子数。三种组分的分压分别为 \\(p,3p,4p\\)，总压为 \\(8p\\)。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-25","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":25,"image":"assets/p/025-stem.webp","optionImages":["assets/p/025-a.webp","assets/p/025-b.webp","assets/p/025-c.webp","assets/p/025-d.webp"],"explanation":"在同一对热源间，可逆热机效率最高。燃烧相同燃料放出的热量相同，不可逆热机转化成牵引功的份额较小。相同牵引条件下，能完成的距离也较短。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-27","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":27,"image":"assets/p/027-stem.webp","optionImages":["assets/p/027-a.webp","assets/p/027-b.webp","assets/p/027-c.webp","assets/p/027-d.webp"],"assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-35","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":35,"image":"assets/p/035-stem.webp","optionImages":["assets/p/035-a.webp","assets/p/035-b.webp","assets/p/035-c.webp","assets/p/035-d.webp"],"explanation":"两条路径有相同初、末状态，故内能改变量相同，但 \\(p\\)–\\(V\\) 图下方面积不同，功和吸热量也不同。理想气体等温线与可逆绝热线从同一点出发，在另一体积处的压强不同，不能再经过同一个末态。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-39","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":39,"image":"assets/p/039-stem.webp","optionImages":["assets/p/039-a.webp","assets/p/039-b.webp","assets/p/039-c.webp","assets/p/039-d.webp"],"explanation":"热量是跨越系统边界的传能量，物体没有作为状态量的「所含热量」。温度也不能根据单位体积的所谓「所含热量」判断。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-49","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":49,"image":"assets/p/049-stem.webp","optionImages":["assets/p/049-a.webp","assets/p/049-b.webp","assets/p/049-c.webp","assets/p/049-d.webp"],"explanation":"理想气体的内能只随温度变化。等压时 \\(T\\propto V\\)，压缩导致降温和内能减小。等温压缩内能不变，等压膨胀与绝热压缩均会升温。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-52","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":52,"image":"assets/p/052-stem.webp","optionImages":["assets/p/052-a.webp","assets/p/052-b.webp","assets/p/052-c.webp","assets/p/052-d.webp"],"explanation":"对麦克斯韦速率分布求一阶矩 \\(\\bar v=\\int_0^\\infty v f(v)\\,\\mathrm dv\\)，可得 \\(\\sqrt{8k_BT/(\\pi m)}\\)。另外两种常见速率分别是最概然速率和方均根速率。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-53","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":53,"image":"assets/p/053-stem.webp","optionImages":["assets/p/053-a.webp","assets/p/053-b.webp","assets/p/053-c.webp","assets/p/053-d.webp"],"explanation":"理想气体绝热自由膨胀时既不传热，也不对外做功。内能与温度保持不变，理想气体的焓也不变；气体体积增大，熵变为 \\(nR\\ln(V_2/V_1)>0\\)。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-54","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":54,"image":"assets/p/054-stem.webp","optionImages":["assets/p/054-a.webp","assets/p/054-b.webp","assets/p/054-c.webp","assets/p/054-d.webp"],"explanation":"刚性双原子分子有 3 个平动和 2 个转动自由度。每摩尔内能为 \\(5RT/2\\)，对温度求导得到摩尔定容热容 \\(C_{V,m}=5R/2\\)。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-59","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":59,"image":"assets/p/059-stem.webp","optionImages":["assets/p/059-a.webp","assets/p/059-b.webp","assets/p/059-c.webp","assets/p/059-d.webp"],"explanation":"将 \\(n=n_0/2\\) 代入分布式，得 \\(e^{-mgh/(RT)}=1/2\\)。取自然对数并解高度，\\(h=RT\\ln2/(mg)\\)。","assetPack":"assets/p/v3-clip-001.js"},
-  {"id":"p-62","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,2],"source":"热学450题题库","sourceNumber":62,"image":"assets/p/062-stem.webp","optionImages":["assets/p/062-a.webp","assets/p/062-b.webp","assets/p/062-c.webp","assets/p/062-d.webp"],"explanation":"在理想气体近似下，两容器的体积和气体物质的量相等，由 \\(pV=nRT\\) 得 \\(p\\propto T\\)。甲压强更低，因此温度和分子平均平动动能 \\(3k_BT/2\\) 都较小。","assetPack":"assets/p/v3-clip-002.js"},
-  {"id":"p-64","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,2],"source":"热学450题题库","sourceNumber":64,"image":"assets/p/064-stem.webp","optionImages":["assets/p/064-a.webp","assets/p/064-b.webp","assets/p/064-c.webp","assets/p/064-d.webp"],"assetPack":"assets/p/v3-clip-002.js"},
-  {"id":"p-65","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":65,"image":"assets/p/065-stem.webp","optionImages":["assets/p/065-a.webp","assets/p/065-b.webp","assets/p/065-c.webp","assets/p/065-d.webp"],"explanation":"绝热条件下 \\(Q=0\\)。外界对物体做正功时，输入的能量增加物体内能。吸热时若物体同时向外做功，则内能不一定增加。第二类永动机违反的是热力学第二定律。","assetPack":"assets/p/v3-clip-002.js"},
-  {"id":"p-66","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[0,3],"source":"热学450题题库","sourceNumber":66,"image":"assets/p/066-stem.webp","optionImages":["assets/p/066-a.webp","assets/p/066-b.webp","assets/p/066-c.webp","assets/p/066-d.webp"],"assetPack":"assets/p/v3-clip-002.js"},
-  {"id":"p-67","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[0,3],"source":"热学450题题库","sourceNumber":67,"image":"assets/p/067-stem.webp","optionImages":["assets/p/067-a.webp","assets/p/067-b.webp","assets/p/067-c.webp","assets/p/067-d.webp"],"assetPack":"assets/p/v3-clip-002.js"},
-  {"id":"p-69","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,2],"source":"热学450题题库","sourceNumber":69,"image":"assets/p/069-stem.webp","optionImages":["assets/p/069-a.webp","assets/p/069-b.webp","assets/p/069-c.webp","assets/p/069-d.webp"],"explanation":"压缩机消耗电功，让制冷剂能从箱内吸热并向环境放热。制冷剂完成一周后内能回到原值，环境收到的热量等于箱内吸热量加上输入的功。","assetPack":"assets/p/v3-clip-002.js"},
-  {"id":"p-70","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":70,"image":"assets/p/070-stem.webp","optionImages":["assets/p/070-a.webp","assets/p/070-b.webp","assets/p/070-c.webp","assets/p/070-d.webp"],"explanation":"两条路径和可逆绝热路径连接同一初态、末态，内能改变量相同。以气体对外做功为正，\\(Q=\\Delta U+W\\)。曲线 ① 在绝热线下方，膨胀功较小，因此 \\(Q_1<0\\)。曲线 ② 在上方，故 \\(Q_2>0\\)。","assetPack":"assets/p/v3-clip-002.js"},
-  {"id":"p-71","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":71,"image":"assets/p/071-stem.webp","optionImages":["assets/p/071-a.webp","assets/p/071-b.webp","assets/p/071-c.webp","assets/p/071-d.webp"],"explanation":"速率在 \\([v_1,v_2]\\) 中的概率为 \\(\\int_{v_1}^{v_2}f(v)\\,\\mathrm dv\\)。题目要分子数而非概率，因此应乘以总分子数 \\(N\\)。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-72","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":72,"image":"assets/p/072-stem.webp","optionImages":["assets/p/072-a.webp","assets/p/072-b.webp","assets/p/072-c.webp","assets/p/072-d.webp"],"assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-73","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":73,"image":"assets/p/073-stem.webp","optionImages":["assets/p/073-a.webp","assets/p/073-b.webp","assets/p/073-c.webp","assets/p/073-d.webp"],"explanation":"\\(f(v)\\) 是速率的概率密度。速率落在很窄的区间 \\([v,v+\\mathrm dv]\\) 内的分子数占比为 \\(f(v)\\,\\mathrm dv\\)，所以 \\(f(v)\\) 对应单位速率间隔的分子数比例。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-74","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":74,"image":"assets/p/074-stem.webp","optionImages":["assets/p/074-a.webp","assets/p/074-b.webp","assets/p/074-c.webp","assets/p/074-d.webp"],"assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-75","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":75,"image":"assets/p/075-stem.webp","optionImages":["assets/p/075-a.webp","assets/p/075-b.webp","assets/p/075-c.webp","assets/p/075-d.webp"],"explanation":"相同 \\(n,T,V_1,V_2\\) 下，理想气体准静态等温膨胀功都是 \\(W=nRT\\ln(V_2/V_1)\\)。各自的温度均不变，故 \\(\\Delta U=0\\) 且 \\(Q=W\\)，两种气体做功和吸热量均相同。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-76","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":76,"image":"assets/p/076-stem.webp","optionImages":["assets/p/076-a.webp","assets/p/076-b.webp","assets/p/076-c.webp","assets/p/076-d.webp"],"explanation":"等压压缩时 \\(W=p\\Delta V<0\\)。体积和温度同降，\\(\\Delta U<0\\)，所以 \\(Q=\\Delta U+W<0\\)。等容过程功为零，等温过程内能变化为零，绝热过程热量为零。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-77","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":77,"image":"assets/p/077-stem.webp","optionImages":["assets/p/077-a.webp","assets/p/077-b.webp","assets/p/077-c.webp","assets/p/077-d.webp"],"explanation":"室温下双原子理想气体近似有 \\(C_{p,m}=7R/2\\)。等压膨胀时 \\(W=nR\\Delta T\\)、\\(Q=nC_{p,m}\\Delta T\\)，因此 \\(W/Q=2/7\\)。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-80","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":80,"image":"assets/p/080-stem.webp","optionImages":["assets/p/080-a.webp","assets/p/080-b.webp","assets/p/080-c.webp","assets/p/080-d.webp"],"explanation":"可逆绝热过程满足 \\(pV^\\gamma=\\text{常量}\\)。联立理想气体状态方程还能得到 \\(TV^{\\gamma-1}=\\text{常量}\\) 与 \\(p^{\\gamma-1}T^{-\\gamma}=\\text{常量}\\)。\\(p^\\gamma V\\) 一般不恒定。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-86","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":86,"image":"assets/p/086-stem.webp","optionImages":["assets/p/086-a.webp","assets/p/086-b.webp","assets/p/086-c.webp","assets/p/086-d.webp"],"assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-87","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":87,"image":"assets/p/087-stem.webp","optionImages":["assets/p/087-a.webp","assets/p/087-b.webp","assets/p/087-c.webp","assets/p/087-d.webp"],"assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-90","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":90,"image":"assets/p/090-stem.webp","optionImages":["assets/p/090-a.webp","assets/p/090-b.webp","assets/p/090-c.webp","assets/p/090-d.webp"],"explanation":"三个彼此制约的状态变量满足循环偏导关系 \\((\\partial p/\\partial T)_V(\\partial T/\\partial V)_p(\\partial V/\\partial p)_T=-1\\)。其余表达式可直接对 \\(p=RT/(V-b)-a/V^2\\) 求偏导得到。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-91","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":91,"image":"assets/p/091-stem.webp","optionImages":["assets/p/091-a.webp","assets/p/091-b.webp","assets/p/091-c.webp","assets/p/091-d.webp"],"explanation":"设 \\(\\varepsilon=mv^2/2\\)，用 \\(f_\\varepsilon(\\varepsilon)\\,\\mathrm d\\varepsilon=f_v(v)\\,\\mathrm dv\\)。速率分布中的 \\(v^2\\) 与变量变换中的 \\(\\mathrm dv/\\mathrm d\\varepsilon\\propto1/v\\) 合并成 \\(\\sqrt{\\varepsilon}\\)，故 \\(f_\\varepsilon(\\varepsilon)\\propto\\varepsilon^{1/2}e^{-\\varepsilon/(k_BT)}\\)。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-92","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":92,"image":"assets/p/092-stem.webp","optionImages":["assets/p/092-a.webp","assets/p/092-b.webp","assets/p/092-c.webp","assets/p/092-d.webp"],"explanation":"区间内粒子的平均速率是条件平均，要把 \\(\\int_{v_1}^{v_2}vf(v)\\,\\mathrm dv\\) 再除以区间所占比例 \\(\\int_{v_1}^{v_2}f(v)\\,\\mathrm dv\\)。A 缺少这个归一化因子。","assetPack":"assets/p/v3-clip-003.js"},
-  {"id":"p-93","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":93,"image":"assets/p/093-stem.webp","optionImages":["assets/p/093-a.webp","assets/p/093-b.webp","assets/p/093-c.webp","assets/p/093-d.webp"],"assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-95","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":95,"image":"assets/p/095-stem.webp","optionImages":["assets/p/095-a.webp","assets/p/095-b.webp","assets/p/095-c.webp","assets/p/095-d.webp"],"explanation":"气体回到起始状态，\\(\\Delta U=0\\)。吸收净热量为 \\(Q_1-Q_2\\)，气体净对外做功为 \\(W_2-W_1\\)。根据热力学第一定律，两者相等。","assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-96","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[2,3],"source":"热学450题题库","sourceNumber":96,"image":"assets/p/096-stem.webp","optionImages":["assets/p/096-a.webp","assets/p/096-b.webp","assets/p/096-c.webp","assets/p/096-d.webp"],"assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-98","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[0,3],"source":"热学450题题库","sourceNumber":98,"image":"assets/p/098-stem.webp","optionImages":["assets/p/098-a.webp","assets/p/098-b.webp","assets/p/098-c.webp","assets/p/098-d.webp"],"explanation":"液体难以被压缩反映分子靠得很近时的强斥力；固体在一定拉力下仍保持整体，与粒子间吸引作用有关。马德堡半球难以拉开主要是外部大气压造成的。","assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-99","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,3],"source":"热学450题题库","sourceNumber":99,"image":"assets/p/099-stem.webp","optionImages":["assets/p/099-a.webp","assets/p/099-b.webp","assets/p/099-c.webp","assets/p/099-d.webp"],"explanation":"定容时质量与体积都不变，密度不变，理想气体有 \\(p\\propto T\\)。升温还会增大分子平均速率，所以在分子数密度不变时，每秒撞击单位面积器壁的分子数增多。","assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-100","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,2],"source":"热学450题题库","sourceNumber":100,"image":"assets/p/100-stem.webp","optionImages":["assets/p/100-a.webp","assets/p/100-b.webp","assets/p/100-c.webp","assets/p/100-d.webp"],"explanation":"一摩尔气体的质量是 \\(M=\\rho V\\)，也等于 \\(N_Am\\)，因此 \\(N_A=\\rho V/m=M/m\\)。整个气体的体积不等于所有分子固有体积之和。","assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-101","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[0,2],"source":"热学450题题库","sourceNumber":101,"image":"assets/p/101-stem.webp","optionImages":["assets/p/101-a.webp","assets/p/101-b.webp","assets/p/101-c.webp","assets/p/101-d.webp"],"assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-102","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,3],"source":"热学450题题库","sourceNumber":102,"image":"assets/p/102-stem.webp","optionImages":["assets/p/102-a.webp","assets/p/102-b.webp","assets/p/102-c.webp","assets/p/102-d.webp"],"assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-103","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,2],"source":"热学450题题库","sourceNumber":103,"image":"assets/p/103-stem.webp","optionImages":["assets/p/103-a.webp","assets/p/103-b.webp","assets/p/103-c.webp","assets/p/103-d.webp"],"assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-104","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[0,3],"source":"热学450题题库","sourceNumber":104,"image":"assets/p/104-stem.webp","optionImages":["assets/p/104-a.webp","assets/p/104-b.webp","assets/p/104-c.webp","assets/p/104-d.webp"],"explanation":"升温表示分子平均动能增大，不能断言每个分子的速率都增大。容器的整体动能不计入气体内能。等容时只是不做体积功，仍可因传热改变内能。等温压缩满足 \\(pV=\\text{常量}\\)，压强增大。","assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-105","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":105,"image":"assets/p/105-stem.webp","optionImages":["assets/p/105-a.webp","assets/p/105-b.webp","assets/p/105-c.webp","assets/p/105-d.webp"],"assetPack":"assets/p/v3-clip-004.js"},
-  {"id":"p-106","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":106,"image":"assets/p/106-stem.webp","optionImages":["assets/p/106-a.webp","assets/p/106-b.webp","assets/p/106-c.webp","assets/p/106-d.webp"],"explanation":"固定物质的量的理想气体有 \\(T=pV/(nR)\\)。压强和体积都变大时，乘积 \\(pV\\) 一定变大，分子的平均平动动能 \\(3k_BT/2\\) 也一定增大。","assetPack":"assets/p/v3-clip-005.js"},
-  {"id":"p-108","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":108,"image":"assets/p/108-stem.webp","optionImages":["assets/p/108-a.webp","assets/p/108-b.webp","assets/p/108-c.webp","assets/p/108-d.webp"],"explanation":"拉杆向左拉出时，左边的甲室变小，外界对甲做功；右边的乙室扩大，乙对外做功。两边都绝热，内能变化由做功决定，所以甲内能增加、乙内能减少。","assetPack":"assets/p/v3-clip-005.js"},
-  {"id":"p-109","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":109,"image":"assets/p/109-stem.webp","optionImages":["assets/p/109-a.webp","assets/p/109-b.webp","assets/p/109-c.webp","assets/p/109-d.webp"],"explanation":"分子热运动变剧烈对应温度升高。由于 \\(p=nRT/V\\)，同时增大体积可以抵消温度升高对压强的影响。例如在等压升温膨胀时，温度升高而压强不变。","assetPack":"assets/p/v3-clip-005.js"},
-  {"id":"p-110","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":110,"image":"assets/p/110-stem.webp","optionImages":["assets/p/110-a.webp","assets/p/110-b.webp","assets/p/110-c.webp","assets/p/110-d.webp"],"explanation":"压缩时外界对气体做正功，同时向气体传热会输入正热量。两种方式都给气体输入能量，内能增加；题设规定内能增加时温度升高。","assetPack":"assets/p/v3-clip-005.js"},
-  {"id":"p-111","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":111,"image":"assets/p/111-stem.webp","optionImages":["assets/p/111-a.webp","assets/p/111-b.webp","assets/p/111-c.webp","assets/p/111-d.webp"],"assetPack":"assets/p/v3-clip-005.js"},
-  {"id":"p-113","type":"single","points":2,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":113,"image":"assets/p/113-stem.webp","optionImages":["assets/p/113-a.webp","assets/p/113-b.webp","assets/p/113-c.webp","assets/p/113-d.webp"],"assetPack":"assets/p/v3-clip-005.js"},
-  {"id":"p-114","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":114,"image":"assets/p/114-stem.webp","optionImages":["assets/p/114-a.webp","assets/p/114-b.webp","assets/p/114-c.webp","assets/p/114-d.webp"],"assetPack":"assets/p/v3-clip-005.js"},
-  {"id":"p-115","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":115,"image":"assets/p/115-stem.webp","optionImages":["assets/p/115-a.webp","assets/p/115-b.webp","assets/p/115-c.webp","assets/p/115-d.webp"],"explanation":"整体绝热，系统总能量守恒。弹簧释放的部分能量抬高活塞，另一部分因压缩气体增加其内能。平衡时弹簧仍需托住活塞并对抗气体压力，因而仍保有弹性势能。","assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-116","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":116,"image":"assets/p/116-stem.webp","optionImages":["assets/p/116-a.webp","assets/p/116-b.webp","assets/p/116-c.webp","assets/p/116-d.webp"],"explanation":"例如理想气体从单一热源吸热并做等温膨胀，内能不变，吸收的热量等于对外做功。过程同时改变了气体的体积，符合第二定律的条件限制。","assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-117","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":117,"image":"assets/p/117-stem.webp","optionImages":["assets/p/117-a.webp","assets/p/117-b.webp","assets/p/117-c.webp","assets/p/117-d.webp"],"assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-118","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":118,"image":"assets/p/118-stem.webp","optionImages":["assets/p/118-a.webp","assets/p/118-b.webp","assets/p/118-c.webp","assets/p/118-d.webp"],"explanation":"开尔文表述禁止一个循环热机只从单一热源取热、全部转化为功且没有其他效果。制冷机可以把热量从低温处传到高温处，因为需要消耗外界功。","assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-119","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":119,"image":"assets/p/119-stem.webp","optionImages":["assets/p/119-a.webp","assets/p/119-b.webp","assets/p/119-c.webp","assets/p/119-d.webp"],"explanation":"温度越高，分子热运动的平均平动动能越大，理想气体中其数值为 \\(3k_BT/2\\)。做功和传热若同时发生，需比较各自大小后才能判断内能变化。","assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-120","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":120,"image":"assets/p/120-stem.webp","optionImages":["assets/p/120-a.webp","assets/p/120-b.webp","assets/p/120-c.webp","assets/p/120-d.webp"],"explanation":"题目给出气体吸热 \\(Q>0\\)，同时膨胀对外做功 \\(W>0\\)。热力学第一定律给出 \\(\\Delta U=Q-W\\)。两者大小未知，所以内能变化的符号无法判断。","assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-121","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":121,"image":"assets/p/121-stem.webp","optionImages":["assets/p/121-a.webp","assets/p/121-b.webp","assets/p/121-c.webp","assets/p/121-d.webp"],"assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-122","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":122,"image":"assets/p/122-stem.webp","optionImages":["assets/p/122-a.webp","assets/p/122-b.webp","assets/p/122-c.webp","assets/p/122-d.webp"],"assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-123","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":123,"image":"assets/p/123-stem.webp","optionImages":["assets/p/123-a.webp","assets/p/123-b.webp","assets/p/123-c.webp","assets/p/123-d.webp"],"assetPack":"assets/p/v3-clip-006.js"},
-  {"id":"p-124","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":124,"image":"assets/p/124-stem.webp","optionImages":["assets/p/124-a.webp","assets/p/124-b.webp","assets/p/124-c.webp","assets/p/124-d.webp"],"assetPack":"assets/p/v3-clip-007.js"},
-  {"id":"p-125","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":125,"image":"assets/p/125-stem.webp","optionImages":["assets/p/125-a.webp","assets/p/125-b.webp","assets/p/125-c.webp","assets/p/125-d.webp"],"assetPack":"assets/p/v3-clip-007.js"},
-  {"id":"p-126","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":126,"image":"assets/p/126-stem.webp","optionImages":["assets/p/126-a.webp","assets/p/126-b.webp","assets/p/126-c.webp","assets/p/126-d.webp"],"explanation":"绝热过程 \\(Q=0\\)。缓慢膨胀时气体对外做正功，故 \\(\\Delta U=Q-W<0\\)。分子势能可忽略，内能的减小反映为分子平均动能减小。","assetPack":"assets/p/v3-clip-007.js"},
-  {"id":"p-128","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":128,"image":"assets/p/128-stem.webp","optionImages":["assets/p/128-a.webp","assets/p/128-b.webp","assets/p/128-c.webp","assets/p/128-d.webp"],"assetPack":"assets/p/v3-clip-007.js"},
-  {"id":"p-129","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":129,"image":"assets/p/129-stem.webp","optionImages":["assets/p/129-a.webp","assets/p/129-b.webp","assets/p/129-c.webp","assets/p/129-d.webp"],"assetPack":"assets/p/v3-clip-007.js"},
-  {"id":"p-130","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":130,"image":"assets/p/130-stem.webp","optionImages":["assets/p/130-a.webp","assets/p/130-b.webp","assets/p/130-c.webp","assets/p/130-d.webp"],"explanation":"气体向真空膨胀时外压为零，体积功为零；容器绝热，\\(Q=0\\)。所以 \\(\\Delta U=0\\)，而理想气体的内能只取决于温度。末态体积增大，压强随之减小。","assetPack":"assets/p/v3-clip-007.js"},
-  {"id":"p-131","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":131,"image":"assets/p/131-stem.webp","optionImages":["assets/p/131-a.webp","assets/p/131-b.webp","assets/p/131-c.webp","assets/p/131-d.webp"],"assetPack":"assets/p/v3-clip-007.js"},
-  {"id":"p-132","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":132,"image":"assets/p/132-stem.webp","optionImages":["assets/p/132-a.webp","assets/p/132-b.webp","assets/p/132-c.webp","assets/p/132-d.webp"],"assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-133","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":133,"image":"assets/p/133-stem.webp","optionImages":["assets/p/133-a.webp","assets/p/133-b.webp","assets/p/133-c.webp","assets/p/133-d.webp"],"assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-134","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":134,"image":"assets/p/134-stem.webp","optionImages":["assets/p/134-a.webp","assets/p/134-b.webp","assets/p/134-c.webp","assets/p/134-d.webp"],"assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-135","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":135,"image":"assets/p/135-stem.webp","optionImages":["assets/p/135-a.webp","assets/p/135-b.webp","assets/p/135-c.webp","assets/p/135-d.webp"],"explanation":"刚性单原子、双原子和非线性多原子分子的热自由度分别为 3、5 和 6，定容热容不同。等量气体定容吸收相等热量，\\(\\Delta T=Q/(nC_V)\\) 不同，因此 \\(\\Delta p=nR\\Delta T/V\\) 也不同。","assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-136","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":136,"image":"assets/p/136-stem.webp","optionImages":["assets/p/136-a.webp","assets/p/136-b.webp","assets/p/136-c.webp","assets/p/136-d.webp"],"assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-137","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":137,"image":"assets/p/137-stem.webp","optionImages":["assets/p/137-a.webp","assets/p/137-b.webp","assets/p/137-c.webp","assets/p/137-d.webp"],"assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-138","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":138,"image":"assets/p/138-stem.webp","optionImages":["assets/p/138-a.webp","assets/p/138-b.webp","assets/p/138-c.webp","assets/p/138-d.webp"],"assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-139","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":139,"image":"assets/p/139-stem.webp","optionImages":["assets/p/139-a.webp","assets/p/139-b.webp","assets/p/139-c.webp","assets/p/139-d.webp"],"explanation":"初末态均有 \\(pV=8\\,\\mathrm{atm\\,L}\\)，所以初末温度相同，\\(\\Delta U=0\\)。过程体积增大且压强为正，故气体做正功，净吸热等于做功。","assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-141","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":141,"image":"assets/p/141-stem.webp","optionImages":["assets/p/141-a.webp","assets/p/141-b.webp","assets/p/141-c.webp","assets/p/141-d.webp"],"assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-142","type":"single","points":2,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":142,"image":"assets/p/142-stem.webp","optionImages":["assets/p/142-a.webp","assets/p/142-b.webp","assets/p/142-c.webp","assets/p/142-d.webp"],"explanation":"室温下忽略双原子分子的振动，\\(C_V=5R/2\\)，因此 \\(C_p=7R/2\\)。等压时 \\(W=nR\\Delta T\\)，\\(Q=nC_p\\Delta T\\)，故 \\(W/Q=2/7\\)。","assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-143","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":143,"image":"assets/p/143-stem.webp","optionImages":["assets/p/143-a.webp","assets/p/143-b.webp","assets/p/143-c.webp","assets/p/143-d.webp"],"assetPack":"assets/p/v3-clip-008.js"},
-  {"id":"p-144","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":144,"image":"assets/p/144-stem.webp","optionImages":["assets/p/144-a.webp","assets/p/144-b.webp","assets/p/144-c.webp","assets/p/144-d.webp"],"assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-145","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":145,"image":"assets/p/145-stem.webp","optionImages":["assets/p/145-a.webp","assets/p/145-b.webp","assets/p/145-c.webp","assets/p/145-d.webp"],"explanation":"外界对气体做功为气体对外功的负值。准静态等温时 \\(p=RT_1/V\\)，故 \\(W_{\\mathrm{on}}=-\\int_{V_1}^{V_2} (RT_1/V)\\,\\mathrm dV=RT_1\\ln(V_1/V_2)\\)。压缩时该值为正。","assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-146","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":146,"image":"assets/p/146-stem.webp","optionImages":["assets/p/146-a.webp","assets/p/146-b.webp","assets/p/146-c.webp","assets/p/146-d.webp"],"assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-147","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":147,"image":"assets/p/147-stem.webp","optionImages":["assets/p/147-a.webp","assets/p/147-b.webp","assets/p/147-c.webp","assets/p/147-d.webp"],"explanation":"同体积、同温压时两种气体的摩尔数相等。刚性氢分子有 5 个自由度，刚性氨分子有 6 个。定容且温升相同，吸热之比为 \\(6/5\\)，所以氨气应吸收 \\(5\\times6/5=6\\,\\mathrm J\\)。","assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-148","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":148,"image":"assets/p/148-stem.webp","optionImages":["assets/p/148-a.webp","assets/p/148-b.webp","assets/p/148-c.webp","assets/p/148-d.webp"],"explanation":"等压吸热中，做功占吸热的比例为 \\(R/C_p\\)。刚性氧分子 \\(C_p=7R/2\\)，氦气 \\(C_p=5R/2\\)，所以相同吸热下氧、氦做功之比为 \\(5:7\\)。","assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-149","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":149,"image":"assets/p/149-stem.webp","optionImages":["assets/p/149-a.webp","assets/p/149-b.webp","assets/p/149-c.webp","assets/p/149-d.webp"],"explanation":"理想气体等温膨胀时 \\(\\Delta U=0\\)，第一定律允许 \\(Q=W\\)。气体的体积已改变，过程并非一个循环，故也不违背开尔文表述。","assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-151","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":151,"image":"assets/p/151-stem.webp","optionImages":["assets/p/151-a.webp","assets/p/151-b.webp","assets/p/151-c.webp","assets/p/151-d.webp"],"explanation":"不同理想气体混合时各组分可及体积增加，等温汽化吸收潜热，自由膨胀则使气体可及体积增加，这三种过程使系统的熵增大。等容降温与等温压缩的系统熵变均为负。","assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-152","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":152,"image":"assets/p/152-stem.webp","optionImages":["assets/p/152-a.webp","assets/p/152-b.webp","assets/p/152-c.webp","assets/p/152-d.webp"],"assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-153","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":153,"image":"assets/p/153-stem.webp","optionImages":["assets/p/153-a.webp","assets/p/153-b.webp","assets/p/153-c.webp","assets/p/153-d.webp"],"assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-154","type":"single","points":3,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":154,"image":"assets/p/154-stem.webp","optionImages":["assets/p/154-a.webp","assets/p/154-b.webp","assets/p/154-c.webp","assets/p/154-d.webp"],"assetPack":"assets/p/v3-clip-009.js"},
-  {"id":"p-155","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":155,"image":"assets/p/155-stem.webp","optionImages":["assets/p/155-a.webp","assets/p/155-b.webp","assets/p/155-c.webp","assets/p/155-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-156","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":156,"image":"assets/p/156-stem.webp","optionImages":["assets/p/156-a.webp","assets/p/156-b.webp","assets/p/156-c.webp","assets/p/156-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-157","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":157,"image":"assets/p/157-stem.webp","optionImages":["assets/p/157-a.webp","assets/p/157-b.webp","assets/p/157-c.webp","assets/p/157-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-158","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":158,"image":"assets/p/158-stem.webp","optionImages":["assets/p/158-a.webp","assets/p/158-b.webp","assets/p/158-c.webp","assets/p/158-d.webp"],"explanation":"卡诺热机效率只取决于高、低温热源的绝对温度，\\(\\eta=1-T_c/T_h=1-300/600=50\\%\\)。","assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-161","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":161,"image":"assets/p/161-stem.webp","optionImages":["assets/p/161-a.webp","assets/p/161-b.webp","assets/p/161-c.webp","assets/p/161-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-163","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":163,"image":"assets/p/163-stem.webp","optionImages":["assets/p/163-a.webp","assets/p/163-b.webp","assets/p/163-c.webp","assets/p/163-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-165","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":165,"image":"assets/p/165-stem.webp","optionImages":["assets/p/165-a.webp","assets/p/165-b.webp","assets/p/165-c.webp","assets/p/165-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-168","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":168,"image":"assets/p/168-stem.webp","optionImages":["assets/p/168-a.webp","assets/p/168-b.webp","assets/p/168-c.webp","assets/p/168-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-169","type":"single","points":2,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":169,"image":"assets/p/169-stem.webp","optionImages":["assets/p/169-a.webp","assets/p/169-b.webp","assets/p/169-c.webp","assets/p/169-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-170","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":170,"image":"assets/p/170-stem.webp","optionImages":["assets/p/170-a.webp","assets/p/170-b.webp","assets/p/170-c.webp","assets/p/170-d.webp"],"explanation":"刚性双原子理想气体等压吸热时 \\(Q=n(7R/2)\\Delta T\\)，而体积功为 \\(W=nR\\Delta T\\)。所求 \\(W=(2/7)\\times700\\,\\mathrm J=200\\,\\mathrm J\\)。","assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-171","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":171,"image":"assets/p/171-stem.webp","optionImages":["assets/p/171-a.webp","assets/p/171-b.webp","assets/p/171-c.webp","assets/p/171-d.webp"],"explanation":"两种气体处在同一个容器内，温度和可及体积相同，且各为 1 mol。由组分的分压 \\(p_i=n_iRT/V\\) 可得 \\(p_1=p_2\\)。","assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-172","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":172,"image":"assets/p/172-stem.webp","optionImages":["assets/p/172-a.webp","assets/p/172-b.webp","assets/p/172-c.webp","assets/p/172-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-173","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":173,"image":"assets/p/173-stem.webp","optionImages":["assets/p/173-a.webp","assets/p/173-b.webp","assets/p/173-c.webp","assets/p/173-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-180","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":180,"image":"assets/p/180-stem.webp","optionImages":["assets/p/180-a.webp","assets/p/180-b.webp","assets/p/180-c.webp","assets/p/180-d.webp"],"assetPack":"assets/p/v3-clip-010.js"},
-  {"id":"p-181","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":181,"image":"assets/p/181-stem.webp","optionImages":["assets/p/181-a.webp","assets/p/181-b.webp","assets/p/181-c.webp","assets/p/181-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-182","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":182,"image":"assets/p/182-stem.webp","optionImages":["assets/p/182-a.webp","assets/p/182-b.webp","assets/p/182-c.webp","assets/p/182-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-183","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":183,"image":"assets/p/183-stem.webp","optionImages":["assets/p/183-a.webp","assets/p/183-b.webp","assets/p/183-c.webp","assets/p/183-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-184","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":184,"image":"assets/p/184-stem.webp","optionImages":["assets/p/184-a.webp","assets/p/184-b.webp","assets/p/184-c.webp","assets/p/184-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-185","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":185,"image":"assets/p/185-stem.webp","optionImages":["assets/p/185-a.webp","assets/p/185-b.webp","assets/p/185-c.webp","assets/p/185-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-186","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":186,"image":"assets/p/186-stem.webp","optionImages":["assets/p/186-a.webp","assets/p/186-b.webp","assets/p/186-c.webp","assets/p/186-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-187","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":187,"image":"assets/p/187-stem.webp","optionImages":["assets/p/187-a.webp","assets/p/187-b.webp","assets/p/187-c.webp","assets/p/187-d.webp"],"explanation":"平均速率应按各速率对应的粒子数加权。表中总数为 \\(2+4+6+8+2=22\\)，加权速率和为 \\(2\\times1+4\\times2+6\\times3+8\\times4+2\\times5=70\\)，故 \\(\\bar v=70/22\\approx3.18\\,\\mathrm{m\\,s^{-1}}\\)。","assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-190","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":190,"image":"assets/p/190-stem.webp","optionImages":["assets/p/190-a.webp","assets/p/190-b.webp","assets/p/190-c.webp","assets/p/190-d.webp"],"explanation":"\\(\\int_{v_1}^{v_2} f(v)\\,\\mathrm dv\\) 给出该速率区间的分子比例。再乘总分子数 \\(N\\)，才得到区间内的分子数。","assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-191","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":191,"image":"assets/p/191-stem.webp","optionImages":["assets/p/191-a.webp","assets/p/191-b.webp","assets/p/191-c.webp","assets/p/191-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-192","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":192,"image":"assets/p/192-stem.webp","optionImages":["assets/p/192-a.webp","assets/p/192-b.webp","assets/p/192-c.webp","assets/p/192-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-194","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":194,"image":"assets/p/194-stem.webp","optionImages":["assets/p/194-a.webp","assets/p/194-b.webp","assets/p/194-c.webp","assets/p/194-d.webp"],"explanation":"刚性双原子分子的平动和转动合计有 5 个二次型自由度。每个自由度平均能量为 \\(k_\\mathrm BT/2\\)，单个分子的平均能量为 \\(5k_\\mathrm BT/2\\)。","assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-195","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":195,"image":"assets/p/195-stem.webp","optionImages":["assets/p/195-a.webp","assets/p/195-b.webp","assets/p/195-c.webp","assets/p/195-d.webp"],"assetPack":"assets/p/v3-clip-011.js"},
-  {"id":"p-196","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":196,"image":"assets/p/196-stem.webp","optionImages":["assets/p/196-a.webp","assets/p/196-b.webp","assets/p/196-c.webp","assets/p/196-d.webp"],"explanation":"速率小区间内有 \\(Nf(v)\\,\\mathrm dv\\) 个分子，单个分子的平动动能为 \\(mv^2/2\\)。两者相乘并在指定区间积分，得到该区间全部分子的平动动能总和。","assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-198","type":"single","points":2,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":198,"image":"assets/p/198-stem.webp","optionImages":["assets/p/198-a.webp","assets/p/198-b.webp","assets/p/198-c.webp","assets/p/198-d.webp"],"explanation":"氦是单原子气体，\\(\\gamma=5/3\\)。由可逆绝热关系 \\(TV^{\\gamma-1}=\\mathrm{const}\\)，体积减半使温度升为 \\(2^{2/3}\\) 倍。平均速率正比于 \\(\\sqrt T\\)，因而变为 \\(2^{1/3}\\) 倍。","assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-199","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":199,"image":"assets/p/199-stem.webp","optionImages":["assets/p/199-a.webp","assets/p/199-b.webp","assets/p/199-c.webp","assets/p/199-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-201","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":201,"image":"assets/p/201-stem.webp","optionImages":["assets/p/201-a.webp","assets/p/201-b.webp","assets/p/201-c.webp","assets/p/201-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-204","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":204,"image":"assets/p/204-stem.webp","optionImages":["assets/p/204-a.webp","assets/p/204-b.webp","assets/p/204-c.webp","assets/p/204-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-207","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":207,"image":"assets/p/207-stem.webp","optionImages":["assets/p/207-a.webp","assets/p/207-b.webp","assets/p/207-c.webp","assets/p/207-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-212","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":212,"image":"assets/p/212-stem.webp","optionImages":["assets/p/212-a.webp","assets/p/212-b.webp","assets/p/212-c.webp","assets/p/212-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-217","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":217,"image":"assets/p/217-stem.webp","optionImages":["assets/p/217-a.webp","assets/p/217-b.webp","assets/p/217-c.webp","assets/p/217-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-219","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":219,"image":"assets/p/219-stem.webp","optionImages":["assets/p/219-a.webp","assets/p/219-b.webp","assets/p/219-c.webp","assets/p/219-d.webp"],"explanation":"记冷端温度为 \\(T_1\\)、热端温度为 \\(T_2\\)。卡诺制冷机有 \\(Q_c/T_1=Q_h/T_2\\)，消耗功为 \\(Q_h-Q_c\\)，所以制冷系数是 \\(Q_c/(Q_h-Q_c)=T_1/(T_2-T_1)\\)。","assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-232","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":232,"image":"assets/p/232-stem.webp","optionImages":["assets/p/232-a.webp","assets/p/232-b.webp","assets/p/232-c.webp","assets/p/232-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-234","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":234,"image":"assets/p/234-stem.webp","optionImages":["assets/p/234-a.webp","assets/p/234-b.webp","assets/p/234-c.webp","assets/p/234-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-235","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":235,"image":"assets/p/235-stem.webp","optionImages":["assets/p/235-a.webp","assets/p/235-b.webp","assets/p/235-c.webp","assets/p/235-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-244","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":244,"image":"assets/p/244-stem.webp","optionImages":["assets/p/244-a.webp","assets/p/244-b.webp","assets/p/244-c.webp","assets/p/244-d.webp"],"assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-245","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":245,"image":"assets/p/245-stem.webp","optionImages":["assets/p/245-a.webp","assets/p/245-b.webp","assets/p/245-c.webp","assets/p/245-d.webp"],"explanation":"理想气体内能密度为 \\(U/V=(f/2)nRT/V=(f/2)p\\)。A、B 压强相等，而单原子气体 \\(f=3\\)，刚性双原子气体 \\(f=5\\)，故 A 的内能密度较低。","assetPack":"assets/p/v3-clip-012.js"},
-  {"id":"p-246","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":246,"image":"assets/p/246-stem.webp","optionImages":["assets/p/246-a.webp","assets/p/246-b.webp","assets/p/246-c.webp","assets/p/246-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-247","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":247,"image":"assets/p/247-stem.webp","optionImages":["assets/p/247-a.webp","assets/p/247-b.webp","assets/p/247-c.webp","assets/p/247-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-248","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":248,"image":"assets/p/248-stem.webp","optionImages":["assets/p/248-a.webp","assets/p/248-b.webp","assets/p/248-c.webp","assets/p/248-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-251","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":251,"image":"assets/p/251-stem.webp","optionImages":["assets/p/251-a.webp","assets/p/251-b.webp","assets/p/251-c.webp","assets/p/251-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-252","type":"single","points":2,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":252,"image":"assets/p/252-stem.webp","optionImages":["assets/p/252-a.webp","assets/p/252-b.webp","assets/p/252-c.webp","assets/p/252-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-253","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":253,"image":"assets/p/253-stem.webp","optionImages":["assets/p/253-a.webp","assets/p/253-b.webp","assets/p/253-c.webp","assets/p/253-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-254","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":254,"image":"assets/p/254-stem.webp","optionImages":["assets/p/254-a.webp","assets/p/254-b.webp","assets/p/254-c.webp","assets/p/254-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-255","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":255,"image":"assets/p/255-stem.webp","optionImages":["assets/p/255-a.webp","assets/p/255-b.webp","assets/p/255-c.webp","assets/p/255-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-257","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":257,"image":"assets/p/257-stem.webp","optionImages":["assets/p/257-a.webp","assets/p/257-b.webp","assets/p/257-c.webp","assets/p/257-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-261","type":"single","points":2,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":261,"image":"assets/p/261-stem.webp","optionImages":["assets/p/261-a.webp","assets/p/261-b.webp","assets/p/261-c.webp","assets/p/261-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-263","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":263,"image":"assets/p/263-stem.webp","optionImages":["assets/p/263-a.webp","assets/p/263-b.webp","assets/p/263-c.webp","assets/p/263-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-264","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":264,"image":"assets/p/264-stem.webp","optionImages":["assets/p/264-a.webp","assets/p/264-b.webp","assets/p/264-c.webp","assets/p/264-d.webp"],"assetPack":"assets/p/v3-clip-013.js"},
-  {"id":"p-265","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":265,"image":"assets/p/265-stem.webp","optionImages":["assets/p/265-a.webp","assets/p/265-b.webp","assets/p/265-c.webp","assets/p/265-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-266","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":266,"image":"assets/p/266-stem.webp","optionImages":["assets/p/266-a.webp","assets/p/266-b.webp","assets/p/266-c.webp","assets/p/266-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-268","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":268,"image":"assets/p/268-stem.webp","optionImages":["assets/p/268-a.webp","assets/p/268-b.webp","assets/p/268-c.webp","assets/p/268-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-269","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":269,"image":"assets/p/269-stem.webp","optionImages":["assets/p/269-a.webp","assets/p/269-b.webp","assets/p/269-c.webp","assets/p/269-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-271","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":271,"image":"assets/p/271-stem.webp","optionImages":["assets/p/271-a.webp","assets/p/271-b.webp","assets/p/271-c.webp","assets/p/271-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-274","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":274,"image":"assets/p/274-stem.webp","optionImages":["assets/p/274-a.webp","assets/p/274-b.webp","assets/p/274-c.webp","assets/p/274-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-277","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":277,"image":"assets/p/277-stem.webp","optionImages":["assets/p/277-a.webp","assets/p/277-b.webp","assets/p/277-c.webp","assets/p/277-d.webp"],"explanation":"最概然、平均和方均根速率都是 \\(\\sqrt{k_\\mathrm BT/m}\\) 乘一个固定系数。最概然速率相等就表示共同的比例因子相等，另两种速率也分别相等。","assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-279","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":279,"image":"assets/p/279-stem.webp","optionImages":["assets/p/279-a.webp","assets/p/279-b.webp","assets/p/279-c.webp","assets/p/279-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-280","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":280,"image":"assets/p/280-stem.webp","optionImages":["assets/p/280-a.webp","assets/p/280-b.webp","assets/p/280-c.webp","assets/p/280-d.webp"],"explanation":"按分子数写的理想气体状态方程是 \\(pV=Nk_\\mathrm BT\\)，于是 \\(N=pV/(k_\\mathrm BT)\\)。若分母用 \\(RT\\)，得到的是物质的量。","assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-282","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":282,"image":"assets/p/282-stem.webp","optionImages":["assets/p/282-a.webp","assets/p/282-b.webp","assets/p/282-c.webp","assets/p/282-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-283","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":283,"image":"assets/p/283-stem.webp","optionImages":["assets/p/283-a.webp","assets/p/283-b.webp","assets/p/283-c.webp","assets/p/283-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-289","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":289,"image":"assets/p/289-stem.webp","optionImages":["assets/p/289-a.webp","assets/p/289-b.webp","assets/p/289-c.webp","assets/p/289-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-290","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":290,"image":"assets/p/290-stem.webp","optionImages":["assets/p/290-a.webp","assets/p/290-b.webp","assets/p/290-c.webp","assets/p/290-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-293","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":293,"image":"assets/p/293-stem.webp","optionImages":["assets/p/293-a.webp","assets/p/293-b.webp","assets/p/293-c.webp","assets/p/293-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-298","type":"single","points":2,"stem":"","options":["","",""],"answer":[0],"source":"热学450题题库","sourceNumber":298,"image":"assets/p/298-stem.webp","optionImages":["assets/p/298-a.webp","assets/p/298-b.webp","assets/p/298-c.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-299","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":299,"image":"assets/p/299-stem.webp","optionImages":["assets/p/299-a.webp","assets/p/299-b.webp","assets/p/299-c.webp","assets/p/299-d.webp"],"assetPack":"assets/p/v3-clip-014.js"},
-  {"id":"p-300","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":300,"image":"assets/p/300-stem.webp","optionImages":["assets/p/300-a.webp","assets/p/300-b.webp","assets/p/300-c.webp","assets/p/300-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-301","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":301,"image":"assets/p/301-stem.webp","optionImages":["assets/p/301-a.webp","assets/p/301-b.webp","assets/p/301-c.webp","assets/p/301-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-303","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":303,"image":"assets/p/303-stem.webp","optionImages":["assets/p/303-a.webp","assets/p/303-b.webp","assets/p/303-c.webp","assets/p/303-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-305","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":305,"image":"assets/p/305-stem.webp","optionImages":["assets/p/305-a.webp","assets/p/305-b.webp","assets/p/305-c.webp","assets/p/305-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-306","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":306,"image":"assets/p/306-stem.webp","optionImages":["assets/p/306-a.webp","assets/p/306-b.webp","assets/p/306-c.webp","assets/p/306-d.webp"],"explanation":"绝热意味着 \\(Q=0\\)，向真空自由膨胀也不对外做体积功，故第一定律给出 \\(\\Delta U=0\\)。实际气体的内能可以同时依赖体积和温度，因此温度未必保持不变。","assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-307","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":307,"image":"assets/p/307-stem.webp","optionImages":["assets/p/307-a.webp","assets/p/307-b.webp","assets/p/307-c.webp","assets/p/307-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-308","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":308,"image":"assets/p/308-stem.webp","optionImages":["assets/p/308-a.webp","assets/p/308-b.webp","assets/p/308-c.webp","assets/p/308-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-309","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":309,"image":"assets/p/309-stem.webp","optionImages":["assets/p/309-a.webp","assets/p/309-b.webp","assets/p/309-c.webp","assets/p/309-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-310","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[0,1,2],"source":"热学450题题库","sourceNumber":310,"image":"assets/p/310-stem.webp","optionImages":["assets/p/310-a.webp","assets/p/310-b.webp","assets/p/310-c.webp","assets/p/310-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-311","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,3],"source":"热学450题题库","sourceNumber":311,"image":"assets/p/311-stem.webp","optionImages":["assets/p/311-a.webp","assets/p/311-b.webp","assets/p/311-c.webp","assets/p/311-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-314","type":"multiple","points":2,"stem":"","options":["","","",""],"answer":[1,2],"source":"热学450题题库","sourceNumber":314,"image":"assets/p/314-stem.webp","optionImages":["assets/p/314-a.webp","assets/p/314-b.webp","assets/p/314-c.webp","assets/p/314-d.webp"],"assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-315","type":"multiple","points":2,"stem":"","options":["","","","",""],"answer":[1,2],"source":"热学450题题库","sourceNumber":315,"image":"assets/p/315-stem.webp","optionImages":["assets/p/315-a.webp","assets/p/315-b.webp","assets/p/315-c.webp","assets/p/315-d.webp","assets/p/315-e.webp"],"explanation":"内能、焓和熵只由状态决定。功与热量描述能量交换，数值随连接同一对初末态的过程而改变，所以它们不是态函数。","assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-316","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":316,"image":"assets/p/316-stem.webp","optionImages":["assets/p/316-a.webp","assets/p/316-b.webp","assets/p/316-c.webp","assets/p/316-d.webp"],"explanation":"稳态时各同轴圆柱面传过的热流相同，面积为 \\(2\\pi rL\\)。将傅里叶定律 \\(\\dot Q=-2\\pi rL\\kappa\\,\\mathrm dT/\\mathrm dr\\) 积分，得 \\(\\dot Q=2\\pi\\kappa L(T_1-T_2)/\\ln(R_2/R_1)\\)。","assetPack":"assets/p/v3-clip-015.js"},
-  {"id":"p-317","type":"single","points":3,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":317,"image":"assets/p/317-stem.webp","optionImages":["assets/p/317-a.webp","assets/p/317-b.webp","assets/p/317-c.webp","assets/p/317-d.webp"],"explanation":"末态压强恢复初值而体积变为 5 倍，故末态温度为 \\(5T_0\\)。等温段吸热 \\(3RT_0\\ln5\\)，等容段吸热 \\(3C_V(5T_0-T_0)\\)。两段相加等于题给热量，解出 \\(C_V=R\\ln5\\)，再用 \\(\\gamma=1+R/C_V\\)。","assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-318","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":318,"image":"assets/p/318-stem.webp","optionImages":["assets/p/318-a.webp","assets/p/318-b.webp","assets/p/318-c.webp","assets/p/318-d.webp"],"explanation":"等容升温到原先的 4 倍使平均速率变为 2 倍；再等温膨胀到原先体积的 2 倍使数密度减半。硬球近似下 \\(Z\\propto n\\bar v\\)，两个因素相抵，频率不变。","assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-319","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":319,"image":"assets/p/319-stem.webp","optionImages":["assets/p/319-a.webp","assets/p/319-b.webp","assets/p/319-c.webp","assets/p/319-d.webp"],"explanation":"最低功由可逆制冷机给出，\\(W=Q_c(T_h-T_c)/T_c\\)。冷端约为 270 K，热端约为 300 K，所以移走 1 J 热量所需功约 \\(30/270\\,\\mathrm J=0.11\\,\\mathrm J\\)。","assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-320","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":320,"image":"assets/p/320-stem.webp","optionImages":["assets/p/320-a.webp","assets/p/320-b.webp","assets/p/320-c.webp","assets/p/320-d.webp"],"explanation":"逆向卡诺循环满足 \\(Q_h/T_h=Q_c/T_c\\)。冷端吸热 400 J 时，热端放热 \\(400\\times450/300=600\\,\\mathrm J\\)，外界输入功为两者之差，即 200 J。","assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-321","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":321,"image":"assets/p/321-stem.webp","optionImages":["assets/p/321-a.webp","assets/p/321-b.webp","assets/p/321-c.webp","assets/p/321-d.webp"],"explanation":"冷源 \\(27\\,^\\circ\\mathrm C\\approx300\\,\\mathrm K\\)。由 \\(T_h=T_c/(1-\\eta)\\)，效率为 40% 与 50% 时热源分别约为 500 K 和 600 K，因此需升高 100 K。","assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-322","type":"single","points":2,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":322,"image":"assets/p/322-stem.webp","optionImages":["assets/p/322-a.webp","assets/p/322-b.webp","assets/p/322-c.webp","assets/p/322-d.webp"],"explanation":"题给 \\(n/n_0=\\exp[-mgh/(RT)]\\)。令密度比为 \\(1/2\\)，取自然对数得 \\(mgh/(RT)=\\ln2\\)，解得 \\(h=RT\\ln2/(mg)\\)。","assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-323","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":323,"image":"assets/p/323-stem.webp","optionImages":["assets/p/323-a.webp","assets/p/323-b.webp","assets/p/323-c.webp","assets/p/323-d.webp"],"assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-324","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":324,"image":"assets/p/324-stem.webp","optionImages":["assets/p/324-a.webp","assets/p/324-b.webp","assets/p/324-c.webp","assets/p/324-d.webp"],"assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-325","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":325,"image":"assets/p/325-stem.webp","optionImages":["assets/p/325-a.webp","assets/p/325-b.webp","assets/p/325-c.webp","assets/p/325-d.webp"],"assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-326","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":326,"image":"assets/p/326-stem.webp","optionImages":["assets/p/326-a.webp","assets/p/326-b.webp","assets/p/326-c.webp","assets/p/326-d.webp"],"assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-327","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":327,"image":"assets/p/327-stem.webp","optionImages":["assets/p/327-a.webp","assets/p/327-b.webp","assets/p/327-c.webp","assets/p/327-d.webp"],"assetPack":"assets/p/v3-clip-016.js"},
-  {"id":"p-328","type":"single","points":3,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":328,"image":"assets/p/328-stem.webp","optionImages":["assets/p/328-a.webp","assets/p/328-b.webp","assets/p/328-c.webp","assets/p/328-d.webp"],"assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-329","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":329,"image":"assets/p/329-stem.webp","optionImages":["assets/p/329-a.webp","assets/p/329-b.webp","assets/p/329-c.webp","assets/p/329-d.webp"],"assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-330","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":330,"image":"assets/p/330-stem.webp","optionImages":["assets/p/330-a.webp","assets/p/330-b.webp","assets/p/330-c.webp","assets/p/330-d.webp"],"assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-336","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":336,"image":"assets/p/336-stem.webp","optionImages":["assets/p/336-a.webp","assets/p/336-b.webp","assets/p/336-c.webp","assets/p/336-d.webp"],"explanation":"自由膨胀的外压为零，绝热意味着 \\(Q=0\\)，所以 \\(\\Delta U=0\\)。范德瓦尔斯气体的内能会随体积改变，保持内能不变不意味着温度不变。","assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-337","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":337,"image":"assets/p/337-stem.webp","optionImages":["assets/p/337-a.webp","assets/p/337-b.webp","assets/p/337-c.webp","assets/p/337-d.webp"],"explanation":"广延量在相同状态的两个独立子系统合并时相加，熵满足这个条件。温度、压强与粒子数密度保持原值，属于强度量。","assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-340","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":340,"image":"assets/p/340-stem.webp","optionImages":["assets/p/340-a.webp","assets/p/340-b.webp","assets/p/340-c.webp","assets/p/340-d.webp"],"assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-341","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":341,"image":"assets/p/341-stem.webp","optionImages":["assets/p/341-a.webp","assets/p/341-b.webp","assets/p/341-c.webp","assets/p/341-d.webp"],"explanation":"两个绝热段跨越相同的高、低压等压线，故 \\(T_C/T_B=T_D/T_A=300/400\\)。等压吸放热分别与 \\(T_B-T_A\\)、\\(T_C-T_D\\) 成正比，于是 \\(\\eta=1-Q_c/Q_h=1-300/400=25\\%\\)。","assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-342","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":342,"image":"assets/p/342-stem.webp","optionImages":["assets/p/342-a.webp","assets/p/342-b.webp","assets/p/342-c.webp","assets/p/342-d.webp"],"explanation":"同初态、同末体积的三条路径中，等压线最高，所以等压过程体积功最大，且温度和内能都增大。等温过程内能不变，绝热过程无吸热，由 \\(Q=\\Delta U+W\\) 知等压过程吸热最多。","assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-343","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":343,"image":"assets/p/343-stem.webp","optionImages":["assets/p/343-a.webp","assets/p/343-b.webp","assets/p/343-c.webp","assets/p/343-d.webp"],"assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-344","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":344,"image":"assets/p/344-stem.webp","optionImages":["assets/p/344-a.webp","assets/p/344-b.webp","assets/p/344-c.webp","assets/p/344-d.webp"],"assetPack":"assets/p/v3-clip-017.js"},
-  {"id":"p-345","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":345,"image":"assets/p/345-stem.webp","optionImages":["assets/p/345-a.webp","assets/p/345-b.webp","assets/p/345-c.webp","assets/p/345-d.webp"],"explanation":"分布曲线下面积是相应速率区间的分子比例。虚线两侧面积相等，所以 \\(v_0\\) 把分子数分成两半，称为中位速率。分布曲线峰值才对应最概然速率。","assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-347","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":347,"image":"assets/p/347-stem.webp","optionImages":["assets/p/347-a.webp","assets/p/347-b.webp","assets/p/347-c.webp","assets/p/347-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-348","type":"single","points":1,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":348,"image":"assets/p/348-stem.webp","optionImages":["assets/p/348-a.webp","assets/p/348-b.webp","assets/p/348-c.webp","assets/p/348-d.webp"],"explanation":"温度不变，所以平均速率不变。体积增大使数密度降低，故 \\(\\lambda\\propto1/n\\) 增大，而 \\(Z=\\bar v/\\lambda\\) 减小。","assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-349","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":349,"image":"assets/p/349-stem.webp","optionImages":["assets/p/349-a.webp","assets/p/349-b.webp","assets/p/349-c.webp","assets/p/349-d.webp"],"explanation":"热平衡态的三个速度分量统计上等价。按能量均分，\\(m\\overline{v_x^2}/2=k_\\mathrm BT/2\\)，所以 \\(\\overline{v_x^2}=k_\\mathrm BT/m\\)。","assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-350","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":350,"image":"assets/p/350-stem.webp","optionImages":["assets/p/350-a.webp","assets/p/350-b.webp","assets/p/350-c.webp","assets/p/350-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-351","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":351,"image":"assets/p/351-stem.webp","optionImages":["assets/p/351-a.webp","assets/p/351-b.webp","assets/p/351-c.webp","assets/p/351-d.webp"],"explanation":"刚性双原子理想气体的定压摩尔热容为 \\(7R/2\\)，等压热量 \\(Q=nC_p\\Delta T\\)，做功 \\(W=nR\\Delta T\\)。所以 \\(W=(2/7)Q=200\\,\\mathrm J\\)。","assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-353","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":353,"image":"assets/p/353-stem.webp","optionImages":["assets/p/353-a.webp","assets/p/353-b.webp","assets/p/353-c.webp","assets/p/353-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-354","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":354,"image":"assets/p/354-stem.webp","optionImages":["assets/p/354-a.webp","assets/p/354-b.webp","assets/p/354-c.webp","assets/p/354-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-355","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":355,"image":"assets/p/355-stem.webp","optionImages":["assets/p/355-a.webp","assets/p/355-b.webp","assets/p/355-c.webp","assets/p/355-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-357","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":357,"image":"assets/p/357-stem.webp","optionImages":["assets/p/357-a.webp","assets/p/357-b.webp","assets/p/357-c.webp","assets/p/357-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-359","type":"single","points":1,"stem":"","options":["","","",""],"answer":[3],"source":"热学450题题库","sourceNumber":359,"image":"assets/p/359-stem.webp","optionImages":["assets/p/359-a.webp","assets/p/359-b.webp","assets/p/359-c.webp","assets/p/359-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-374","type":"single","points":2,"stem":"","options":["","","",""],"answer":[1],"source":"热学450题题库","sourceNumber":374,"image":"assets/p/374-stem.webp","optionImages":["assets/p/374-a.webp","assets/p/374-b.webp","assets/p/374-c.webp","assets/p/374-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-386","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":386,"image":"assets/p/386-stem.webp","optionImages":["assets/p/386-a.webp","assets/p/386-b.webp","assets/p/386-c.webp","assets/p/386-d.webp"],"assetPack":"assets/p/v3-clip-018.js"},
-  {"id":"p-395","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":395,"image":"assets/p/395-stem.webp","optionImages":["assets/p/395-a.webp","assets/p/395-b.webp","assets/p/395-c.webp","assets/p/395-d.webp"],"assetPack":"assets/p/v3-clip-019.js"},
-  {"id":"p-412","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":412,"image":"assets/p/412-stem.webp","optionImages":["assets/p/412-a.webp","assets/p/412-b.webp","assets/p/412-c.webp","assets/p/412-d.webp"],"assetPack":"assets/p/v3-clip-019.js"},
-  {"id":"p-426","type":"single","points":1,"stem":"","options":["","","",""],"answer":[0],"source":"热学450题题库","sourceNumber":426,"image":"assets/p/426-stem.webp","optionImages":["assets/p/426-a.webp","assets/p/426-b.webp","assets/p/426-c.webp","assets/p/426-d.webp"],"assetPack":"assets/p/v3-clip-019.js"},
-  {"id":"p-446","type":"single","points":1,"stem":"","options":["","","",""],"answer":[2],"source":"热学450题题库","sourceNumber":446,"image":"assets/p/446-stem.webp","optionImages":["assets/p/446-a.webp","assets/p/446-b.webp","assets/p/446-c.webp","assets/p/446-d.webp"],"explanation":"以系统对外做功为正，第一定律是 \\(\\Delta U=Q-W\\)。绝热时 \\(Q=0\\)，于是 \\(W=-\\Delta U\\)。1 mol 理想气体的内能变化为 \\(C_V(T_2-T_1)\\)。","assetPack":"assets/p/v3-clip-019.js"}
+  {
+    "id": "p-10",
+    "type": "single",
+    "points": 1,
+    "stem": "室温下的刚性双原子理想气体在等压膨胀过程中，对外做功与从外界吸收的热量之比是多少？",
+    "options": [
+      "\\(2/7\\)",
+      "\\(3/7\\)",
+      "\\(2/5\\)",
+      "另外三个答案都不对"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 10,
+    "explanation": "刚性双原子理想气体有五个有效自由度，故 \\(C_{V,m}=5R/2\\)、\\(C_{p,m}=7R/2\\)。等压时 \\(W=p\\Delta V=nR\\Delta T\\)，\\(Q=nC_{p,m}\\Delta T\\)，所以 \\(W/Q=2/7\\)。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 77
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 142
+      }
+    ]
+  },
+  {
+    "id": "p-13",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体由初态 \\((p_1,V_1,T_1)\\) 绝热膨胀至末态 \\((p_2,V_2,T_2)\\)。若定容热容为常数，外界对气体所做的功是多少？",
+    "options": [
+      "\\(C_V(T_2-T_1)\\)",
+      "\\(C_p(T_2-T_1)\\)",
+      "\\(-C_V(T_2-T_1)\\)",
+      "\\(-C_p(T_2-T_1)\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 13,
+    "explanation": "将外界对气体做的功定义为 \\(W_\\mathrm{on}\\)，第一定律是 \\(\\Delta U=Q+W_\\mathrm{on}\\)。绝热过程 \\(Q=0\\)，理想气体有 \\(\\Delta U=C_V(T_2-T_1)\\)，因此 \\(W_\\mathrm{on}\\) 取该值。若改求气体对外做功，才应取相反号。",
+    "archiveOnly": true,
+    "duplicateOf": "b-40"
+  },
+  {
+    "id": "p-15",
+    "type": "single",
+    "points": 1,
+    "stem": "关于热力学第二定律，不正确的是哪一项？",
+    "options": [
+      "不可能把热量从低温物体传到高温物体而不引起其他变化",
+      "不可能从单一热源吸取热量使之完全变为有用的功而不产生其他影响",
+      "第二种永动机不可能造成",
+      "系统在绝热条件下从一个状态变到另一个状态，熵必然不变"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 15,
+    "explanation": "A 是克劳修斯表述，B 是开尔文表述，C 与开尔文表述等价。绝热过程满足 \\(\\Delta S=S_\\mathrm{gen}\\ge0\\)，只有可逆绝热过程的熵才不变，不可逆绝热过程的熵增大。"
+  },
+  {
+    "id": "p-18",
+    "type": "single",
+    "points": 1,
+    "stem": "下列关于熵的表述，正确的是哪一项？",
+    "options": [
+      "任何系统的熵永远不会减少",
+      "熵变取决于过程路径",
+      "熵差只取决于过程的不可逆程度",
+      "固定质量的理想气体等温膨胀时熵增大"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 18,
+    "explanation": "熵是状态函数，熵差由初末态决定。对固定物质的量的理想气体，可沿可逆等温路径计算 \\(\\Delta S=nR\\ln(V_2/V_1)\\)。膨胀时 \\(V_2>V_1\\)，故熵增大；可与环境交换热量的系统熵则可以减少。"
+  },
+  {
+    "id": "p-21",
+    "type": "single",
+    "points": 2,
+    "stem": "密闭容器内有 A、B、C 三种理想气体，已达到热平衡。A 种气体有 \\(N\\) 个分子，分压为 \\(p\\)；B、C 种气体的分子数分别为 \\(3N\\)、\\(4N\\)。混合气体的总压是多少？",
+    "options": [
+      "\\(p\\)",
+      "\\(4p\\)",
+      "\\(6p\\)",
+      "\\(8p\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 21,
+    "explanation": "组分共享同一容积和温度，各组分分压满足 \\(p_i=N_i k_\\mathrm BT/V\\)，因此 B、C 分压分别是 \\(3p\\)、\\(4p\\)。由道尔顿分压定律，总压为 \\(p+3p+4p=8p\\)。"
+  },
+  {
+    "id": "p-25",
+    "type": "single",
+    "points": 1,
+    "stem": "在相同冷热源温度和相同牵引阻力下，可逆热机和不可逆热机消耗等量燃料并吸收相同热量。由不可逆热机牵引的列车行走距离如何？",
+    "options": [
+      "较短",
+      "较长",
+      "一样",
+      "无法确定"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 25,
+    "explanation": "可逆热机的效率为同一对热源之间热机的上限，不可逆热机效率较低。在吸热量相同的条件下，不可逆热机输出的机械功更少。阻力相同时，行驶距离 \\(s=W/F\\) 也更短。"
+  },
+  {
+    "id": "p-27",
+    "type": "single",
+    "points": 1,
+    "stem": "下列对输运现象的描述，正确的是哪一项？",
+    "options": [
+      "输运仅与动量梯度成正比",
+      "气体依靠分子热运动和分子间碰撞输运物理量",
+      "输运总是从一个平衡态向另一个平衡态进行",
+      "输运只会出现在近平衡态附近，并必定达到全局平衡"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 27,
+    "explanation": "气体分子在无规则运动中穿过不同区域，并在碰撞中交换动量和能量。扩散、黏滞、热传导分别输运粒子、动量、能量，由不同梯度驱动。边界条件持续维持梯度时，输运可长期处于非平衡稳态。"
+  },
+  {
+    "id": "p-35",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，在 \\(p\\)–\\(V\\) 图上有两条曲线 \\(abc\\) 和 \\(adc\\)。下列说法错误的是哪一项？",
+    "options": [
+      "一条是绝热线，另一条是等温线",
+      "两个过程吸收的热量不相同",
+      "两个过程中系统对外做功不相等",
+      "两个过程中系统的内能变化相同"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 35,
+    "explanation": "两条路径有相同初末状态，因此内能变化相同。路径下方的面积 \\(W=\\int p\\,\\mathrm dV\\) 不同，故吸热量 \\(Q=\\Delta U+W\\) 也不同。等温线和可逆绝热线不可能在两个不同体积处交于同样的状态，因此 A 错。",
+    "image": "assets/p-v4/low-35.webp",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 146
+      }
+    ]
+  },
+  {
+    "id": "p-39",
+    "type": "single",
+    "points": 1,
+    "stem": "下列说法错误的是哪一项？",
+    "options": [
+      "内能改变只取决于初、末两个状态，与过程路径无关",
+      "过程热容的大小与所经历的过程有关",
+      "系统内单位体积所含热量大，则温度高",
+      "在忽略进出口动能、势能变化的稳态绝热节流中，焓不变"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 39,
+    "explanation": "内能是状态函数，而热量是系统通过边界转移的能量，不能定义系统在某一时刻“所含热量”。定压与定容热容通常不同。对无轴功的稳态绝热节流，流动能量方程给出进出口比焓相同。"
+  },
+  {
+    "id": "p-49",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体经历下列哪一种过程时，内能减小？",
+    "options": [
+      "等温压缩",
+      "等压膨胀",
+      "等压压缩",
+      "可逆绝热压缩"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 49,
+    "explanation": "理想气体内能只随温度变化。等温时内能不变；等压时 \\(T\\propto V\\)，所以等压压缩使温度和内能降低。可逆绝热压缩时，外界对气体做正功且没有传热，内能增加。"
+  },
+  {
+    "id": "p-52",
+    "type": "single",
+    "points": 1,
+    "stem": "麦克斯韦速率分布所对应的平均速率是多少？",
+    "options": [
+      "\\(0\\)",
+      "\\(\\sqrt{2k_\\mathrm BT/m}\\)",
+      "\\(\\sqrt{3k_\\mathrm BT/m}\\)",
+      "\\(\\sqrt{8k_\\mathrm BT/(\\pi m)}\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 52,
+    "explanation": "以速率分布函数 \\(f(v)\\) 为权重求平均速率，即 \\(\\bar v=\\int_0^\\infty vf(v)\\,\\mathrm dv\\)。代入麦克斯韦分布并积分得到 \\(\\sqrt{8k_\\mathrm BT/(\\pi m)}\\)。B、C 分别是最概然速率和方均根速率，平衡时平均速度矢量才为零。"
+  },
+  {
+    "id": "p-53",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体绝热自由膨胀前后，哪个物理量发生变化？",
+    "options": [
+      "熵",
+      "内能",
+      "焓",
+      "温度"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 53,
+    "explanation": "自由膨胀对外不做功，绝热又使 \\(Q=0\\)，所以 \\(\\Delta U=0\\)。理想气体的温度和焓均因此不变。用同一初末状态间的可逆等温膨胀计算熵差，\\(\\Delta S=nR\\ln(V_2/V_1)>0\\)。"
+  },
+  {
+    "id": "p-54",
+    "type": "single",
+    "points": 1,
+    "stem": "根据能量均分定理，刚性双原子理想气体的定容摩尔热容是多少？",
+    "options": [
+      "\\(3R/2\\)",
+      "\\(2R\\)",
+      "\\(5R/2\\)",
+      "\\(7R/2\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 54,
+    "explanation": "线性刚性双原子分子有三个平动和两个转动自由度，振动未计。每个二次能量项贡献 \\(RT/2\\) 每摩尔，因此 \\(U_m=5RT/2\\)，对温度求导得 \\(C_{V,m}=5R/2\\)。"
+  },
+  {
+    "id": "p-59",
+    "type": "single",
+    "points": 2,
+    "stem": "在等温且重力场均匀的大气中，分子数密度随高度按 \\(n=n_0e^{-mgh/(RT)}\\) 变化，其中 \\(m\\) 是空气摩尔质量。当分子数密度降至地面的一半时，高度是多少？",
+    "options": [
+      "\\(\\dfrac{RT\\ln2}{mg}\\)",
+      "\\(\\dfrac{RT\\ln2}{2mg}\\)",
+      "\\(\\dfrac{RT\\ln2}{4mg}\\)",
+      "\\(\\dfrac{RT\\ln2}{8mg}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 59,
+    "explanation": "令 \\(n/n_0=1/2\\)，取自然对数得到 \\(-mgh/(RT)=-\\ln2\\)，从而 \\(h=RT\\ln2/(mg)\\)。题给的是摩尔质量，所以应使用摩尔气体常量 \\(R\\)。"
+  },
+  {
+    "id": "p-62",
+    "type": "multiple",
+    "points": 2,
+    "stem": "甲、乙两个相同的密闭容器中，分别装有等质量的同种理想气体。已知气体压强满足 \\(p_\\text{甲}<p_\\text{乙}\\)。下列说法哪些正确？",
+    "options": [
+      "甲的气体温度高于乙",
+      "甲的气体温度低于乙",
+      "甲中气体分子的平均平动动能小于乙",
+      "甲中气体分子的平均平动动能大于乙"
+    ],
+    "answer": [
+      1,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 62,
+    "explanation": "两容器的物质的量 \\(n\\) 和容积 \\(V\\) 相同，由 \\(pV=nRT\\) 知压强较低的甲温度较低。平均平动动能 \\(\\overline{\\varepsilon_\\mathrm t}=\\tfrac32 k_\\mathrm BT\\) 随温度升高而增加，所以 B、C 正确。"
+  },
+  {
+    "id": "p-64",
+    "type": "multiple",
+    "points": 2,
+    "stem": "氧气钢瓶中气体的初始压强高于外界。缓慢漏气时，瓶内气体可视为理想气体，温度保持不变。下列关于漏气过程的说法哪些正确？",
+    "options": [
+      "瓶内分子总数减少，分子总动能不变",
+      "瓶内气体密度降低，分子平均平动动能不变",
+      "瓶内气体从外界吸热，流出的气体带走流动功",
+      "瓶内压强降低，流出的气体不带走能量"
+    ],
+    "answer": [
+      1,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 64,
+    "explanation": "等温时单个分子的平均平动动能不变，但总数减少，所以总动能降低。对刚性瓶内的开口系统，逸出气体每摩尔带走焓 \\(h=u+RT\\)。瓶内等温下降的内能每逸出一摩尔仅减少 \\(u\\)，差额 \\(RT\\) 需由外界供热，且对应流动功。"
+  },
+  {
+    "id": "p-65",
+    "type": "single",
+    "points": 1,
+    "stem": "关于永动机和热力学定律，下列叙述正确的是哪一项？",
+    "options": [
+      "绝热条件下外界对物体做净功，物体内能增加",
+      "第二类永动机违反能量守恒定律",
+      "物体从外界吸热时内能一定增加",
+      "做功与热传递在能量传递机制上没有区别"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 65,
+    "explanation": "用 \\(\\Delta U=Q+W_\\mathrm{on}\\)。绝热时 \\(Q=0\\)，外界做正功使内能增加。第二类永动机违反第二定律，能量守恒不足以排除它。吸热的同时若对外做更多功，内能仍可能降低。"
+  },
+  {
+    "id": "p-66",
+    "type": "multiple",
+    "points": 2,
+    "stem": "在常用分子力模型下，以 \\(r_0\\) 表示引力和斥力大小相等的间距。下列叙述哪些正确？",
+    "options": [
+      "物体温度越高，分子热运动越剧烈，平均平动动能越大",
+      "布朗运动就是液体分子的热运动",
+      "给一定质量气体加热，气体内能必定增加",
+      "当 \\(r<r_0\\) 时斥力占优，当 \\(r>r_0\\) 时引力占优"
+    ],
+    "answer": [
+      0,
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 66,
+    "explanation": "温度表征分子热运动的强弱。布朗运动观察的是悬浮粒子受流体分子不平衡撞击后的运动。气体吸热时还能对外做功，故内能不一定增加。按题设分子力模型，平衡间距两侧分别由斥力、引力占优。"
+  },
+  {
+    "id": "p-67",
+    "type": "multiple",
+    "points": 2,
+    "stem": "关于物体的内能，下列说法哪些正确？",
+    "options": [
+      "在常压下，1 克 0 ℃ 液态水的内能比 1 克 0 ℃ 冰大",
+      "电流通过电阻使其发热，电阻内能增加是通过热传递实现的",
+      "气体膨胀时内能一定减小",
+      "在橡皮筋弹性恢复力的简化分子模型中，拉伸会增加分子间势能"
+    ],
+    "answer": [
+      0,
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 67,
+    "explanation": "冰熔化为同温水要吸收熔解热，常压下体积功相较很小，因此液态水的内能较大。焦耳热来自外界对系统的电功。气体等温膨胀是内能不减小的反例。按题设弹性势能模型，外力克服恢复力做功后，势能增加。"
+  },
+  {
+    "id": "p-69",
+    "type": "multiple",
+    "points": 2,
+    "stem": "图为冰箱工作原理。压缩机工作时，制冷剂在管道中循环，在蒸发器中汽化并吸收箱内热量，在冷凝器中液化并向箱外放热。下列说法哪些正确？",
+    "options": [
+      "热量可以自发地从冰箱内传到冰箱外",
+      "制冷系统能够持续把箱内热量传到外界，是因为消耗了电能",
+      "冰箱的工作原理不违反热力学第一定律",
+      "冰箱的工作原理违反热力学第一定律"
+    ],
+    "answer": [
+      1,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 69,
+    "explanation": "制冷机从低温箱内取热 \\(Q_\\mathrm c\\)，同时消耗压缩机输入功 \\(W\\)，向箱外放出 \\(Q_\\mathrm h=Q_\\mathrm c+W\\)。能量收支满足第一定律，而由低温向高温输热需要外界做功，并非自发过程。",
+    "image": "assets/p-v4/low-69.webp",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 103
+      }
+    ]
+  },
+  {
+    "id": "p-70",
+    "type": "single",
+    "points": 2,
+    "stem": "一定量理想气体在 \\(p\\)–\\(V\\) 图上从 \\(a\\) 经路径①或②膨胀到 \\(b\\)。\\(a\\) 和 \\(b\\) 位于同一条绝热线上（虚线）。两过程分别吸热还是放热？",
+    "options": [
+      "①吸热，②放热",
+      "①放热，②吸热",
+      "两个过程都吸热",
+      "两个过程都放热"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 70,
+    "explanation": "三条路径的初末态相同，故 \\(\\Delta U\\) 相同。绝热线满足 \\(\\Delta U=-W_\\mathrm{ad}\\)。膨胀功等于路径下的面积，图中 \\(W_1<W_\\mathrm{ad}<W_2\\)，故 \\(Q_i=W_i-W_\\mathrm{ad}\\)，路径①放热，路径②吸热。",
+    "image": "assets/p-v4/low-70.webp",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 133
+      }
+    ]
+  },
+  {
+    "id": "p-71",
+    "type": "single",
+    "points": 1,
+    "stem": "设气体的归一化速率分布函数为 \\(f(v)\\)，容器中共有 \\(N\\) 个分子。速率介于 \\(v_1\\) 和 \\(v_2\\) 的分子数是多少？",
+    "options": [
+      "\\(\\displaystyle\\int_{v_1}^{v_2}f(v)\\,\\mathrm dv\\)",
+      "\\(f(v)(v_2-v_1)\\)",
+      "\\(\\displaystyle\\int_{v_1}^{v_2}Nf(v)\\,\\mathrm dv\\)",
+      "\\(Nf(v)(v_2-v_1)\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 71,
+    "explanation": "\\(f(v)\\,\\mathrm dv\\) 是速率落在窄区间 \\([v,v+\\mathrm dv]\\) 的分子所占比例。先对区间积分求比例，再乘总数 \\(N\\) 得分子数。用单个 \\(f(v)\\) 乘区间长度只适用于分布近似不变的很窄区间。"
+  },
+  {
+    "id": "p-72",
+    "type": "single",
+    "points": 1,
+    "stem": "Ne、\\(\\mathrm O_2\\) 和 \\(\\mathrm{CO}_2\\) 均视为理想气体。按题设，\\(\\mathrm O_2\\) 为刚性双原子分子，\\(\\mathrm{CO}_2\\) 的振动对热容的贡献不可忽略。某气体等压膨胀时，对外做功与内能增量之比为 \\(2:5\\)，它是哪种气体？",
+    "options": [
+      "\\(\\mathrm{CO}_2\\)",
+      "Ne",
+      "\\(\\mathrm O_2\\)",
+      "不能确定"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 72,
+    "explanation": "等压膨胀有 \\(W=nR\\Delta T\\)、\\(\\Delta U=nC_{V,m}\\Delta T\\)，故题给比值要求 \\(C_{V,m}=5R/2\\)。Ne 是单原子气体，\\(C_{V,m}=3R/2\\)；刚性 \\(\\mathrm O_2\\) 有五个有效自由度。按题设 \\(\\mathrm{CO}_2\\) 的振动会使定容热容大于 \\(5R/2\\)，故选 \\(\\mathrm O_2\\)。"
+  },
+  {
+    "id": "p-73",
+    "type": "single",
+    "points": 1,
+    "stem": "麦克斯韦速率分布函数 \\(f(v)\\) 的物理意义是什么？",
+    "options": [
+      "速率在 v 附近单位速率区间内的分子数",
+      "速率恰等于 v 的分子数占总数的比率",
+      "速率在 v 附近单位速率宽度上的分子数占比，即速率的概率密度",
+      "速率恰等于 v 的分子数"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 73,
+    "explanation": "\\(f(v)\\) 是按速率计的概率密度。宽度为 \\(\\mathrm dv\\) 的小区间所占分子数比例为 \\(f(v)\\,\\mathrm dv\\)，分子数则为 \\(Nf(v)\\,\\mathrm dv\\)。在连续分布中，单个精确速率点本身的概率为零。"
+  },
+  {
+    "id": "p-74",
+    "type": "single",
+    "points": 1,
+    "stem": "依据热力学第二定律，下列说法正确的是哪一项？",
+    "options": [
+      "功可以全部转化为热，热在任何情况下都不能全部转化为功",
+      "热量不能以任何方式由低温物体传给高温物体",
+      "不可逆过程不能以相反方向发生任何类似变化",
+      "自发过程是不可逆的"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 74,
+    "explanation": "开尔文表述的限制是从单一热源吸热并完全变成功，且不产生其他影响；A 漏掉了限制。制冷机可以借助外功把热由低温送往高温。逆向变化可能由外界驱动，但无法同时使系统和环境都恢复原状，才是不可逆的要点。"
+  },
+  {
+    "id": "p-75",
+    "type": "single",
+    "points": 1,
+    "stem": "物质的量相同的氢气和氦气均视为理想气体，分别从相同初态做准静态等温膨胀，末态体积相同。两者的吸热和对外做功有什么关系？",
+    "options": [
+      "吸热相同，对外做功不同",
+      "吸热不同，对外做功相同",
+      "对外做功和吸热均不同",
+      "对外做功和吸热都相同"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 75,
+    "explanation": "准静态等温膨胀有 \\(W=nRT\\ln(V_2/V_1)\\)，两种气体的 \\(n,T,V_1,V_2\\) 都相同，故做功相同。理想气体的内能只取决于温度，等温过程 \\(\\Delta U=0\\)，因此各自的吸热等于做功。"
+  },
+  {
+    "id": "p-76",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体经历哪个过程时，吸收的热量、内能增量和对外做功三者都为负？",
+    "options": [
+      "等压压缩",
+      "等容降压",
+      "等温膨胀",
+      "绝热膨胀"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 76,
+    "explanation": "等压压缩时 \\(W=p\\Delta V<0\\)，温度因 \\(T\\propto V\\) 而降低，所以 \\(\\Delta U=nC_{V,m}\\Delta T<0\\)，进而 \\(Q=\\Delta U+W<0\\)。等容过程的功为零，绝热过程的热量为零，等温过程的内能增量为零。"
+  },
+  {
+    "id": "p-77",
+    "type": "single",
+    "points": 1,
+    "stem": "室温下的刚性双原子理想气体在等压膨胀过程中，对外做功与从外界吸收的热量之比是多少？",
+    "options": [
+      "\\(1/3\\)",
+      "\\(2/7\\)",
+      "\\(2/5\\)",
+      "\\(1/4\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 77,
+    "explanation": "刚性双原子理想气体有五个有效自由度，故 \\(C_{V,m}=5R/2\\)、\\(C_{p,m}=7R/2\\)。等压时 \\(W=p\\Delta V=nR\\Delta T\\)，\\(Q=nC_{p,m}\\Delta T\\)，所以 \\(W/Q=2/7\\)。 本条为旧版记录保留项，题干和解法与同源题一致。",
+    "archiveOnly": true,
+    "duplicateOf": "p-10"
+  },
+  {
+    "id": "p-80",
+    "type": "single",
+    "points": 1,
+    "stem": "下列哪一个不是理想气体的准静态可逆绝热过程方程？设热容比为 \\(\\gamma\\)。",
+    "options": [
+      "\\(TV^{\\gamma-1}=\\text{常量}\\)",
+      "\\(p^{1-\\gamma}T^\\gamma=\\text{常量}\\)",
+      "\\(p^\\gamma V=\\text{常量}\\)",
+      "\\(pV^\\gamma=\\text{常量}\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 80,
+    "explanation": "可逆绝热关系是 \\(pV^\\gamma=\\text{常量}\\)。用 \\(pV=nRT\\) 消去 \\(p\\) 得 \\(TV^{\\gamma-1}=\\text{常量}\\)；用 \\(V=nRT/p\\) 消去 \\(V\\) 得 \\(p^{1-\\gamma}T^\\gamma=\\text{常量}\\)。C 把指数加在了错误的量上。"
+  },
+  {
+    "id": "p-86",
+    "type": "single",
+    "points": 2,
+    "stem": "在温度 \\(T\\) 下，某有能量量纲的正随机变量 \\(x\\) 的概率密度与 \\(\\sqrt{x}e^{-x/(k_\\mathrm BT)}\\) 成正比。求最概然值 \\(x_\\mathrm p\\)。",
+    "options": [
+      "\\(k_\\mathrm BT/2\\)",
+      "\\(3k_\\mathrm BT/2\\)",
+      "\\(k_\\mathrm BT\\)",
+      "\\(2k_\\mathrm BT\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 86,
+    "explanation": "概率密度的最大点不受归一化常数影响。对其对数 \\(\\tfrac12\\ln x-x/(k_\\mathrm BT)\\) 求导，得到 \\(1/(2x)-1/(k_\\mathrm BT)=0\\)，所以 \\(x_\\mathrm p=k_\\mathrm BT/2\\)；该点二阶导数为负。"
+  },
+  {
+    "id": "p-87",
+    "type": "single",
+    "points": 1,
+    "stem": "制冷机做逆卡诺循环，冷源温度为 \\(T_1\\)，热源温度为 \\(T_2>T_1\\)。其制冷系数是多少？",
+    "options": [
+      "\\(\\dfrac{T_1}{T_2-T_1}\\)",
+      "\\(\\dfrac{T_2}{T_2-T_1}\\)",
+      "\\(\\dfrac{T_1}{T_2+T_1}\\)",
+      "\\(\\dfrac{T_2}{T_2+T_1}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 87,
+    "explanation": "逆卡诺循环满足 \\(Q_\\mathrm c/T_1=Q_\\mathrm h/T_2\\)，所需外功 \\(W=Q_\\mathrm h-Q_\\mathrm c\\)。制冷系数是冷端取热量除以外功，即 \\(Q_\\mathrm c/W=T_1/(T_2-T_1)\\)。以 \\(Q_\\mathrm h\\) 为分子的 B 是供暖用热泵的系数。"
+  },
+  {
+    "id": "p-90",
+    "type": "single",
+    "points": 1,
+    "stem": "下列关于范德瓦耳斯气体的说法，错误的是哪一项？",
+    "options": [
+      "\\(\\left(\\dfrac{\\partial p}{\\partial T}\\right)_V\\left(\\dfrac{\\partial T}{\\partial V}\\right)_p\\left(\\dfrac{\\partial V}{\\partial p}\\right)_T=1\\)",
+      "1 mol 气体的状态方程是 \\((p+a/V^2)(V-b)=RT\\)",
+      "定容时 \\(\\left(\\dfrac{\\partial p}{\\partial T}\\right)_V=\\dfrac R{V-b}\\)",
+      "等温时 \\(\\left(\\dfrac{\\partial p}{\\partial V}\\right)_T=\\dfrac{2a}{V^3}-\\dfrac{RT}{(V-b)^2}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 90,
+    "explanation": "把物态方程写成 \\(p=RT/(V-b)-a/V^2\\)，分别固定 \\(V\\) 和 \\(T\\) 求导即得 C、D。三个相互关联的状态变量满足循环偏导关系，A 左边的乘积是 \\(-1\\)，不是 \\(+1\\)。"
+  },
+  {
+    "id": "p-91",
+    "type": "single",
+    "points": 1,
+    "stem": "三维麦克斯韦速率分布对应的分子平动动能 \\(\\varepsilon\\) 的概率密度，具有哪一种形式？",
+    "options": [
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{1/2}e^{-\\varepsilon/(k_\\mathrm BT)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{3/2}e^{-\\varepsilon/(k_\\mathrm BT)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{5/2}e^{-\\varepsilon/(k_\\mathrm BT)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon e^{-\\varepsilon/(k_\\mathrm BT)}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 91,
+    "explanation": "速率密度正比于 \\(v^2e^{-mv^2/(2k_\\mathrm BT)}\\)。令 \\(\\varepsilon=mv^2/2\\)，用 \\(f_\\varepsilon(\\varepsilon)\\,\\mathrm d\\varepsilon=f_v(v)\\,\\mathrm dv\\) 换元。因 \\(v^2\\propto\\varepsilon\\) 且 \\(\\mathrm dv/\\mathrm d\\varepsilon\\propto\\varepsilon^{-1/2}\\)，所得幂次为 \\(1/2\\)。"
+  },
+  {
+    "id": "p-92",
+    "type": "single",
+    "points": 1,
+    "stem": "下列说法错误的是哪一项？",
+    "options": [
+      "速率介于 \\(v_1\\) 与 \\(v_2\\) 的粒子的条件平均速率等于 \\(\\int_{v_1}^{v_2}v f(v)\\,\\mathrm dv\\)",
+      "热学的内能不包括系统整体机械运动的机械能",
+      "涨落是统计规律中偶然性的表现",
+      "气体近平衡时，黏滞输运可近似与速度梯度成正比"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 92,
+    "explanation": "A 的积分是这段区间对全体平均速率的贡献，求区间内粒子的条件平均速率还要除以区间概率 \\(\\int_{v_1}^{v_2} f(v)\\,\\mathrm dv\\)。其余三项分别符合内能的定义、统计涨落和线性输运近似。"
+  },
+  {
+    "id": "p-93",
+    "type": "single",
+    "points": 1,
+    "stem": "下列关于做功的表述，正确的是哪一项？",
+    "options": [
+      "功的正负与约定的做功方向有关",
+      "外界对系统做功一定使系统内能增加",
+      "功只有在可逆过程中才能相互抵消",
+      "只有准静态过程才能计算功"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 93,
+    "explanation": "若规定气体对外做功为正，第一定律写成 \\(\\Delta U=Q-W\\)；若规定外界对气体做功为正，则写成 \\(\\Delta U=Q+W_\\mathrm{on}\\)。内能变化还受热交换影响。非准静态过程也能用外压与体积变化计算体积功。"
+  },
+  {
+    "id": "p-95",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量气体从一个状态出发，经历一系列变化后回到原状态。用 \\(W_1,W_2\\) 表示外界对气体做功和气体对外做功的总量，用 \\(Q_1,Q_2\\) 表示气体吸热和放热的总量，四者均取非负值。必有哪一关系？",
+    "options": [
+      "\\(Q_1-Q_2=W_2-W_1\\)",
+      "\\(Q_1=Q_2\\)",
+      "\\(W_1=W_2\\)",
+      "\\(Q_1>Q_2\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 95,
+    "explanation": "内能是状态函数，一个循环结束时 \\(\\Delta U=0\\)。净吸热 \\(Q_1-Q_2\\) 和净输出功 \\(W_2-W_1\\) 必相等。这个关系对热机、制冷机或零净功循环都成立。"
+  },
+  {
+    "id": "p-96",
+    "type": "multiple",
+    "points": 2,
+    "stem": "一定质量的理想气体经历以下连续过程，哪些结论正确？",
+    "options": [
+      "先等压膨胀，再等容降温，终温必低于初温",
+      "先等温膨胀，再等压压缩，末体积必小于初体积",
+      "先等容升温，再等压压缩，终温可能等于初温",
+      "先等容加热，再绝热压缩，末态内能必大于初态"
+    ],
+    "answer": [
+      2,
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 96,
+    "explanation": "A 的两段分别升温和降温，净变化不定。B 的两段分别增大和减小体积，净变化不定。C 在定压压缩阶段可选择适当体积，使温度降回初温。D 中定容加热增大内能，绝热压缩时外界又对气体做正功，使内能进一步增加。"
+  },
+  {
+    "id": "p-98",
+    "type": "multiple",
+    "points": 2,
+    "stem": "下列说法哪些正确？",
+    "options": [
+      "水很难被压缩，是分子短程斥力的宏观表现",
+      "气体容易充满容器，表明气体分子间斥力始终占优",
+      "马德堡半球抽空后难以拉开，是两半球之间分子吸引力的宏观表现",
+      "用力拉铁棒而铁棒未断，体现了材料内部的凝聚作用"
+    ],
+    "answer": [
+      0,
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 98,
+    "explanation": "液态水被进一步压缩时，邻近分子进入强斥力区，抗压性很明显。气体扩散充满容器主要来自无规则热运动。马德堡半球难拉开源于内外气压差。铁棒抗拉由固体内部的结合力维持。"
+  },
+  {
+    "id": "p-99",
+    "type": "multiple",
+    "points": 2,
+    "stem": "一定质量气体封闭在刚性容器内。保持容积不变并升高温度，下列说法哪些正确？",
+    "options": [
+      "气体密度增大",
+      "气体压强增大",
+      "分子平均平动动能减小",
+      "单位时间撞击单位面积容器壁的分子数增加"
+    ],
+    "answer": [
+      1,
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 99,
+    "explanation": "质量和容积固定，密度与分子数密度不变。升温使平均平动动能 \\(\\tfrac32k_\\mathrm BT\\) 和平均速率升高。理想气体在定容时 \\(p\\propto T\\)，壁面碰撞通量近似为 \\(n_\\mathrm N\\bar v/4\\)，也随平均速率增大。"
+  },
+  {
+    "id": "p-100",
+    "type": "multiple",
+    "points": 2,
+    "stem": "某气体的摩尔质量为 \\(M\\)、摩尔体积为 \\(V\\)、密度为 \\(\\rho\\)。每个分子的质量和自身几何体积分别为 \\(m\\)、\\(V_0\\)。阿伏伽德罗常数 \\(N_\\mathrm A\\) 可以表示成哪些形式？",
+    "options": [
+      "\\(\\dfrac V{V_0}\\)",
+      "\\(\\dfrac{\\rho V}{m}\\)",
+      "\\(\\dfrac M m\\)",
+      "\\(\\dfrac M{\\rho V_0}\\)"
+    ],
+    "answer": [
+      1,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 100,
+    "explanation": "每摩尔气体的质量可用 \\(\\rho V\\) 表示，也等于摩尔质量 \\(M\\)。用任一表达式除以分子质量 \\(m\\) 即得每摩尔的分子数。分子之间有很大的空隙，不能把整个气体体积除以分子的几何体积来求分子数。"
+  },
+  {
+    "id": "p-101",
+    "type": "multiple",
+    "points": 2,
+    "stem": "一定量理想气体只进行体积功，下列哪些过程可能发生？",
+    "options": [
+      "等压压缩，温度降低",
+      "等温吸热，体积不变",
+      "放出热量，内能增加",
+      "绝热压缩，内能不变"
+    ],
+    "answer": [
+      0,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 101,
+    "explanation": "等压时 \\(T\\propto V\\)，压缩确实降低温度。等温且等容意味着 \\(\\Delta U=W=0\\)，所以不能净吸热。若气体放热，但外界对气体所做功超过其放热量，则 \\(\\Delta U>0\\)。绝热压缩时外界做功全部增加内能。"
+  },
+  {
+    "id": "p-102",
+    "type": "multiple",
+    "points": 2,
+    "stem": "对一定质量的气体，下列说法哪些正确？",
+    "options": [
+      "温度升高，压强一定增大",
+      "温度升高，分子平均平动动能一定增大",
+      "压强增大，体积一定减小",
+      "气体吸收热量时，可能同时升温和膨胀"
+    ],
+    "answer": [
+      1,
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 102,
+    "explanation": "温度与分子平均平动动能成正比。压强还受体积影响，不能只从温度或压强判断另一状态量。例如等压加热理想气体，气体吸热、升温、膨胀，D 可以发生。"
+  },
+  {
+    "id": "p-103",
+    "type": "multiple",
+    "points": 2,
+    "stem": "图为冰箱工作原理。压缩机工作时，制冷剂在管道中循环，在蒸发器中汽化并吸收箱内热量，在冷凝器中液化并向箱外放热。下列说法哪些正确？",
+    "options": [
+      "热量可以自发地从冰箱内传到冰箱外",
+      "制冷系统能够持续把箱内热量传到外界，是因为消耗了电能",
+      "冰箱的工作原理不违反热力学第一定律",
+      "冰箱的工作原理违反热力学第一定律"
+    ],
+    "answer": [
+      1,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 103,
+    "explanation": "制冷机从低温箱内取热 \\(Q_\\mathrm c\\)，同时消耗压缩机输入功 \\(W\\)，向箱外放出 \\(Q_\\mathrm h=Q_\\mathrm c+W\\)。能量收支满足第一定律，而由低温向高温输热需要外界做功，并非自发过程。 本条为旧版记录保留项，题干和解法与同源题一致。",
+    "image": "assets/p-v4/low-69.webp",
+    "archiveOnly": true,
+    "duplicateOf": "p-69"
+  },
+  {
+    "id": "p-104",
+    "type": "multiple",
+    "points": 2,
+    "stem": "下列关于气体内能和分子运动的说法，哪些正确？",
+    "options": [
+      "气体升温时，并非所有分子的速率都增大",
+      "盛有气体的容器减速时，气体内能一定随之减小",
+      "理想气体等容变化时不对外做功，故内能一定不变",
+      "一定质量的理想气体等温压缩后，压强一定增大"
+    ],
+    "answer": [
+      0,
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 104,
+    "explanation": "温度反映速率分布的统计特征，升温并不要求每个分子都加速。容器整体动能不是气体内能。等容时体积功为零，但仍可通过热交换改变内能。等温且物质的量固定时，\\(pV\\) 为常量，压缩使压强增大。"
+  },
+  {
+    "id": "p-105",
+    "type": "single",
+    "points": 1,
+    "stem": "对一定量仅做体积功的气体，下列说法哪一项正确？",
+    "options": [
+      "准静态膨胀且外压为正时，气体对外做功",
+      "气体压强不断增大时，外界一定对气体做功",
+      "气体不断被压缩时，内能一定增加",
+      "气体与外界没有热交换时，内能一定不变"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 105,
+    "explanation": "体积功由 \\(\\int p_\\mathrm{ext}\\,\\mathrm dV\\) 决定，正外压下膨胀的体积功为正。定容加热是压强增大但没有体积功的反例。压缩时可以同时放热，绝热时可以通过做功改变内能。"
+  },
+  {
+    "id": "p-106",
+    "type": "single",
+    "points": 1,
+    "stem": "对一定量理想气体，下列结论哪一项正确？",
+    "options": [
+      "压强增大且体积增大，分子平均平动动能一定增大",
+      "压强减小且体积减小，分子平均平动动能一定增大",
+      "压强减小且体积增大，分子平均平动动能一定增大",
+      "压强增大且体积减小，分子平均平动动能一定增大"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 106,
+    "explanation": "理想气体的绝对温度正比于 \\(pV\\)，平均平动动能又正比于温度。只有 A 同时增大两个正因子，必使 \\(pV\\) 变大；B 会使 \\(pV\\) 变小，C、D 的净变化均取决于两个变化的幅度。"
+  },
+  {
+    "id": "p-108",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，绝热且不漏气的活塞把绝热气缸分成甲、乙两室。用 \\(E_\\text{甲},E_\\text{乙}\\) 表示两室气体的内能。把拉杆缓慢向外拉时，内能怎样改变？",
+    "options": [
+      "\\(E_\\text{甲}\\) 不变，\\(E_\\text{乙}\\) 减小",
+      "\\(E_\\text{甲}\\) 增大，\\(E_\\text{乙}\\) 不变",
+      "\\(E_\\text{甲}\\) 增大，\\(E_\\text{乙}\\) 减小",
+      "两者都不变"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 108,
+    "explanation": "向左拉时，甲室压缩，外界对甲室做功；乙室膨胀，气体对外做功。两室都绝热，功的流向直接决定内能变化，所以甲内能增大、乙内能减小。",
+    "image": "assets/p-v4/low-108.webp"
+  },
+  {
+    "id": "p-109",
+    "type": "single",
+    "points": 1,
+    "stem": "对一定量理想气体，下列说法哪一项正确？",
+    "options": [
+      "分子热运动变剧烈时，压强一定变大",
+      "分子热运动变剧烈时，压强可以不变",
+      "分子平均间距变大时，压强一定变小",
+      "分子平均间距变大时，压强一定变大"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 109,
+    "explanation": "分子热运动变剧烈意味着温度升高。由 \\(p=nRT/V\\)，若升温同时膨胀且 \\(T/V\\) 保持不变，压强即可不变。分子平均间距变大说明气体体积增大，但温度还可能变化，因此无法单凭间距判断压强。"
+  },
+  {
+    "id": "p-110",
+    "type": "single",
+    "points": 1,
+    "stem": "一个带活塞的气缸内盛有一定量的气体，且该气体的温度随内能的增大而升高。下列哪种操作一定使气体温度升高？",
+    "options": [
+      "给气体传热",
+      "压缩气体",
+      "压缩气体，同时让气体向外放热",
+      "压缩气体，同时给气体传热"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 110,
+    "explanation": "第一定律为 \\(\\Delta U=Q+W_\\mathrm{on}\\)，其中 \\(W_\\mathrm{on}\\) 是外界做的功。压缩且吸热时两项均为正，内能一定增加。只知道吸热或压缩时另一项不确定，压缩并放热时两项符号相反。"
+  },
+  {
+    "id": "p-111",
+    "type": "single",
+    "points": 1,
+    "stem": "在常用的分子力模型中，分子间同时存在吸引和排斥作用。下列说法正确的是哪一项？",
+    "options": [
+      "固体分子间的引力总大于斥力",
+      "气体能充满容器是因为分子间斥力大于引力",
+      "分子间的引力和斥力都随分子间距离增大而减小",
+      "分子间引力随距离增大而增大，斥力随距离增大而减小"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 111,
+    "explanation": "两种作用均随距离增大而减弱，斥力通常衰减得更快。平衡距离处二者大小相等，过近时斥力占优，稍远时引力占优。气体充满容器源于分子的无规则运动。"
+  },
+  {
+    "id": "p-113",
+    "type": "single",
+    "points": 2,
+    "stem": "如图，固定容器和可动活塞 P 均绝热，中间有导热的固定隔板 B。两边分别盛有气体甲和乙，初始达到热平衡。缓慢将 P 向 B 移动一段距离。已知各气体的温度随内能增加而升高，移动过程中哪一项正确？",
+    "options": [
+      "外力对乙做功，甲的内能不变",
+      "外力对乙做功，乙的内能不变",
+      "乙传热给甲，乙的内能增加",
+      "乙的内能增加，甲的内能不变"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 113,
+    "explanation": "活塞压缩乙，外界向乙输入功。乙通过隔板把部分能量传给甲，甲定容且只与乙换热，吸热后升温。缓慢压缩使两侧保持近似热平衡，乙也升温。由题设，两者内能均增加。",
+    "image": "assets/p-v4/low-113.webp"
+  },
+  {
+    "id": "p-114",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体的初始压强为 \\(p_0\\)。依次执行下列哪几种两步过程能使末态压强仍为 \\(p_0\\)？①先等容降压，再等温压缩。②先等容升温，再等温膨胀。③先等温膨胀，再等容升温。④先等温压缩，再等容降温。",
+    "options": [
+      "①②不可能",
+      "③④不可能",
+      "①③不可能",
+      "①②③④都可能"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 114,
+    "explanation": "由 \\(p=nRT/V\\)，等容时压强与温度同向变化，等温时压强与体积反向变化。①③先使压强下降再上升，②④先使压强上升再下降。调节第二步终点即可在四种方案中都恢复初始压强。"
+  },
+  {
+    "id": "p-115",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，绝热容器内有一带质量的绝热活塞，其上方为气体，下方为真空，活塞与壁间摩擦可忽略。轻弹簧连接活塞和容器底。用细绳将弹簧保持在压缩状态，其弹性势能为 \\(E_p\\)，取自然长度处为零。细绳断开后活塞上移，振动逐渐停止，气体达到平衡。\\(E_p\\) 如何分配？",
+    "options": [
+      "全部转化为气体的内能",
+      "一部分转化为活塞的重力势能，其余仍为弹性势能",
+      "全部转化为活塞的重力势能与气体的内能",
+      "一部分转化为活塞的重力势能，一部分转化为气体的内能，其余仍为弹性势能"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 115,
+    "explanation": "活塞升高，重力势能增加。上方气体受到绝热压缩，得到的功使气体内能增加。末态弹簧必须以向上的弹力平衡活塞重力和气体向下的压力，所以仍被压缩，保有弹性势能。",
+    "image": "assets/p-v4/low-115.webp"
+  },
+  {
+    "id": "p-116",
+    "type": "single",
+    "points": 1,
+    "stem": "关于能量转化与热力学第二定律，哪一项正确？",
+    "options": [
+      "机械能全部变为内能是不可能的",
+      "第二类永动机不可能制成，因为它违反能量守恒",
+      "热量不可能从低温物体传到高温物体",
+      "在非循环的过程中，从单一热源吸收的热量可以全部转化为功"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 116,
+    "explanation": "理想气体等温膨胀时 \\(\\Delta U=0\\)，由 \\(Q=\\Delta U+W\\) 得 \\(Q=W\\)，气体的体积随之改变。要求循环工作并且只产生从单一热源吸热做功这一结果时，会违反第二定律。摩擦可使机械能全部成为内能，制冷机可借助外界功将热量由低温处送至高温处。"
+  },
+  {
+    "id": "p-117",
+    "type": "single",
+    "points": 1,
+    "stem": "关于内能、温度和热传递，下列说法正确的是哪一项？",
+    "options": [
+      "物体放出热量，温度一定降低",
+      "物体内能增加，温度一定升高",
+      "热量能自发地从低温物体传给高温物体",
+      "热量能自发地从高温物体传给低温物体"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 117,
+    "explanation": "热传导的自发方向是从高温到低温。物体放热或内能变化时温度也可能保持恒定，例如冰水相变期间吸热导致内能增加，但温度不变。"
+  },
+  {
+    "id": "p-118",
+    "type": "single",
+    "points": 1,
+    "stem": "下列说法正确的是哪一项？",
+    "options": [
+      "热量不能由低温物体传递到高温物体",
+      "外界对物体做功，物体的内能必定增加",
+      "第二类永动机不能制成，是因为它违反能量守恒定律",
+      "不可能从单一热源吸收热量并将它全部用来做功，而不引起其他变化"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 118,
+    "explanation": "D 是第二定律的开尔文表述。制冷过程消耗外功时可将热量从低温物体送向高温物体。由 \\(\\Delta U=Q+W_\\mathrm{on}\\) 可知，若物体放热足够多，外界做功时内能仍可降低。第二类永动机违反第二定律。"
+  },
+  {
+    "id": "p-119",
+    "type": "single",
+    "points": 1,
+    "stem": "关于一定量气体的内能和分子热运动，下列说法正确的是哪一项？",
+    "options": [
+      "外界对气体做功，气体的内能一定增大",
+      "气体从外界吸收热量，气体的内能一定增大",
+      "温度越低，气体分子的平均平动动能越大",
+      "温度越高，气体分子的平均平动动能越大"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 119,
+    "explanation": "分子的平均平动动能为 \\(\\langle\\varepsilon_\\mathrm{tr}\\rangle=3k_\\mathrm{B}T/2\\)，随绝对温度升高而增大。由 \\(\\Delta U=Q+W_\\mathrm{on}\\)，只知道吸热或外界做正功中的一项，无法确定内能变化。"
+  },
+  {
+    "id": "p-120",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量的气体吸热、膨胀并对外做功。末态的内能与初态相比如何变化？",
+    "options": [
+      "一定增加",
+      "一定减少",
+      "一定不变",
+      "不能确定"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 120,
+    "explanation": "以 \\(W\\) 为气体对外所做的功，第一定律给出 \\(\\Delta U=Q-W\\)。题目只给出 \\(Q>0\\)、\\(W>0\\)。当 \\(Q>W\\)、\\(Q<W\\) 和 \\(Q=W\\) 时，内能依次增加、减少和不变。"
+  },
+  {
+    "id": "p-121",
+    "type": "single",
+    "points": 1,
+    "stem": "设 \\(\\mu\\) 为水的摩尔质量，\\(V_m\\) 和 \\(\\rho\\) 分别为标准状态下水蒸气的摩尔体积和密度，\\(N_A\\) 为阿伏伽德罗常数，\\(m\\)、\\(\\Delta\\) 分别是单个水分子的质量和几何体积。下列关系中哪一组正确？① \\(N_A=V_m\\rho/m\\)，② \\(\\rho=\\mu/(N_A\\Delta)\\)，③ \\(m=\\mu/N_A\\)，④ \\(\\Delta=V_m/N_A\\)。",
+    "options": [
+      "①②",
+      "①③",
+      "③④",
+      "①④"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 121,
+    "explanation": "每摩尔水蒸气质量为 \\(\\mu=V_m\\rho=N_A m\\)，得到①和③。\\(V_m/N_A\\) 是气体中平均分配给单个分子的空间体积，包含分子间空隙，不能等同于分子几何体积 \\(\\Delta\\)，故②④不成立。"
+  },
+  {
+    "id": "p-122",
+    "type": "single",
+    "points": 1,
+    "stem": "规定两分子无限远时相互作用势能为零。分子 \\(a\\) 固定，分子 \\(b\\) 以某一非零初速度从无限远处沿连线接近 \\(a\\)，直到间距最小。此过程中两者的相互作用势能如何变化？",
+    "options": [
+      "先减小后增大，最后小于零",
+      "先减小后增大，最后大于零",
+      "先增大后减小，最后小于零",
+      "先增大后减小，最后大于零"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 122,
+    "explanation": "由远及近时，引力先对 \\(b\\) 做正功，相互作用势能下降。进入斥力区后斥力做负功，势能回升。最接近时 \\(b\\) 瞬时静止，势能等于初始非零动能，所以大于零。"
+  },
+  {
+    "id": "p-123",
+    "type": "single",
+    "points": 1,
+    "stem": "关于分子间作用力，下列说法正确的是哪一项？",
+    "options": [
+      "分子间既存在引力成分，也存在斥力成分",
+      "液体难被压缩表明液体中分子力总是引力",
+      "气体分子之间总没有分子力的作用",
+      "扩散现象表明分子间不存在引力"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 123,
+    "explanation": "常用分子力模型同时包含吸引和排斥。液体受压时分子距离减小，短程排斥迅速增强。实际气体中充分接近的分子有相互作用，扩散是无规则热运动使浓度趋于均匀的现象。"
+  },
+  {
+    "id": "p-124",
+    "type": "single",
+    "points": 1,
+    "stem": "下列关于常见分子间相互作用力和势能的说法，哪一项正确？",
+    "options": [
+      "合力表现为引力时，力的大小和势能总随分子间距离增大而增大",
+      "合力表现为引力时，力的大小和势能总随分子间距离增大而减小",
+      "在短程斥力区，力的大小和势能随分子间距离减小而增大",
+      "在短程斥力区，力的大小和势能随分子间距离减小而减小"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 124,
+    "explanation": "取径向向外为正，有 \\(F_r=-\\mathrm{d}U/\\mathrm{d}r\\)。斥力区 \\(F_r>0\\)，缩短距离时外力需克服斥力做功，势能上升，短程斥力也增强。引力区 \\(F_r<0\\)，势能随距离增大而升高；引力大小在平衡处和无限远处均趋于零。"
+  },
+  {
+    "id": "p-125",
+    "type": "single",
+    "points": 1,
+    "stem": "关于气体状态和热现象，下列说法正确的是哪一项？",
+    "options": [
+      "外界对物体做功，物体的内能一定增加",
+      "气体的温度升高，气体的压强一定增大",
+      "在任何条件下，热量都不会由低温物体传递到高温物体",
+      "循环热机不能仅从单一热源吸热并把吸收的热量全部转化为机械功"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 125,
+    "explanation": "第二定律的开尔文表述排除了 D 所描述的循环热机，因此 D 的判断正确。做功时若系统同时放热，内能未必增加。气体压强 \\(p=nRT/V\\) 同时受温度和体积影响。制冷机消耗功时可以把热从低温处送向高温处。"
+  },
+  {
+    "id": "p-126",
+    "type": "single",
+    "points": 1,
+    "stem": "一定质量的气体经历缓慢的绝热膨胀。若气体分子间的相互作用势能可以忽略，哪一项正确？",
+    "options": [
+      "外界对气体做功，分子的平均动能增加",
+      "外界对气体做功，分子的平均动能减少",
+      "气体对外界做功，分子的平均动能增加",
+      "气体对外界做功，分子的平均动能减少"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 126,
+    "explanation": "缓慢膨胀时气体推动外界，\\(W=\\int p\\,\\mathrm{d}V>0\\)。绝热意味着 \\(Q=0\\)，由 \\(\\Delta U=Q-W\\) 得内能下降。忽略分子间势能时，下降的内能对应分子的平均动能下降。"
+  },
+  {
+    "id": "p-128",
+    "type": "single",
+    "points": 2,
+    "stem": "如图，竖直弯管的 A 端开口、B 端封闭，密度为 \\(\\rho\\) 的液体封住两段空气，液面高度差如图所示。忽略空气密度，若大气压为 \\(p_0\\)，B 端气体的压强是多少？",
+    "options": [
+      "\\(p_0-\\rho g(h_1+h_2-h_3)\\)",
+      "\\(p_0-\\rho g(h_1+h_3)\\)",
+      "\\(p_0-\\rho g(h_1+h_3-h_2)\\)",
+      "\\(p_0-\\rho g(h_1+h_2)\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 128,
+    "explanation": "从右侧开口 A 的液面沿连通液体到中间气腔右边液面，净升高 \\(h_3\\)，压强降至 \\(p_0-\\rho gh_3\\)。中间气腔内的压差可忽略。再经左侧液体到 B 端液面，净升高 \\(h_1\\)，故 \\(p_B=p_0-\\rho g(h_1+h_3)\\)。",
+    "image": "assets/p-v4/low-128.webp"
+  },
+  {
+    "id": "p-129",
+    "type": "single",
+    "points": 1,
+    "stem": "关于永动机和热力学定律，下列叙述正确的是哪一项？",
+    "options": [
+      "第二类永动机违反能量守恒定律",
+      "物体从外界吸收热量，其内能一定增加",
+      "外界对物体做功，其内能一定增加",
+      "做功和热传递都可以改变物体的内能，两种方式的能量交换机制有区别"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 129,
+    "explanation": "做功通过宏观广义力及其位移交换能量，热传递由温差引起，两者都影响 \\(\\Delta U=Q+W_\\mathrm{on}\\)。吸热时若同时对外做更多的功，内能可减小；外界做功时若物体放热更多，内能也可减小。第二类永动机违反第二定律。"
+  },
+  {
+    "id": "p-130",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，绝热刚性容器由隔板分成 A、B 两部分，A 内盛一定量理想气体，B 为真空。抽去隔板后，气体自由膨胀并充满容器。下列说法正确的是哪一项？",
+    "options": [
+      "自由膨胀过程中气体分子只做定向运动",
+      "自由膨胀前后气体压强不变",
+      "自由膨胀前后气体温度不变",
+      "经过足够长的时间，气体会自发地全部回到 A 部分"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 130,
+    "explanation": "容器绝热且外壁固定，\\(Q=W=0\\)，故 \\(\\Delta U=0\\)。理想气体的内能只随温度改变，初末态温度相同。末态可占体积更大，按 \\(pV=nRT\\) 压强降低。分子仍进行热运动，宏观过程不会自发逆转。",
+    "image": "assets/p-v4/low-130.webp"
+  },
+  {
+    "id": "p-131",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，两个刚性容器 P、Q 由装有阀门 K 的管道连接，P 内有气体，Q 内为真空，系统与外界无热交换。打开 K，气体自由扩散，最终达到平衡。下列哪一项正确？",
+    "options": [
+      "气体体积膨胀，内能增加",
+      "气体分子势能减少，内能增加",
+      "气体分子势能增加，压强可能不变",
+      "在宏观尺度上，Q 中气体不会自发地全部回到 P 中"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 131,
+    "explanation": "刚性、绝热容器整体不向外做功也不换热，所以 \\(Q=W=0\\)，总内能不变。自由膨胀扩大了气体可占据的空间，是不可逆过程，宏观气体不会自行集中回原容器。",
+    "image": "assets/p-v4/low-131.webp"
+  },
+  {
+    "id": "p-132",
+    "type": "single",
+    "points": 1,
+    "stem": "下列说法中正确的是哪一项？分子接近问题采用具有单一势能最低点的分子势模型。",
+    "options": [
+      "气体温度升高，其压强一定增大",
+      "气体体积变小，其压强一定增大",
+      "压缩一定量的气体，其内能一定增加",
+      "分子 \\(a\\) 沿连线从远处接近固定分子 \\(b\\)，到达引力与斥力平衡的位置时，\\(a\\) 的动能最大"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 132,
+    "explanation": "相互作用力达到平衡的位置是势能极小点。由 \\(K+U=\\text{常量}\\)，\\(U\\) 最小时 \\(K\\) 最大。气体压强取决于温度和体积两个变量；压缩时若伴随充分放热，气体内能也可不增加。"
+  },
+  {
+    "id": "p-133",
+    "type": "single",
+    "points": 2,
+    "stem": "一定量理想气体在 \\(p\\)–\\(V\\) 图上从 \\(a\\) 经路径①或②膨胀到 \\(b\\)。\\(a\\) 和 \\(b\\) 位于同一条绝热线上（虚线）。两过程分别吸热还是放热？",
+    "options": [
+      "①吸热，②放热",
+      "①放热，②吸热",
+      "两个过程都吸热",
+      "两个过程都放热"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 133,
+    "explanation": "三条路径的初末态相同，故 \\(\\Delta U\\) 相同。绝热线满足 \\(\\Delta U=-W_\\mathrm{ad}\\)。膨胀功等于路径下的面积，图中 \\(W_1<W_\\mathrm{ad}<W_2\\)，故 \\(Q_i=W_i-W_\\mathrm{ad}\\)，路径①放热，路径②吸热。 本条为旧版记录保留项，题干和解法与同源题一致。",
+    "image": "assets/p-v4/low-133.webp",
+    "archiveOnly": true,
+    "duplicateOf": "p-70"
+  },
+  {
+    "id": "p-134",
+    "type": "single",
+    "points": 1,
+    "stem": "一个物质系统从外界吸收一定热量。仅凭这一信息，可以确定其内能如何变化吗？",
+    "options": [
+      "内能一定增加",
+      "内能一定减少",
+      "内能一定不变",
+      "内能可能增加、减少或不变"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 134,
+    "explanation": "设 \\(Q>0\\) 为吸热量，\\(W\\) 为系统对外做功，则 \\(\\Delta U=Q-W\\)。若 \\(W<Q\\)，内能增加；若 \\(W>Q\\)，内能减少；若 \\(W=Q\\)，内能不变。"
+  },
+  {
+    "id": "p-135",
+    "type": "single",
+    "points": 1,
+    "stem": "把氦气、氮气和水蒸气都视为刚性分子理想气体。三者物质的量和初始状态均相同，分别在定容条件下吸收相等的热量。它们的温度和压强增量有何关系？",
+    "options": [
+      "温度增量相同，压强增量相同",
+      "温度增量相同，压强增量不同",
+      "温度增量不同，压强增量不同",
+      "温度增量不同，压强增量相同"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 135,
+    "explanation": "单原子氦、双原子氮及非线性三原子水分子的有效自由度分别为 \\(3,5,6\\)，定容摩尔热容分别为 \\(3R/2,5R/2,3R\\)。由 \\(\\Delta T=Q/(nC_{V,m})\\) 得温度增量不同。体积和物质的量相同，\\(\\Delta p=nR\\Delta T/V\\) 也不同。"
+  },
+  {
+    "id": "p-136",
+    "type": "single",
+    "points": 1,
+    "stem": "仅依据热力学第一定律，可以得出下列哪一项？",
+    "options": [
+      "系统对外做的功不可能超过从外界吸收的热量",
+      "系统内能增量总等于系统从外界吸收的热量",
+      "在循环过程中，外界对系统所做的净功等于系统向外界放出的净热量",
+      "热机的效率不可能等于 1"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 136,
+    "explanation": "设 \\(W_\\mathrm{on}\\) 是外界对系统做的净功，\\(Q\\) 是系统净吸热量。一个循环后内能回到初值，\\(0=Q+W_\\mathrm{on}\\)，因此 \\(W_\\mathrm{on}=-Q\\)，与净放热量相等。单一过程可消耗内能对外做功。对热机效率的上限还要用第二定律。"
+  },
+  {
+    "id": "p-137",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体在绝热刚性容器内向真空自由膨胀。末态相较于初态，温度与压强如何变化？",
+    "options": [
+      "温度不变，压强减小",
+      "温度降低，压强减小",
+      "温度升高，压强减小",
+      "温度不变，压强不变"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 137,
+    "explanation": "自由膨胀无边界功，绝热又给出 \\(Q=0\\)，因此内能不变。理想气体内能只取决于温度，故温度不变；体积增大，在 \\(pV=nRT\\) 右端不变时压强减小。"
+  },
+  {
+    "id": "p-138",
+    "type": "single",
+    "points": 1,
+    "stem": "同一份理想气体从同一初态出发，分别沿等温、等压和准静态绝热过程膨胀至初始体积的两倍。温度变化的绝对值在哪一过程最大、哪一过程最小？",
+    "options": [
+      "绝热最大，等压最小",
+      "绝热最大，等温最小",
+      "等压最大，绝热最小",
+      "等压最大，等温最小"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 138,
+    "explanation": "等温过程的 \\(|\\Delta T|\\) 为零。等压过程中 \\(T\\propto V\\)，末态温度为 \\(2T_0\\)，故 \\(|\\Delta T|=T_0\\)。绝热膨胀做功使内能和温度降低，末态绝对温度满足 \\(0<T_f<T_0\\)，所以 \\(0<|\\Delta T|<T_0\\)。"
+  },
+  {
+    "id": "p-139",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，一定量理想气体沿直线从 \\(a\\)（\\(p_1=4\\,\\mathrm{atm}\\)，\\(V_1=2\\,\\mathrm{L}\\)）到 \\(b\\)（\\(p_2=2\\,\\mathrm{atm}\\)，\\(V_2=4\\,\\mathrm{L}\\)）。下列关于此过程的判断哪一项正确？",
+    "options": [
+      "气体对外做正功，同时放热",
+      "气体对外做正功，同时吸热",
+      "气体对外做负功，同时放热",
+      "气体对外做正功，内能减少"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 139,
+    "explanation": "初末态均有 \\(pV=8\\,\\mathrm{L\\cdot atm}\\)，由 \\(pV=nRT\\) 得两态温度相同，故 \\(\\Delta U=0\\)。路径上压强始终为正且体积增加，因此 \\(W=\\int_a^b p\\,\\mathrm{d}V>0\\)。由 \\(Q=\\Delta U+W\\) 得气体吸热。",
+    "image": "assets/p-v4/low-139.webp",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 325
+      }
+    ]
+  },
+  {
+    "id": "p-141",
+    "type": "single",
+    "points": 1,
+    "stem": "若理想气体的定容摩尔热容 \\(C_{V,m}\\) 可视为常数，用 \\(\\Delta U=nC_{V,m}\\Delta T\\) 计算其内能变化时，该式适用于什么过程？",
+    "options": [
+      "仅准静态等容过程",
+      "一切等容过程",
+      "一切准静态过程",
+      "一切始、末态均为平衡态的过程"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 141,
+    "explanation": "内能为状态函数，理想气体的内能仅由温度确定。\\(C_{V,m}\\) 虽由定容实验定义，得到的 \\(\\mathrm{d}U=nC_{V,m}\\,\\mathrm{d}T\\) 与路径无关。常热容时积分得题中公式，只需知道平衡初末态温差，过程可以不是等容或准静态。"
+  },
+  {
+    "id": "p-142",
+    "type": "single",
+    "points": 2,
+    "stem": "室温下的刚性双原子理想气体在等压膨胀过程中，对外做功与从外界吸收的热量之比是多少？",
+    "options": [
+      "\\(2/3\\)",
+      "\\(1/2\\)",
+      "\\(2/5\\)",
+      "\\(2/7\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 142,
+    "explanation": "刚性双原子理想气体有五个有效自由度，故 \\(C_{V,m}=5R/2\\)、\\(C_{p,m}=7R/2\\)。等压时 \\(W=p\\Delta V=nR\\Delta T\\)，\\(Q=nC_{p,m}\\Delta T\\)，所以 \\(W/Q=2/7\\)。 本条为旧版记录保留项，题干和解法与同源题一致。",
+    "archiveOnly": true,
+    "duplicateOf": "p-10"
+  },
+  {
+    "id": "p-143",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，一定量理想气体经 \\(acb\\) 过程吸热 \\(500\\,\\mathrm{J}\\)。气体沿 \\(acbda\\) 循环时的净吸热量是多少？",
+    "options": [
+      "\\(-1200\\,\\mathrm{J}\\)",
+      "\\(-700\\,\\mathrm{J}\\)",
+      "\\(-400\\,\\mathrm{J}\\)",
+      "\\(-200\\,\\mathrm{J}\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 143,
+    "explanation": "图中 \\(p_aV_a=p_bV_b=400\\,\\mathrm{J}\\)，所以 \\(T_a=T_b\\)，\\(\\Delta U_{acb}=0\\)，于是 \\(W_{acb}=Q_{acb}=500\\,\\mathrm{J}\\)。\\(b\\to d\\) 等容，做功为零。\\(d\\to a\\) 在 \\(4\\times10^5\\,\\mathrm{Pa}\\) 下压缩，\\(W_{da}=4\\times10^5(1-4)\\times10^{-3}\\,\\mathrm{J}=-1200\\,\\mathrm{J}\\)。循环 \\(\\Delta U=0\\)，所以净热量为 \\(500-1200=-700\\,\\mathrm{J}\\)。",
+    "image": "assets/p-v4/low-143.webp"
+  },
+  {
+    "id": "p-144",
+    "type": "single",
+    "points": 1,
+    "stem": "\\(1\\,\\mathrm{mol}\\) 单原子理想气体由 A 态到 B 态。已知两态的压强、体积和温度，气体种类及变化路径未知。下列哪一量能够确定？",
+    "options": [
+      "气体对外做的功",
+      "气体内能变化",
+      "气体传给外界的热量",
+      "气体质量"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 144,
+    "explanation": "单原子理想气体的内能差为 \\(\\Delta U=\\tfrac32 nR(T_B-T_A)\\)，已知物质的量和两态温度即可求得。功和热量均依赖过程路径；质量还需要摩尔质量。"
+  },
+  {
+    "id": "p-145",
+    "type": "single",
+    "points": 2,
+    "stem": "\\(1\\,\\mathrm{mol}\\) 单原子理想气体初态为 \\((p_1,V_1,T_1)\\)，准静态等温压缩到体积 \\(V_2\\)，末态压强为 \\(p_2\\)。外界需做多少功？",
+    "options": [
+      "\\(\\dfrac32 RT_1\\)",
+      "\\(RT_1\\ln(V_1/V_2)\\)",
+      "\\(p_1(V_2-V_1)\\)",
+      "\\(p_2V_2-p_1V_1\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 145,
+    "explanation": "等温条件下 \\(p=RT_1/V\\)。外界做功 \\(W_\\mathrm{on}=-\\int_{V_1}^{V_2}p\\,\\mathrm{d}V=RT_1\\ln(V_1/V_2)\\)。由于 \\(V_2<V_1\\)，此值为正。选项 C 使用了恒定压强，D 在等温时为零。"
+  },
+  {
+    "id": "p-146",
+    "type": "single",
+    "points": 1,
+    "stem": "在 \\(p\\)–\\(V\\) 图上有两条曲线 \\(abc\\) 和 \\(adc\\)。根据图示可得到哪项结论？",
+    "options": [
+      "一条是绝热线，另一条是等温线",
+      "两个过程吸收的热量相同",
+      "两个过程中系统对外做的功相等",
+      "两个过程中系统的内能变化相同"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 146,
+    "explanation": "两条路径有相同的初态 \\(a\\) 和末态 \\(c\\)。内能是状态函数，因此内能变化相同。两条曲线下的面积不同，膨胀功不同，于是 \\(Q=\\Delta U+W\\) 也不同。只凭曲线形状无法判断是等温线还是绝热线。",
+    "image": "assets/p-v4/low-146.webp",
+    "archiveOnly": true,
+    "duplicateOf": "p-35"
+  },
+  {
+    "id": "p-147",
+    "type": "single",
+    "points": 1,
+    "stem": "两个相同的刚性容器分别盛有氮气和氨气，初始压强和温度相同，两者均视为刚性分子理想气体。向氮气传入 \\(5\\,\\mathrm{J}\\) 热量。要使氨气升高相同温度，需向其传入多少热量？",
+    "options": [
+      "\\(5\\,\\mathrm{J}\\)",
+      "\\(3\\,\\mathrm{J}\\)",
+      "\\(2\\,\\mathrm{J}\\)",
+      "\\(6\\,\\mathrm{J}\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 147,
+    "explanation": "相同的 \\(p,V,T\\) 对应相同的物质的量。氮为线性双原子分子，有效自由度为 \\(5\\)；氨为非线性多原子分子，自由度为 \\(6\\)。定容热量 \\(Q=n(fR/2)\\Delta T\\)，所以氨需吸热 \\((6/5)\\times5\\,\\mathrm{J}=6\\,\\mathrm{J}\\)。"
+  },
+  {
+    "id": "p-148",
+    "type": "single",
+    "points": 1,
+    "stem": "常温下，初始压强、体积和温度相同的氧气和氦气分别在等压过程中吸收等量热量。视为刚性分子理想气体时，氧气和氦气对外做功之比是多少？",
+    "options": [
+      "\\(1:1\\)",
+      "\\(5:9\\)",
+      "\\(5:7\\)",
+      "\\(9:5\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 148,
+    "explanation": "等压时 \\(Q=nC_{p,m}\\Delta T\\)，而 \\(W=p\\Delta V=nR\\Delta T=QR/C_{p,m}\\)。氧气是双原子气体，\\(C_{p,m}=7R/2\\)；氦气是单原子气体，\\(C_{p,m}=5R/2\\)。两者吸热相同，所以 \\(W_{\\mathrm{O_2}}:W_{\\mathrm{He}}=5:7\\)。"
+  },
+  {
+    "id": "p-149",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体与单一热源接触，经历一次等温膨胀，吸收的热量全部用来对外做功。对此说法的评价哪一项正确？",
+    "options": [
+      "符合第一定律，但违反第二定律",
+      "符合第二定律，但违反第一定律",
+      "同时符合第一定律和第二定律",
+      "同时违反第一定律和第二定律"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 149,
+    "explanation": "理想气体等温时 \\(\\Delta U=0\\)，故第一定律给出 \\(Q=W\\)。这次膨胀改变了气体的体积，并非回到初态的循环。第二定律排除的是仅从单一热源吸热并将其全部变为功、且无其他变化的装置。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 155
+      }
+    ]
+  },
+  {
+    "id": "p-151",
+    "type": "single",
+    "points": 1,
+    "stem": "考虑下列过程。①两种不同的理想气体在等温下混合。②理想气体定容降温。③液体等温汽化。④理想气体等温压缩。⑤理想气体绝热自由膨胀。哪些过程中题述物质系统的熵增加？",
+    "options": [
+      "①②③",
+      "②③④",
+      "③④⑤",
+      "①③⑤"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 151,
+    "explanation": "①混合后每种气体可占据的体积增大，总混合熵增加。③等温汽化需吸收汽化热，\\(\\Delta S=Q_\\mathrm{rev}/T>0\\)。⑤绝热自由膨胀温度不变而体积增大，\\(\\Delta S=nR\\ln(V_f/V_i)>0\\)。②温度下降和④等温压缩分别给出负的温度项和体积项。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 343
+      }
+    ]
+  },
+  {
+    "id": "p-152",
+    "type": "single",
+    "points": 1,
+    "stem": "下列哪一项是热力学第二定律支持的结论？",
+    "options": [
+      "从单一热源吸收的热量在任何过程中都不能全部转化为功",
+      "任何可逆过程中工质的净吸热都等于对外做的功",
+      "摩擦生热的过程不可逆",
+      "热量在任何条件下都不能由低温物体传到高温物体"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 152,
+    "explanation": "摩擦把有序机械能耗散为内能并产生熵，不会自发逆转。理想气体的一次等温膨胀可有 \\(Q=W\\)，故 A 说得过强。普通可逆过程仍可有内能变化，\\(Q=\\Delta U+W\\)。制冷机借助外界功可实现由低温向高温传热。"
+  },
+  {
+    "id": "p-153",
+    "type": "single",
+    "points": 1,
+    "stem": "判断以下叙述。①功可以完全转化为热，但热在任何过程中都不能完全转化为功。②工作于两个有限正温热源之间的循环热机效率小于 1。③热量在任何条件下都不能从低温物体传到高温物体。④有限温差下热量自发由高温物体传给低温物体是不可逆的。哪些正确？",
+    "options": [
+      "只有②④正确",
+      "只有②③④正确",
+      "只有①③④正确",
+      "全部正确"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 153,
+    "explanation": "理想气体一次等温膨胀可实现 \\(Q=W\\)，所以①后半句不成立。制冷设备在消耗外功时可把热量送至更高温度，故③不成立。热机的效率不超过相同两热源之间的卡诺效率 \\(1-T_C/T_H<1\\)。有限温差传热的总熵变化为 \\(Q(1/T_C-1/T_H)>0\\)，所以④正确。"
+  },
+  {
+    "id": "p-154",
+    "type": "single",
+    "points": 3,
+    "stem": "设热机工作于绝对温度分别为 \\(T_H\\) 和 \\(T_C\\) 的两个热源之间。甲说，只用热力学第一定律即可证明任何循环热机的效率小于 1。乙说，不能制造仅从单一热源吸热并把热量全部转化为功的循环热机，是第二定律的一种表述。丙说，只用第一定律即可证明所有工质的卡诺循环效率为 \\(1-T_C/T_H\\)。丁说，对理想气体卡诺循环，可结合第一定律和理想气体性质推导效率 \\(1-T_C/T_H\\)。哪些正确？",
+    "options": [
+      "甲、乙、丙、丁全对",
+      "甲、乙、丙、丁全错",
+      "甲、乙、丁对，丙错",
+      "乙、丁对，甲、丙错"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 154,
+    "explanation": "第一定律只给循环能量平衡 \\(W=Q_H-Q_C\\)，单凭它不能排除 \\(Q_C=0\\)，所以甲错，乙是第二定律的开尔文表述。理想气体可用等温功及可逆绝热关系求得 \\(|Q_C|/Q_H=T_C/T_H\\)，故丁对。把效率结论推广到任意工质要用第二定律，故丙错。"
+  },
+  {
+    "id": "p-155",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体与单一热源接触，经历一次等温膨胀，吸收的热量全部用来对外做功。对此说法的评价哪一项正确？",
+    "options": [
+      "符合第一定律，但违反第二定律",
+      "符合第二定律，但违反第一定律",
+      "同时符合第一定律和第二定律",
+      "同时违反第一定律和第二定律"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 155,
+    "explanation": "理想气体等温时 \\(\\Delta U=0\\)，故第一定律给出 \\(Q=W\\)。这次膨胀改变了气体的体积，并非回到初态的循环。第二定律排除的是仅从单一热源吸热并将其全部变为功、且无其他变化的装置。 本条为旧版记录保留项，题干和解法与同源题一致。",
+    "archiveOnly": true,
+    "duplicateOf": "p-149"
+  },
+  {
+    "id": "p-156",
+    "type": "single",
+    "points": 1,
+    "stem": "根据热力学第二定律，下列说法哪一项正确？",
+    "options": [
+      "热量只能从高温物体传到低温物体，任何条件下都不能反向传递",
+      "功可以全部变为热，但热在任何过程中都不能全部变为功",
+      "气体能向真空自由膨胀，膨胀后不会自发收缩回原来区域",
+      "有序运动的能量可转为无序运动的能量，但无序运动的能量在任何条件下都不能用于做功"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 156,
+    "explanation": "气体向真空自由膨胀后，能占据的空间和熵均增加，宏观上不会自发回到原来区域。制冷机消耗功可逆温差输送热量；理想气体等温膨胀可使吸收的热量全部变为一次过程中的对外功。"
+  },
+  {
+    "id": "p-157",
+    "type": "single",
+    "points": 1,
+    "stem": "根据热力学第二定律，下列说法哪一项正确？",
+    "options": [
+      "功可以全部转变成热，但任何过程中热都不能全部转变成功",
+      "热可以从高温物体传到低温物体，但在任何条件下都不能反向传递",
+      "不可逆过程的逆向状态变化在任何条件下都不能实现",
+      "孤立系统从非平衡状态自发趋向平衡是不可逆的"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 157,
+    "explanation": "孤立系统自发弛豫产生熵，满足 \\(\\Delta S>0\\)，逆过程若也自发发生就会使孤立系统熵减少，因此 D 正确。等温膨胀可将从单一热源吸收的热量全部转化为功，但会改变气体体积；制冷机可借外功把热从低温端移至高温端。改变外界条件可使系统状态沿反方向变化，但通常会在环境留下变化。 本条为旧版记录保留项，题干和解法与同源题一致。",
+    "archiveOnly": true,
+    "duplicateOf": "p-163"
+  },
+  {
+    "id": "p-158",
+    "type": "single",
+    "points": 1,
+    "stem": "一台卡诺热机工作于 \\(600\\,\\mathrm{K}\\) 的高温热源和 \\(300\\,\\mathrm{K}\\) 的低温热源之间，效率是多少？",
+    "options": [
+      "\\(100\\%\\)",
+      "\\(75\\%\\)",
+      "\\(50\\%\\)",
+      "\\(25\\%\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 158,
+    "explanation": "卡诺效率取决于两个热源的绝对温度，\\(\\eta=1-T_C/T_H\\)。代入得到 \\(\\eta=1-300/600=0.50\\)。在这两个热源间工作的其他热机效率不超过该值。"
+  },
+  {
+    "id": "p-161",
+    "type": "single",
+    "points": 1,
+    "stem": "同一份理想气体分别经历等压、等容和绝热过程，每一过程中内能增量均为同一个正值 \\(\\Delta U\\)。设热容恒定，三者的温度变化和吸热量有何关系？",
+    "options": [
+      "温度变化相同，吸热量相同",
+      "温度变化不同，吸热量相同",
+      "温度变化相同，吸热量不同",
+      "温度变化不同，吸热量也不同"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 161,
+    "explanation": "理想气体满足 \\(\\Delta U=nC_{V,m}\\Delta T\\)，因此三者的 \\(\\Delta T\\) 相同。等容时无体积功，\\(Q_V=\\Delta U\\)。等压升温发生膨胀，\\(Q_p=\\Delta U+nR\\Delta T\\)。绝热时 \\(Q_\\mathrm{ad}=0\\)，所以吸热量各不相同。"
+  },
+  {
+    "id": "p-163",
+    "type": "single",
+    "points": 1,
+    "stem": "根据热力学第二定律，下列说法哪一项正确？",
+    "options": [
+      "功可以全部转变成热，但任何过程中热都不能全部转变成功",
+      "热可以从高温物体传到低温物体，但在任何条件下都不能反向传递",
+      "不可逆过程的逆向状态变化在任何条件下都不能实现",
+      "孤立系统从非平衡状态自发趋向平衡是不可逆的"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 163,
+    "explanation": "孤立系统自发弛豫产生熵，满足 \\(\\Delta S>0\\)，逆过程若也自发发生就会使孤立系统熵减少，因此 D 正确。等温膨胀可将从单一热源吸收的热量全部转化为功，但会改变气体体积；制冷机可借外功把热从低温端移至高温端。改变外界条件可使系统状态沿反方向变化，但通常会在环境留下变化。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 157
+      }
+    ]
+  },
+  {
+    "id": "p-165",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体经历下列哪种过程时，所吸收的热量 \\(Q\\)、内能增量 \\(\\Delta U\\) 和气体对外做功 \\(W\\) 都为负？",
+    "options": [
+      "等压压缩",
+      "等容降压",
+      "等温膨胀",
+      "绝热膨胀"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 165,
+    "explanation": "等压压缩时 \\(W=p\\Delta V<0\\)，且由 \\(T=pV/(nR)\\) 得温度降低，所以 \\(\\Delta U=nC_{V,m}\\Delta T<0\\)。第一定律给 \\(Q=\\Delta U+W<0\\)。等容过程 \\(W=0\\)，等温过程 \\(\\Delta U=0\\)，绝热过程 \\(Q=0\\)，后三项均不满足。"
+  },
+  {
+    "id": "p-168",
+    "type": "single",
+    "points": 1,
+    "stem": "两瓶不同种理想气体的分子平均平动动能相等，但分子数密度不同。下列哪项正确？",
+    "options": [
+      "温度和压强都相同",
+      "温度相同，内能一定相同",
+      "温度相同，压强不同",
+      "温度和压强都不同"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 168,
+    "explanation": "由 \\(\\overline{\\varepsilon_{\\rm trans}}=3k_{\\mathrm B}T/2\\) 得温度相同。压强 \\(p=(N/V)k_{\\mathrm B}T\\)，随分子数密度变化，故压强不同。两瓶气体的物质的量或分子自由度可以不同，内能未必相同。 原卷的“密度”补足为“分子数密度”",
+    "archiveOnly": true,
+    "duplicateOf": "p-309"
+  },
+  {
+    "id": "p-169",
+    "type": "single",
+    "points": 2,
+    "stem": "一定量单原子理想气体从平衡态 A 经过一系列准静态变化到平衡态 B。路径未知，只知道两态的 \\(p,V,T\\)。根据这些信息能求出什么？",
+    "options": [
+      "气体膨胀所做的功",
+      "气体传递的热量",
+      "气体内能的变化",
+      "气体的总质量"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 169,
+    "explanation": "单原子理想气体满足 \\(U=3nRT/2=3pV/2\\)，故 \\(\\Delta U=3(p_BV_B-p_AV_A)/2\\)。功与热取决于路径。已知 \\(p,V,T\\) 可求物质的量，但未给摩尔质量，故总质量无法确定。",
+    "archiveOnly": true,
+    "duplicateOf": "p-266"
+  },
+  {
+    "id": "p-170",
+    "type": "single",
+    "points": 1,
+    "stem": "刚性双原子理想气体作等压膨胀，从热源吸收 \\(700\\,\\mathrm J\\)。气体对外做多少功？",
+    "options": [
+      "\\(200\\,\\mathrm J\\)",
+      "\\(250\\,\\mathrm J\\)",
+      "\\(300\\,\\mathrm J\\)",
+      "\\(350\\,\\mathrm J\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 170,
+    "explanation": "刚性双原子气体 \\(C_{V,m}=5R/2\\)，所以 \\(C_{p,m}=7R/2\\)。等压时 \\(Q=nC_{p,m}\\Delta T\\)、\\(W=p\\Delta V=nR\\Delta T\\)，于是 \\(W/Q=2/7\\)，从而 \\(W=200\\,\\mathrm J\\)。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 351
+      }
+    ]
+  },
+  {
+    "id": "p-171",
+    "type": "single",
+    "points": 1,
+    "stem": "一个容器内有两种理想气体，各 \\(1\\,\\mathrm{mol}\\)，已达到热平衡。两种气体的分压分别是 \\(p_1,p_2\\)，它们之间有什么关系？",
+    "options": [
+      "\\(p_1>p_2\\)",
+      "\\(p_1<p_2\\)",
+      "\\(p_1=p_2\\)",
+      "不能确定"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 171,
+    "explanation": "每种组分都能占据容器的整个容积 \\(V\\)，温度同为 \\(T\\)。由道尔顿分压定律 \\(p_i=n_iRT/V\\) 知道分压与该组分物质的量成正比，故 \\(p_1=p_2\\)。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 350
+      }
+    ]
+  },
+  {
+    "id": "p-172",
+    "type": "single",
+    "points": 1,
+    "stem": "两种理想气体温度相同，下列哪个结论必然成立？",
+    "options": [
+      "两种气体的内能相等",
+      "两种气体分子的平均总能量相等",
+      "两种气体分子的平均总动能（包括转动）相等",
+      "两种气体分子的平均平动动能相等"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 172,
+    "explanation": "根据能量均分定理，所有分子都有三个平动自由度，单分子平均平动动能一律为 \\(3k_{\\mathrm B}T/2\\)。不同分子的转动、振动自由度可以不同，因而平均总能量未必相等。系统内能还取决于气体分子数。"
+  },
+  {
+    "id": "p-173",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体在准静态过程图上经历下列三个过程。哪一组不能构成非退化循环？",
+    "options": [
+      "一段绝热线、一段等温线和一段等压线",
+      "一段绝热线、一段等温线和一段等容线",
+      "一段等容线、一段等压线和一段绝热线",
+      "两段不同的绝热线和一段等温线"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 173,
+    "explanation": "两条不同的可逆绝热线分别满足 \\(pV^\\gamma=K_1\\) 和 \\(pV^\\gamma=K_2\\)，其中 \\(K_1\\ne K_2\\)，所以没有公共点。一条等温线分别与两条绝热线相交，也缺少连接两绝热线的另一个公共顶点，无法闭合。其余三组可选取合适的路径围成面积。",
+    "archiveOnly": true,
+    "duplicateOf": "p-271"
+  },
+  {
+    "id": "p-180",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体制冷机按图示 \\(A\\to B\\to C\\to D\\to A\\) 循环。\\(AB,CD\\) 分别是 \\(T_2,T_1\\) 的等温线，\\(BC,DA\\) 是等压线，且 \\(T_2>T_1\\)。设两段等压过程通过理想回热器内部换热，制冷系数是多少？",
+    "options": [
+      "\\(T_1/(T_2-T_1)\\)",
+      "\\(T_1/(T_2+T_1)\\)",
+      "\\(T_2/(T_2-T_1)\\)",
+      "\\(T_2/(T_2+T_1)\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 180,
+    "explanation": "设等压线压强比为 \\(r=p_2/p_1>1\\)。低温等温膨胀 \\(C\\to D\\) 吸热 \\(Q_c=nRT_1\\ln r\\)，高温等温压缩 \\(A\\to B\\) 放热大小 \\(Q_h=nRT_2\\ln r\\)。两段等压过程的温度变化相反，热量在回热器内抵消，对外净输入功为 \\(W_{\\mathrm{in}}=Q_h-Q_c=nR(T_2-T_1)\\ln r\\)，故制冷系数 \\(Q_c/W_{\\mathrm{in}}=T_1/(T_2-T_1)\\)。 补足等压回热条件",
+    "image": "assets/p-v4/tail-180.webp"
+  },
+  {
+    "id": "p-181",
+    "type": "single",
+    "points": 1,
+    "stem": "绝热气缸由一块无摩擦、绝热的活塞分成 A、B 两室，每室装有 \\(1\\,\\mathrm{mol}\\) 刚性双原子理想气体。初态每室的压强、体积、温度分别为 \\(p_0,V_0,T_0\\)。缓慢给 A 室加热，直到 A 室压强升至 \\(2p_0\\)。这时 B 室体积是多少？",
+    "options": [
+      "\\(V_B=2^{-5/7}V_0\\)",
+      "\\(V_B=2^{-7/9}V_0\\)",
+      "\\(V_B=2^{-3/5}V_0\\)",
+      "\\(V_B=2^{-1/3}V_0\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 181,
+    "explanation": "缓慢变化且活塞无摩擦，活塞两侧压强相等，B 室末压也是 \\(2p_0\\)。B 室没有热交换，满足 \\(p_BV_B^\\gamma=p_0V_0^\\gamma\\)。刚性双原子分子的绝热指数为 \\(\\gamma=7/5\\)，所以 \\(V_B/V_0=(p_0/p_B)^{1/\\gamma}=2^{-5/7}\\)。"
+  },
+  {
+    "id": "p-182",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，奥托循环由两段等容过程和两段绝热过程构成。下列关于 \\(a\\to b\\to c\\to d\\to a\\) 的说法哪项正确？",
+    "options": [
+      "\\(b\\to c\\) 的等容段放热",
+      "\\(c\\to d\\) 的绝热段是外界对气体做功",
+      "\\(a\\to b\\) 的绝热段是气体对外做功",
+      "\\(d\\to a\\) 的等容段放热"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 182,
+    "explanation": "\\(b\\to c\\) 等容升压，对理想气体意味着升温，\\(Q=\\Delta U>0\\)，所以吸热；\\(d\\to a\\) 等容降压，内能减少，因而放热。\\(c\\to d\\) 绝热膨胀，气体对外做功；\\(a\\to b\\) 绝热压缩，外界对气体做功。",
+    "image": "assets/p-v4/tail-182.webp"
+  },
+  {
+    "id": "p-183",
+    "type": "single",
+    "points": 2,
+    "stem": "\\(1\\,\\mathrm{mol}\\) 理想气体经历图示循环，图中右下方、压强为 \\(p\\) 的交点是状态 3。下列哪项正确？",
+    "options": [
+      "\\(1\\to2\\) 过程中系统对外做功",
+      "\\(2\\to3\\) 过程中系统吸热",
+      "\\(3\\to1\\) 过程中系统对外做功",
+      "该循环是制冷循环"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 183,
+    "explanation": "\\(1\\to2\\) 等压膨胀，气体对外做功 \\(W=2p(V_2-V_1)>0\\)。\\(2\\to3\\) 等容降压，温度降低，故 \\(Q=\\Delta U<0\\)；\\(3\\to1\\) 体积减小，气体对外做功为负。循环按顺时针进行，净功为正，是热机循环。",
+    "image": "assets/p-v4/tail-183.webp"
+  },
+  {
+    "id": "p-184",
+    "type": "single",
+    "points": 1,
+    "stem": "已知理想气体分子的速率服从三维麦克斯韦速率分布。分子平动动能 \\(\\varepsilon\\) 的概率密度满足哪一项？",
+    "options": [
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{1/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{3/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{5/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 184,
+    "explanation": "速率分布密度为 \\(f_v(v)\\propto v^2e^{-mv^2/(2k_{\\mathrm B}T)}\\)，且 \\(\\varepsilon=mv^2/2\\)。概率在变量变换时保持 \\(f_\\varepsilon(\\varepsilon)\\,\\mathrm d\\varepsilon=f_v(v)\\,\\mathrm dv\\)，故 \\(f_\\varepsilon=f_v(v)/(mv)\\propto v e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)。用 \\(v\\propto\\sqrt\\varepsilon\\) 即得 A。",
+    "archiveOnly": true,
+    "duplicateOf": "p-232"
+  },
+  {
+    "id": "p-185",
+    "type": "single",
+    "points": 1,
+    "stem": "关于热力学做功，下列哪项说法正确？",
+    "options": [
+      "同一功交换的正负号取决于能量传递方向和所用的符号约定",
+      "外界对系统做功，系统的内能一定改变",
+      "只有在可逆过程中，正功和负功才能抵消",
+      "只有准静态过程才能计算出功的大小"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 185,
+    "explanation": "取“气体对外做功为正”和“外界对气体做功为正”两种记法，同一功交换的代数符号相反。由 \\(\\Delta U=Q-W\\) 可知，非零功可被热量交换补偿，内能未必改变。无论过程是否可逆，功都可以按代数符号相加。不可逆过程的功也可计算，例如恒定外压下的膨胀功 \\(W=p_{\\mathrm{ext}}\\Delta V\\)。"
+  },
+  {
+    "id": "p-186",
+    "type": "single",
+    "points": 1,
+    "stem": "对一定量热容可视为常数的理想气体，令 \\(\\gamma=C_p/C_V>1\\)。下列哪项不能描述其可逆绝热过程？",
+    "options": [
+      "\\(TV^{\\gamma-1}=\\text{常量}\\)",
+      "\\(p^{\\gamma-1}T^{-\\gamma}=\\text{常量}\\)",
+      "\\(p^\\gamma V=\\text{常量}\\)",
+      "\\(pV^\\gamma=\\text{常量}\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 186,
+    "explanation": "绝热时 \\(nC_{V,m}\\mathrm dT=-p\\,\\mathrm dV\\)，代入理想气体方程积分得 \\(TV^{\\gamma-1}=\\text{常量}\\)。将 \\(T=pV/(nR)\\) 代入可得 \\(pV^\\gamma=\\text{常量}\\)；用 \\(V=nRT/p\\) 消去体积，又得 \\(p^{\\gamma-1}T^{-\\gamma}=\\text{常量}\\)。C 中绝热指数用在了错误变量上。",
+    "archiveOnly": true,
+    "duplicateOf": "p-357"
+  },
+  {
+    "id": "p-187",
+    "type": "single",
+    "points": 2,
+    "stem": "一群粒子的速率为 \\(1,2,3,4,5\\,\\mathrm{m\\,s^{-1}}\\) 的粒子数依次为 \\(2,4,6,8,2\\)。这群粒子的平均速率是多少？",
+    "options": [
+      "\\(3.18\\,\\mathrm{m\\,s^{-1}}\\)",
+      "\\(5.78\\,\\mathrm{m\\,s^{-1}}\\)",
+      "\\(1.37\\,\\mathrm{m\\,s^{-1}}\\)",
+      "\\(6.27\\,\\mathrm{m\\,s^{-1}}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 187,
+    "explanation": "每个粒子权重相同，所以先把每档速率乘以该档粒子数再相加，得到 \\(2\\times1+4\\times2+6\\times3+8\\times4+2\\times5=70\\)。总粒子数为 \\(22\\)，因此 \\(\\bar v=70/22\\,\\mathrm{m\\,s^{-1}}\\approx3.18\\,\\mathrm{m\\,s^{-1}}\\)。"
+  },
+  {
+    "id": "p-190",
+    "type": "single",
+    "points": 1,
+    "stem": "设 \\(f(v)\\) 是归一化的气体分子速率概率密度，分子总数为 \\(N\\)。速率介于 \\(v_1\\) 与 \\(v_2\\) 之间的分子数如何表示？",
+    "options": [
+      "\\(\\int_{v_1}^{v_2} f(v)\\,\\mathrm dv\\)",
+      "\\(f(v)(v_2-v_1)\\)",
+      "\\(\\int_{v_1}^{v_2}Nf(v)\\,\\mathrm dv\\)",
+      "\\(Nf(v)(v_2-v_1)\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 190,
+    "explanation": "速率位于 \\([v,v+\\mathrm dv]\\) 的分子比例是 \\(f(v)\\mathrm dv\\)，相应的分子数为 \\(Nf(v)\\mathrm dv\\)。对指定区间积分得到 C。A 只有比例；用一个点的密度乘以整个区间宽度一般只是近似。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 212
+      }
+    ]
+  },
+  {
+    "id": "p-191",
+    "type": "single",
+    "points": 1,
+    "stem": "下列哪个过程在所述理想极限下可以是可逆过程？",
+    "options": [
+      "无摩擦活塞上无外加压力，气体突然膨胀",
+      "活塞和汽缸之间摩擦很大，气体缓慢膨胀",
+      "活塞无摩擦，逐步调节外压使气体在极小压差下缓慢膨胀，且无其他耗散",
+      "在绝热容器中持续搅拌液体使其升温"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 191,
+    "explanation": "可逆过程要求系统接近一系列平衡态，且不存在耗散。A 的有限压差、B 的摩擦、D 的搅拌耗散都会产生熵。C 允许取内外压差趋于零的极限，过程方向可由任意小的外压改变而反转。",
+    "archiveOnly": true,
+    "duplicateOf": "d-262"
+  },
+  {
+    "id": "p-192",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体按 \\(pV^\\gamma=\\text{常量}\\) 被压缩，\\(\\gamma=C_p/C_V\\)。压缩后气体温度如何变化？",
+    "options": [
+      "升高",
+      "降低",
+      "不变",
+      "不能确定"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 192,
+    "explanation": "由理想气体方程 \\(pV=nRT\\)，有 \\(T\\propto V^{1-\\gamma}\\)。因 \\(\\gamma>1\\)，指数为负，压缩使 \\(V\\) 下降而 \\(T\\) 上升。对可逆绝热压缩，也可由 \\(Q=0\\) 且外界对气体做正功，判定内能和温度增加。",
+    "archiveOnly": true,
+    "duplicateOf": "p-244"
+  },
+  {
+    "id": "p-194",
+    "type": "single",
+    "points": 1,
+    "stem": "温度 \\(T\\) 的平衡态下，由刚性双原子分子组成的理想气体中，一个分子的平均总热运动能量是多少？",
+    "options": [
+      "\\(\\frac32k_{\\mathrm B}T\\)",
+      "\\(\\frac52k_{\\mathrm B}T\\)",
+      "\\(\\frac32RT\\)",
+      "\\(\\frac52RT\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 194,
+    "explanation": "刚性双原子分子有 3 个平动和 2 个转动自由度，每个自由度平均贡献 \\(k_{\\mathrm B}T/2\\)，共 \\(5k_{\\mathrm B}T/2\\)。以气体常数 \\(R\\) 表示的能量对应每摩尔。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 246
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 255
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 268
+      }
+    ]
+  },
+  {
+    "id": "p-195",
+    "type": "single",
+    "points": 2,
+    "stem": "设 \\(n\\) 为分子数密度，\\(f(v_x)\\) 为麦克斯韦速度 \\(x\\) 分量的概率密度。\\(nf(v_x)\\mathrm dv_x\\) 表示什么？",
+    "options": [
+      "单位时间内碰到单位面积器壁，且 \\(v_x\\) 落在 \\([v_x,v_x+\\mathrm dv_x]\\) 的分子数",
+      "单位体积内，速度 \\(x\\) 分量落在 \\([v_x,v_x+\\mathrm dv_x]\\) 的分子数",
+      "分子速度 \\(x\\) 分量落在该区间的比例",
+      "整个容器内速度 \\(x\\) 分量落在该区间的分子数"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 195,
+    "explanation": "密度乘区间宽度 \\(f(v_x)\\mathrm dv_x\\) 给出比例，再乘单位体积内的分子数 \\(n\\)，得到单位体积内满足条件的分子数。整个容器的分子数还需乘体积，器壁碰撞通量还须考虑分子朝向器壁的速度分量。",
+    "archiveOnly": true,
+    "duplicateOf": "p-247"
+  },
+  {
+    "id": "p-196",
+    "type": "single",
+    "points": 1,
+    "stem": "\\(f(v)\\) 是归一化的分子速率概率密度，\\(N\\) 为分子总数，\\(m\\) 为单个分子的质量。积分 \\(\\int_{v_1}^{v_2}\\tfrac12 mv^2Nf(v)\\,\\mathrm dv\\) 有什么物理意义？",
+    "options": [
+      "速率为两个端点值的分子平动动能之差",
+      "速率为两个端点值的分子平动动能之和",
+      "速率处在该区间内的分子的平均平动动能",
+      "速率处在该区间内的分子的总平动动能"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 196,
+    "explanation": "\\(Nf(v)\\mathrm dv\\) 为速率位于一个小区间的分子数，乘以每个分子约有的动能 \\(mv^2/2\\)，得到小区间对能量的贡献。积分把整个区间内的贡献加起来。求平均还要除以区间内的分子数。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 248
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 257
+      }
+    ]
+  },
+  {
+    "id": "p-198",
+    "type": "single",
+    "points": 2,
+    "stem": "气缸里有一定量可视为理想气体的氦气。经可逆绝热压缩后，气体体积减至一半。分子的平均速率变为原来的几倍？",
+    "options": [
+      "\\(2^{2/5}\\)",
+      "\\(2^{1/5}\\)",
+      "\\(2^{2/3}\\)",
+      "\\(2^{1/3}\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 198,
+    "explanation": "氦气是单原子气体，其 \\(\\gamma=5/3\\)。用 \\(TV^{\\gamma-1}=\\text{常量}\\) 得 \\(T_2/T_1=2^{2/3}\\)。对同种气体 \\(\\bar v=\\sqrt{8k_{\\mathrm B}T/(\\pi m)}\\)，故平均速率之比为 \\(2^{1/3}\\)。",
+    "archiveOnly": true,
+    "duplicateOf": "p-252"
+  },
+  {
+    "id": "p-199",
+    "type": "single",
+    "points": 2,
+    "stem": "某平衡气体的分子平动动能 \\(\\varepsilon\\) 的概率密度正比于 \\(\\sqrt{\\varepsilon}\\exp[-\\varepsilon/(k_{\\mathrm B}T)]\\)。温度为 \\(T\\) 时，最概然平动动能 \\(\\varepsilon_p\\) 是多少？",
+    "options": [
+      "\\(\\varepsilon_p=k_{\\mathrm B}T/2\\)",
+      "\\(\\varepsilon_p=3k_{\\mathrm B}T/2\\)",
+      "\\(\\varepsilon_p=k_{\\mathrm B}T\\)",
+      "\\(\\varepsilon_p=2k_{\\mathrm B}T\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 199,
+    "explanation": "令概率密度的对数导数 \\(1/(2\\varepsilon)-1/(k_{\\mathrm B}T)\\) 等于零，得到 \\(\\varepsilon_p=k_{\\mathrm B}T/2\\)。导数在此点由正变负，故为最大值。原题把变量写成速率，但式中与 \\(k_{\\mathrm B}T\\) 相比的量应有能量量纲；归一化常数不影响最大值的位置。 按能量量纲纠正原题的速率记号",
+    "archiveOnly": true,
+    "duplicateOf": "p-235"
+  },
+  {
+    "id": "p-201",
+    "type": "single",
+    "points": 2,
+    "stem": "对热容可视为常数的理想气体，设参考温度、摩尔体积和摩尔熵分别为 \\(T_0,V_{m,0},S_{m,0}\\)，摩尔定容、定压热容分别为 \\(C_{V,m},C_{p,m}\\)。下列摩尔熵变的表达式哪项正确？",
+    "options": [
+      "\\(S_m-S_{m,0}=C_{V,m}\\ln(T/T_0)+R\\ln(V_m/V_{m,0})\\)",
+      "\\(S_m-S_{m,0}=C_{V,m}\\ln(T/T_0)-R\\ln(V_m/V_{m,0})\\)",
+      "\\(S_m-S_{m,0}=C_{p,m}\\ln(T/T_0)-R\\ln(V_m/V_{m,0})\\)",
+      "\\(S_m-S_{m,0}=C_{p,m}\\ln(T/T_0)+R\\ln(V_m/V_{m,0})\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 201,
+    "explanation": "对一摩尔理想气体，\\(T\\,\\mathrm dS_m=C_{V,m}\\,\\mathrm dT+p\\,\\mathrm dV_m\\)。代入 \\(pV_m=RT\\)，得 \\(\\mathrm dS_m=C_{V,m}\\,\\mathrm dT/T+R\\,\\mathrm dV_m/V_m\\)。在参考态和目标态之间积分得 A。改用温度与压强作变量时，才有 \\(C_{p,m}\\ln(T/T_0)-R\\ln(p/p_0)\\)。 补足参考态与无量纲对数"
+  },
+  {
+    "id": "p-204",
+    "type": "single",
+    "points": 1,
+    "stem": "设 \\(f(v)\\) 是归一化的分子速率概率密度。下列说法哪项错误？",
+    "options": [
+      "速率在 \\(v_1\\) 至 \\(v_2\\) 之间的粒子的平均速率等于 \\(\\int_{v_1}^{v_2}vf(v)\\,\\mathrm dv\\)",
+      "内能不包括系统作为整体运动的机械能",
+      "涨落体现了统计规律中微观事件的随机性",
+      "在近局域平衡和速度梯度足够小的条件下，气体的黏滞剪切应力与速度梯度成正比"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 204,
+    "explanation": "只对区间内的粒子求平均，要以该区间的粒子为总体，因此 \\(\\bar v_{\\mathrm{区间}}=\\dfrac{\\int_{v_1}^{v_2}vf(v)\\,\\mathrm dv}{\\int_{v_1}^{v_2}f(v)\\,\\mathrm dv}\\)，A 漏掉了分母。系统整体平动的动能属于宏观机械能，涨落源于随机微观运动，而近平衡的线性黏滞关系给出 \\(\\tau_{xy}=\\eta\\,\\partial v_x/\\partial y\\)。"
+  },
+  {
+    "id": "p-207",
+    "type": "single",
+    "points": 1,
+    "stem": "对一定量热容可视为常数的理想气体，令 \\(\\gamma=C_p/C_V>1\\)。下列哪项不能描述其可逆绝热过程？",
+    "options": [
+      "\\(TV^{\\gamma-1}=\\text{常量}\\)",
+      "\\(p^{\\gamma-1}T^{-\\gamma}=\\text{常量}\\)",
+      "\\(p^\\gamma V=\\text{常量}\\)",
+      "\\(pV^\\gamma=\\text{常量}\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 207,
+    "explanation": "绝热时 \\(nC_{V,m}\\mathrm dT=-p\\,\\mathrm dV\\)，代入理想气体方程积分得 \\(TV^{\\gamma-1}=\\text{常量}\\)。将 \\(T=pV/(nR)\\) 代入可得 \\(pV^\\gamma=\\text{常量}\\)；用 \\(V=nRT/p\\) 消去体积，又得 \\(p^{\\gamma-1}T^{-\\gamma}=\\text{常量}\\)。C 中绝热指数用在了错误变量上。",
+    "archiveOnly": true,
+    "duplicateOf": "p-357"
+  },
+  {
+    "id": "p-212",
+    "type": "single",
+    "points": 1,
+    "stem": "设 \\(f(v)\\) 是归一化的气体分子速率概率密度，分子总数为 \\(N\\)。速率介于 \\(v_1\\) 与 \\(v_2\\) 之间的分子数如何表示？",
+    "options": [
+      "\\(\\int_{v_1}^{v_2} f(v)\\,\\mathrm dv\\)",
+      "\\(f(v)(v_2-v_1)\\)",
+      "\\(\\int_{v_1}^{v_2}Nf(v)\\,\\mathrm dv\\)",
+      "\\(Nf(v)(v_2-v_1)\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 212,
+    "explanation": "速率位于 \\([v,v+\\mathrm dv]\\) 的分子比例是 \\(f(v)\\mathrm dv\\)，相应的分子数为 \\(Nf(v)\\mathrm dv\\)。对指定区间积分得到 C。A 只有比例；用一个点的密度乘以整个区间宽度一般只是近似。",
+    "archiveOnly": true,
+    "duplicateOf": "p-190"
+  },
+  {
+    "id": "p-217",
+    "type": "single",
+    "points": 2,
+    "stem": "某平衡气体的分子平动动能 \\(\\varepsilon\\) 的概率密度正比于 \\(\\sqrt{\\varepsilon}\\exp[-\\varepsilon/(k_{\\mathrm B}T)]\\)。温度为 \\(T\\) 时，最概然平动动能 \\(\\varepsilon_p\\) 是多少？",
+    "options": [
+      "\\(\\varepsilon_p=k_{\\mathrm B}T/2\\)",
+      "\\(\\varepsilon_p=3k_{\\mathrm B}T/2\\)",
+      "\\(\\varepsilon_p=k_{\\mathrm B}T\\)",
+      "\\(\\varepsilon_p=2k_{\\mathrm B}T\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 217,
+    "explanation": "令概率密度的对数导数 \\(1/(2\\varepsilon)-1/(k_{\\mathrm B}T)\\) 等于零，得到 \\(\\varepsilon_p=k_{\\mathrm B}T/2\\)。导数在此点由正变负，故为最大值。原题把变量写成速率，但式中与 \\(k_{\\mathrm B}T\\) 相比的量应有能量量纲；归一化常数不影响最大值的位置。 按能量量纲纠正原题的速率记号",
+    "archiveOnly": true,
+    "duplicateOf": "p-235"
+  },
+  {
+    "id": "p-219",
+    "type": "single",
+    "points": 1,
+    "stem": "一台制冷机按逆卡诺循环工作，低、高温热源的绝对温度分别为 \\(T_1,T_2\\)，且 \\(T_1<T_2\\)。其制冷系数为多少？",
+    "options": [
+      "\\(\\dfrac{T_1}{T_2-T_1}\\)",
+      "\\(\\dfrac{T_2}{T_2-T_1}\\)",
+      "\\(\\dfrac{T_1}{T_2+T_1}\\)",
+      "\\(\\dfrac{T_2}{T_2+T_1}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 219,
+    "explanation": "每循环从低温热源吸热 \\(Q_1>0\\)，向高温热源放热的大小是 \\(Q_2\\)。可逆性给出 \\(Q_1/T_1=Q_2/T_2\\)，第一定律给出外界输入功 \\(W_{\\mathrm{in}}=Q_2-Q_1\\)，所以 \\(\\varepsilon=Q_1/W_{\\mathrm{in}}=T_1/(T_2-T_1)\\)。选项 B 是同一循环作为热泵时的供暖系数。"
+  },
+  {
+    "id": "p-232",
+    "type": "single",
+    "points": 1,
+    "stem": "已知理想气体分子的速率服从三维麦克斯韦速率分布。以分子平动动能 \\(\\varepsilon\\) 为变量，其概率密度满足哪一项？",
+    "options": [
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{1/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{3/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{5/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 232,
+    "explanation": "麦克斯韦速率密度为 \\(f_v(v)\\propto v^2e^{-mv^2/(2k_{\\mathrm B}T)}\\)。由 \\(\\varepsilon=mv^2/2\\) 得 \\(v=\\sqrt{2\\varepsilon/m}\\) 以及 \\(\\mathrm dv/\\mathrm d\\varepsilon=1/(mv)\\)。相同小区间的概率必须相等，故 \\(f_\\varepsilon=f_v(v)\\lvert\\mathrm dv/\\mathrm d\\varepsilon\\rvert\\propto v e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)。用 \\(v\\propto\\sqrt{\\varepsilon}\\) 即得 A。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 184
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 303
+      }
+    ]
+  },
+  {
+    "id": "p-234",
+    "type": "single",
+    "points": 2,
+    "stem": "由刚性双原子氧分子 \\(\\mathrm O_2\\) 构成的理想气体经历准静态绝热过程，满足哪条过程方程？",
+    "options": [
+      "\\(pV^{7/5}=C\\)",
+      "\\(pV^{5/3}=C\\)",
+      "\\(pV^{9/7}=C\\)",
+      "\\(pV^{11/9}=C\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 234,
+    "explanation": "氧分子按刚性双原子模型有 3 个平动和 2 个转动自由度，所以 \\(C_{V,m}=5R/2\\)，\\(C_{p,m}=C_{V,m}+R=7R/2\\)。准静态绝热过程满足 \\(pV^\\gamma=C\\)，其中 \\(\\gamma=C_{p,m}/C_{V,m}=7/5\\)，选 A。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 308
+      }
+    ]
+  },
+  {
+    "id": "p-235",
+    "type": "single",
+    "points": 2,
+    "stem": "某气体系统的平动动能分布密度满足 \\(f(\\varepsilon)\\propto \\sqrt{\\varepsilon}\\exp[-\\varepsilon/(k_{\\mathrm B}T)]\\)。温度为 \\(T\\) 时，最概然平动动能是多少？",
+    "options": [
+      "\\(\\varepsilon_p=k_{\\mathrm B}T/2\\)",
+      "\\(\\varepsilon_p=3k_{\\mathrm B}T/2\\)",
+      "\\(\\varepsilon_p=k_{\\mathrm B}T\\)",
+      "\\(\\varepsilon_p=2k_{\\mathrm B}T\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 235,
+    "explanation": "最概然值是概率密度的极大点。对 \\(\\ln f\\) 求导得到 \\(\\mathrm d\\ln f/\\mathrm d\\varepsilon=1/(2\\varepsilon)-1/(k_{\\mathrm B}T)\\)，令其等于零得到 \\(\\varepsilon_p=k_{\\mathrm B}T/2\\)。两端的密度都趋于零，因此该驻点为最大值。原题把变量称为速率，但 \\(k_{\\mathrm B}T\\) 具有能量量纲，此处统一按能量表述。 原题量纲勘误",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 199
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 217
+      }
+    ]
+  },
+  {
+    "id": "p-244",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体按 \\(pV^\\gamma=\\text{常量}\\) 的规律被压缩，其中 \\(\\gamma=C_p/C_V\\)。压缩后气体温度如何变化？",
+    "options": [
+      "升高",
+      "降低",
+      "不变",
+      "不能确定"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 244,
+    "explanation": "用 \\(pV=nRT\\) 消去 \\(p\\)，得到 \\(TV^{\\gamma-1}=\\text{常量}\\)。理想气体的 \\(\\gamma>1\\)，故 \\(T\\propto V^{1-\\gamma}\\)。压缩使 \\(V\\) 减小，温度升高。亦可用第一定律判断，绝热压缩时外界对气体做正功，使其内能增大。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 192
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 253
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 264
+      }
+    ]
+  },
+  {
+    "id": "p-245",
+    "type": "single",
+    "points": 1,
+    "stem": "容积不同的容器 A、B 分别装有单原子理想气体和刚性双原子理想气体。若两者压强相同，单位体积内能 \\((U/V)_A\\) 和 \\((U/V)_B\\) 有何关系？",
+    "options": [
+      "\\((U/V)_A<(U/V)_B\\)",
+      "\\((U/V)_A>(U/V)_B\\)",
+      "\\((U/V)_A=(U/V)_B\\)",
+      "不能确定"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 245,
+    "explanation": "按能量均分，具有 \\(i\\) 个有效自由度的理想气体有 \\(U=i nRT/2\\)。用 \\(nRT=pV\\) 得 \\(U/V=ip/2\\)。A 的 \\(i=3\\)，B 的 \\(i=5\\)，同压时分别为 \\(3p/2\\) 与 \\(5p/2\\)，故选 A。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 254
+      }
+    ]
+  },
+  {
+    "id": "p-246",
+    "type": "single",
+    "points": 1,
+    "stem": "刚性双原子理想气体处于温度 \\(T\\) 的平衡态，单个分子的平均总热运动能量是多少？",
+    "options": [
+      "\\(\\frac32k_{\\mathrm B}T\\)",
+      "\\(\\frac52k_{\\mathrm B}T\\)",
+      "\\(\\frac32RT\\)",
+      "\\(\\frac52RT\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 246,
+    "explanation": "刚性双原子分子有 3 个平动、2 个转动自由度，每项平均能量为 \\(k_{\\mathrm B}T/2\\)，合计 \\(5k_{\\mathrm B}T/2\\)。\\(3k_{\\mathrm B}T/2\\) 只计平动，使用 \\(R\\) 的式子则对应每摩尔。",
+    "archiveOnly": true,
+    "duplicateOf": "p-194"
+  },
+  {
+    "id": "p-247",
+    "type": "single",
+    "points": 2,
+    "stem": "设 \\(n\\) 为分子数密度，\\(f(v_x)\\) 为麦克斯韦速度分量 \\(v_x\\) 的概率密度，则 \\(nf(v_x)\\,\\mathrm dv_x\\) 表示什么？",
+    "options": [
+      "单位时间内碰到单位面积器壁，且 \\(x\\) 方向速度分量落在 \\([v_x,v_x+\\mathrm dv_x]\\) 的分子数",
+      "单位体积内，\\(x\\) 方向速度分量落在 \\([v_x,v_x+\\mathrm dv_x]\\) 的分子数",
+      "该速度分量区间内的分子数占总分子数的比例",
+      "整个气体中速度分量落在该区间内的分子数"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 247,
+    "explanation": "\\(f(v_x)\\mathrm dv_x\\) 是所占比例，乘以单位体积分子数 \\(n\\) 得单位体积内满足条件的分子数。计算整个容器的分子数还需乘以容积，计算撞壁数通量还涉及朝向器壁的法向速度。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 195
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 269
+      }
+    ]
+  },
+  {
+    "id": "p-248",
+    "type": "single",
+    "points": 1,
+    "stem": "设 \\(f(v)\\) 为归一化速率分布密度，\\(N\\) 为分子总数，\\(m\\) 为分子质量。积分 \\(\\int_{v_1}^{v_2}\\tfrac12mv^2Nf(v)\\,\\mathrm dv\\) 表示什么？",
+    "options": [
+      "两个端点速率所对应分子的总平动动能之差",
+      "两个端点速率所对应分子的总平动动能之和",
+      "速率处于该区间的分子的平均平动动能",
+      "速率处于该区间的分子的总平动动能"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 248,
+    "explanation": "\\(Nf(v)\\mathrm dv\\) 是微小速率区间内的分子数，乘以每个分子的平动动能 \\(mv^2/2\\) 后得到该小区间的总能量。积分对所有小区间求和，得到区间内分子的总平动动能；若要求平均值，还需除以区间内的分子数。",
+    "archiveOnly": true,
+    "duplicateOf": "p-196"
+  },
+  {
+    "id": "p-251",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体在体积不变的条件下降温。按刚球近似，单个分子的平均碰撞频率 \\(Z\\) 和平均自由程 \\(\\lambda\\) 如何变化？",
+    "options": [
+      "\\(Z\\) 减小，\\(\\lambda\\) 不变",
+      "\\(Z\\) 不变，\\(\\lambda\\) 减小",
+      "两者都减小",
+      "两者都不变"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 251,
+    "explanation": "一定量且定容，分子数密度 \\(n=N/V\\) 不变，刚球模型的截面 \\(\\sigma=\\pi d^2\\) 也不变，因此 \\(\\lambda=(\\sqrt2 n\\sigma)^{-1}\\) 不变。平均速率随 \\(\\sqrt T\\) 下降，碰撞频率 \\(Z=\\bar v/\\lambda\\) 随之减小。"
+  },
+  {
+    "id": "p-252",
+    "type": "single",
+    "points": 2,
+    "stem": "气缸内一定量氦气视为理想气体，经准静态绝热压缩后体积变为原来的一半。分子的平均速率变为原来的几倍？",
+    "options": [
+      "\\(2^{2/5}\\)",
+      "\\(2^{1/5}\\)",
+      "\\(2^{2/3}\\)",
+      "\\(2^{1/3}\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 252,
+    "explanation": "氦为单原子理想气体，\\(\\gamma=5/3\\)。由 \\(TV^{\\gamma-1}=\\text{常量}\\) 得 \\(T_2/T_1=2^{2/3}\\)。同种气体的平均速率与 \\(\\sqrt T\\) 成正比，故 \\(\\bar v_2/\\bar v_1=2^{1/3}\\)。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 198
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 261
+      }
+    ]
+  },
+  {
+    "id": "p-253",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体按 \\(pV^\\gamma=\\text{常量}\\) 的规律被压缩，其中 \\(\\gamma=C_p/C_V\\)。压缩后气体温度如何变化？",
+    "options": [
+      "升高",
+      "降低",
+      "不变",
+      "不能确定"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 253,
+    "explanation": "用 \\(pV=nRT\\) 消去 \\(p\\)，得到 \\(TV^{\\gamma-1}=\\text{常量}\\)。理想气体的 \\(\\gamma>1\\)，故 \\(T\\propto V^{1-\\gamma}\\)。压缩使 \\(V\\) 减小，温度升高。亦可用第一定律判断，绝热压缩时外界对气体做正功，使其内能增大。",
+    "archiveOnly": true,
+    "duplicateOf": "p-244"
+  },
+  {
+    "id": "p-254",
+    "type": "single",
+    "points": 1,
+    "stem": "容积不同的容器 A、B 分别装有单原子理想气体和刚性双原子理想气体。若两者压强相同，单位体积内能 \\((U/V)_A\\) 和 \\((U/V)_B\\) 有何关系？",
+    "options": [
+      "\\((U/V)_A<(U/V)_B\\)",
+      "\\((U/V)_A>(U/V)_B\\)",
+      "\\((U/V)_A=(U/V)_B\\)",
+      "不能确定"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 254,
+    "explanation": "按能量均分，具有 \\(i\\) 个有效自由度的理想气体有 \\(U=i nRT/2\\)。用 \\(nRT=pV\\) 得 \\(U/V=ip/2\\)。A 的 \\(i=3\\)，B 的 \\(i=5\\)，同压时分别为 \\(3p/2\\) 与 \\(5p/2\\)，故选 A。",
+    "archiveOnly": true,
+    "duplicateOf": "p-245"
+  },
+  {
+    "id": "p-255",
+    "type": "single",
+    "points": 1,
+    "stem": "刚性双原子理想气体处于温度 \\(T\\) 的平衡态，单个分子的平均总热运动能量是多少？",
+    "options": [
+      "\\(\\frac32k_{\\mathrm B}T\\)",
+      "\\(\\frac52k_{\\mathrm B}T\\)",
+      "\\(\\frac32RT\\)",
+      "\\(\\frac52RT\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 255,
+    "explanation": "刚性双原子分子有 3 个平动、2 个转动自由度，每项平均能量为 \\(k_{\\mathrm B}T/2\\)，合计 \\(5k_{\\mathrm B}T/2\\)。\\(3k_{\\mathrm B}T/2\\) 只计平动，使用 \\(R\\) 的式子则对应每摩尔。",
+    "archiveOnly": true,
+    "duplicateOf": "p-194"
+  },
+  {
+    "id": "p-257",
+    "type": "single",
+    "points": 1,
+    "stem": "设 \\(f(v)\\) 为归一化速率分布密度，\\(N\\) 为分子总数，\\(m\\) 为分子质量。积分 \\(\\int_{v_1}^{v_2}\\tfrac12mv^2Nf(v)\\,\\mathrm dv\\) 表示什么？",
+    "options": [
+      "两个端点速率所对应分子的总平动动能之差",
+      "两个端点速率所对应分子的总平动动能之和",
+      "速率处于该区间的分子的平均平动动能",
+      "速率处于该区间的分子的总平动动能"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 257,
+    "explanation": "\\(Nf(v)\\mathrm dv\\) 是微小速率区间内的分子数，乘以每个分子的平动动能 \\(mv^2/2\\) 后得到该小区间的总能量。积分对所有小区间求和，得到区间内分子的总平动动能；若要求平均值，还需除以区间内的分子数。",
+    "archiveOnly": true,
+    "duplicateOf": "p-196"
+  },
+  {
+    "id": "p-261",
+    "type": "single",
+    "points": 2,
+    "stem": "气缸内一定量氦气视为理想气体，经准静态绝热压缩后体积变为原来的一半。分子的平均速率变为原来的几倍？",
+    "options": [
+      "\\(2^{2/5}\\)",
+      "\\(2^{1/5}\\)",
+      "\\(2^{2/3}\\)",
+      "\\(2^{1/3}\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 261,
+    "explanation": "氦为单原子理想气体，\\(\\gamma=5/3\\)。由 \\(TV^{\\gamma-1}=\\text{常量}\\) 得 \\(T_2/T_1=2^{2/3}\\)。同种气体的平均速率与 \\(\\sqrt T\\) 成正比，故 \\(\\bar v_2/\\bar v_1=2^{1/3}\\)。",
+    "archiveOnly": true,
+    "duplicateOf": "p-252"
+  },
+  {
+    "id": "p-263",
+    "type": "single",
+    "points": 1,
+    "stem": "关于热力学第二定律，以下说法哪一项正确？",
+    "options": [
+      "功可以全部转化为热，因此任何过程中的热都不可能全部转化为功",
+      "热量能从高温物体传到低温物体，任何条件下都不能从低温传到高温",
+      "开尔文表述指出了热功转化的可逆性",
+      "克劳修斯表述指出了自发传热的不可逆性"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 263,
+    "explanation": "克劳修斯表述禁止热量从低温物体传向高温物体而不引起其他变化，反映了有限温差自发传热的不可逆性。制冷机可以消耗外功实现逆向传热，所以 B 少了“无其他变化”的限制。开尔文表述禁止仅从单一热源吸热并全部变成功且无其他变化，并不禁止每一种热到功的转化。"
+  },
+  {
+    "id": "p-264",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体按 \\(pV^\\gamma=\\text{常量}\\) 的规律被压缩，其中 \\(\\gamma=C_p/C_V\\)。压缩后气体温度如何变化？",
+    "options": [
+      "升高",
+      "降低",
+      "不变",
+      "不能确定"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 264,
+    "explanation": "用 \\(pV=nRT\\) 消去 \\(p\\)，得到 \\(TV^{\\gamma-1}=\\text{常量}\\)。理想气体的 \\(\\gamma>1\\)，故 \\(T\\propto V^{1-\\gamma}\\)。压缩使 \\(V\\) 减小，温度升高。亦可用第一定律判断，绝热压缩时外界对气体做正功，使其内能增大。",
+    "archiveOnly": true,
+    "duplicateOf": "p-244"
+  },
+  {
+    "id": "p-265",
+    "type": "single",
+    "points": 1,
+    "stem": "汽缸中有一定质量的气体。下列说法哪一项正确？",
+    "options": [
+      "给气体传热，其内能一定改变",
+      "对气体做功，其内能一定改变",
+      "气体既与外界传热又交换功，其内能一定改变",
+      "以上三种说法都不对"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 265,
+    "explanation": "取 \\(W\\) 为气体对外做功，热力学第一定律为 \\(\\Delta U=Q-W\\)。传热或做功本身都不决定差值是否为零。理想气体准静态等温膨胀就是同时吸热和做功而 \\(\\Delta U=0\\) 的例子，三个“一定”都不成立。"
+  },
+  {
+    "id": "p-266",
+    "type": "single",
+    "points": 1,
+    "stem": "单原子理想气体从平衡态 A 变为平衡态 B，具体路径未知，但两态的压强、体积与温度均已确定。下列哪个量可以求出？",
+    "options": [
+      "气体膨胀做的功",
+      "气体内能的变化",
+      "气体传递的热量",
+      "单个气体分子的质量"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 266,
+    "explanation": "单原子理想气体内能为 \\(U=\\frac32nRT=\\frac32pV\\)，所以 \\(\\Delta U=\\frac32(p_BV_B-p_AV_A)\\) 只取决于始末态。功和热量与路径有关；由 \\(p,V,T\\) 可求气体分子数，但不能确定单个分子的质量。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 169
+      }
+    ]
+  },
+  {
+    "id": "p-268",
+    "type": "single",
+    "points": 1,
+    "stem": "刚性双原子理想气体处于温度 \\(T\\) 的平衡态，单个分子的平均总热运动能量是多少？",
+    "options": [
+      "\\(\\frac32k_{\\mathrm B}T\\)",
+      "\\(\\frac52k_{\\mathrm B}T\\)",
+      "\\(\\frac32RT\\)",
+      "\\(\\frac52RT\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 268,
+    "explanation": "刚性双原子分子有 3 个平动、2 个转动自由度，每项平均能量为 \\(k_{\\mathrm B}T/2\\)，合计 \\(5k_{\\mathrm B}T/2\\)。\\(3k_{\\mathrm B}T/2\\) 只计平动，使用 \\(R\\) 的式子则对应每摩尔。",
+    "archiveOnly": true,
+    "duplicateOf": "p-194"
+  },
+  {
+    "id": "p-269",
+    "type": "single",
+    "points": 2,
+    "stem": "设 \\(n\\) 为分子数密度，\\(f(v_x)\\) 为麦克斯韦速度分量 \\(v_x\\) 的概率密度，则 \\(nf(v_x)\\,\\mathrm dv_x\\) 表示什么？",
+    "options": [
+      "单位时间内碰到单位面积器壁，且 \\(x\\) 方向速度分量落在 \\([v_x,v_x+\\mathrm dv_x]\\) 的分子数",
+      "单位体积内，\\(x\\) 方向速度分量落在 \\([v_x,v_x+\\mathrm dv_x]\\) 的分子数",
+      "该速度分量区间内的分子数占总分子数的比例",
+      "整个气体中速度分量落在该区间内的分子数"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 269,
+    "explanation": "\\(f(v_x)\\mathrm dv_x\\) 是所占比例，乘以单位体积分子数 \\(n\\) 得单位体积内满足条件的分子数。计算整个容器的分子数还需乘以容积，计算撞壁数通量还涉及朝向器壁的法向速度。",
+    "archiveOnly": true,
+    "duplicateOf": "p-247"
+  },
+  {
+    "id": "p-271",
+    "type": "single",
+    "points": 1,
+    "stem": "在理想气体的准静态过程图中，哪个非退化循环无法构成？",
+    "options": [
+      "由一段绝热线、一段等温线和一段等压线组成",
+      "由一段绝热线、一段等温线和一段等容线组成",
+      "由一段等容线、一段等压线和一段绝热线组成",
+      "由两段不同绝热线和一段等温线组成"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 271,
+    "explanation": "闭合的三段路径要求任意相邻两段相交。两条不同绝热线满足 \\(pV^\\gamma=C_1\\) 与 \\(pV^\\gamma=C_2\\)，同一状态不可能同时满足两个不同常量，因而互不相交。一条等温线只能分别截到它们各一点，无法闭合。其余组合都可选取合适的三条线形成闭合路径。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 173
+      }
+    ]
+  },
+  {
+    "id": "p-274",
+    "type": "single",
+    "points": 1,
+    "stem": "某物质系统从外界吸收了一定热量。系统的内能怎样变化？",
+    "options": [
+      "一定增加",
+      "一定减少",
+      "一定保持不变",
+      "可能增加、减少或保持不变"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 274,
+    "explanation": "用 \\(\\Delta U=Q-W\\)，其中 \\(W\\) 是系统对外做功。只知 \\(Q>0\\)，若 \\(W<Q\\)，内能增加；若 \\(W>Q\\)，内能减少；若 \\(W=Q\\)，内能不变。三种情况均可能。"
+  },
+  {
+    "id": "p-277",
+    "type": "single",
+    "points": 1,
+    "stem": "两种不同理想气体的分子最概然速率相等。其平均速率与方均根速率之间有何关系？",
+    "options": [
+      "两种气体的平均速率相等，方均根速率也相等",
+      "平均速率相等，方均根速率不等",
+      "平均速率不等，方均根速率相等",
+      "两者均不等"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 277,
+    "explanation": "三种特征速率分别为 \\(\\sqrt{2k_{\\mathrm B}T/m}\\)、\\(\\sqrt{8k_{\\mathrm B}T/(\\pi m)}\\)、\\(\\sqrt{3k_{\\mathrm B}T/m}\\)。最概然速率相同意味着两种气体的 \\(T/m\\) 相同，因此另外两种特征速率也分别相同。"
+  },
+  {
+    "id": "p-279",
+    "type": "single",
+    "points": 1,
+    "stem": "下列理想气体过程中，哪个过程的吸热量 \\(Q\\)、内能增量 \\(\\Delta U\\) 和气体对外做功 \\(W\\) 均为负？",
+    "options": [
+      "等容降压",
+      "等温膨胀",
+      "绝热膨胀",
+      "等压压缩"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 279,
+    "explanation": "等压压缩时 \\(W=p\\Delta V<0\\)。由 \\(pV=nRT\\) 得温度下降，故 \\(\\Delta U=nC_{V,m}\\Delta T<0\\)，继而 \\(Q=\\Delta U+W<0\\)。等容、等温和绝热分别使 \\(W\\)、\\(\\Delta U\\)、\\(Q\\) 为零，不符合题意。"
+  },
+  {
+    "id": "p-280",
+    "type": "single",
+    "points": 1,
+    "stem": "某理想气体的体积为 \\(V\\)、压强为 \\(p\\)、温度为 \\(T\\)，单个分子的质量为 \\(m\\)。气体的分子总数为多少？",
+    "options": [
+      "\\(pV/m\\)",
+      "\\(pV/(k_{\\mathrm B}T)\\)",
+      "\\(pV/(RT)\\)",
+      "\\(pV/(mT)\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 280,
+    "explanation": "由理想气体状态方程 \\(pV=Nk_{\\mathrm B}T\\)，直接得到 \\(N=pV/(k_{\\mathrm B}T)\\)。\\(pV/(RT)\\) 是以摩尔为单位的物质的量，不是分子数。"
+  },
+  {
+    "id": "p-282",
+    "type": "single",
+    "points": 1,
+    "stem": "压强为 \\(p\\)、体积为 \\(V\\) 的氢气视为刚性双原子理想气体。它的内能为多少？",
+    "options": [
+      "\\(\\frac52pV\\)",
+      "\\(\\frac32pV\\)",
+      "\\(\\frac12pV\\)",
+      "\\(\\frac72pV\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 282,
+    "explanation": "忽略振动时，双原子气体分子有 3 个平动和 2 个转动自由度。总内能为 \\(U=\\frac52nRT\\)，用 \\(nRT=pV\\) 代入得 \\(U=\\frac52pV\\)。"
+  },
+  {
+    "id": "p-283",
+    "type": "single",
+    "points": 1,
+    "stem": "\\(1\\,\\mathrm{mol}\\) 刚性双原子理想气体在温度 \\(T\\) 时的内能为多少？",
+    "options": [
+      "\\(\\frac32RT\\)",
+      "\\(\\frac32k_{\\mathrm B}T\\)",
+      "\\(\\frac52RT\\)",
+      "\\(\\frac52k_{\\mathrm B}T\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 283,
+    "explanation": "单分子有 5 个有效自由度，平均能量为 \\(5k_{\\mathrm B}T/2\\)。一摩尔有 \\(N_{\\mathrm A}\\) 个分子，乘得 \\(U=5N_{\\mathrm A}k_{\\mathrm B}T/2=5RT/2\\)。D 是单分子平均能量。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 347
+      }
+    ]
+  },
+  {
+    "id": "p-289",
+    "type": "single",
+    "points": 1,
+    "stem": "下列对理想气体过程的描述中，哪一项可能发生？",
+    "options": [
+      "等容加热、内能减小、压强升高",
+      "等温压缩、吸热、压强升高",
+      "等压压缩、吸热、内能增加",
+      "绝热压缩、内能增加、压强升高"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 289,
+    "explanation": "绝热压缩有 \\(Q=0\\)、\\(W<0\\)，故 \\(\\Delta U=-W>0\\)，温度上升；同时体积减小，\\(p=nRT/V\\) 增大。等容加热时内能增加，等温压缩需要放热，等压压缩会降温，分别排除前三项。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 344
+      }
+    ]
+  },
+  {
+    "id": "p-290",
+    "type": "single",
+    "points": 1,
+    "stem": "一瓶氦气和一瓶氮气的质量密度相同，分子的平均平动动能也相同，两瓶气体均处于平衡态并视为理想气体。下列哪项正确？",
+    "options": [
+      "温度相同，压强相同",
+      "温度、压强都不相同",
+      "温度相同，氦气压强大于氮气压强",
+      "温度相同，氦气压强小于氮气压强"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 290,
+    "explanation": "平均平动动能为 \\(3k_{\\mathrm B}T/2\\)，故温度相等。由 \\(p=\\rho RT/M\\)，同质量密度、同温时压强与摩尔质量成反比。氦的摩尔质量小于氮气，故氦气压强较大。原答案 D 颠倒了轻、重气体的关系。 原题答案勘误"
+  },
+  {
+    "id": "p-293",
+    "type": "single",
+    "points": 1,
+    "stem": "归一化速率分布密度为 \\(f(v)\\) 的理想气体共有 \\(N\\) 个分子。速率在 \\(v_1\\) 至 \\(v_2\\) 间的分子数为多少？",
+    "options": [
+      "\\(\\int_{v_1}^{v_2}f(v)\\,\\mathrm dv\\)",
+      "\\(f(v)(v_2-v_1)\\)",
+      "\\(N\\int_{v_1}^{v_2}f(v)\\,\\mathrm dv\\)",
+      "\\(Nf(v)(v_2-v_1)\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 293,
+    "explanation": "先对区间积分得到单个分子速率落入该区间的概率，再乘分子总数 \\(N\\)。一般 \\(f(v)\\) 随 \\(v\\) 改变，不能直接用某处密度乘整个区间宽度。"
+  },
+  {
+    "id": "p-298",
+    "type": "single",
+    "points": 2,
+    "stem": "一定量理想气体经多方过程 \\(pV^n=\\text{常量}\\)，压强、体积从 \\((p_1,V_1)\\) 变到 \\((p_2,V_2)\\)，且 \\(V_1\\ne V_2\\)。多方指数 \\(n\\) 怎样表示？",
+    "options": [
+      "\\(\\ln(p_1/p_2)/\\ln(V_2/V_1)\\)",
+      "\\(\\ln(p_1/p_2)/\\ln(V_1/V_2)\\)",
+      "\\(\\ln(V_2/V_1)/\\ln(p_1/p_2)\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 298,
+    "explanation": "有 \\(p_1V_1^n=p_2V_2^n\\)，所以 \\(p_1/p_2=(V_2/V_1)^n\\)。两边取对数并除以 \\(\\ln(V_2/V_1)\\) 得 A。B 颠倒了体积比，C 颠倒了分子与分母。原题后两个干扰项等价，第三项作了区分。 等价干扰项勘误"
+  },
+  {
+    "id": "p-299",
+    "type": "single",
+    "points": 1,
+    "stem": "能量均分定理中计入的二次型能量项数与力学中独立坐标数的区别，主要体现在哪类自由度？",
+    "options": [
+      "振动",
+      "转动",
+      "平动",
+      "旋进"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 299,
+    "explanation": "一个独立谐振模式在力学上由一个振动坐标表示，但能量含动能 \\(p^2/(2m)\\) 和势能 \\(kx^2/2\\) 两个二次项。按均分定理两项各贡献 \\(k_{\\mathrm B}T/2\\)。平动、转动各独立自由度通常只有相应动能项。"
+  },
+  {
+    "id": "p-300",
+    "type": "single",
+    "points": 1,
+    "stem": "某人坐在橡皮艇里。把艇内空气视为一定量理想气体，并近似认为内压不变、艇体冷却后有效水线面积变小。夜间降温后，艇浸入水中的深度怎样变化？",
+    "options": [
+      "增加",
+      "减少",
+      "不变",
+      "无法判断"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 300,
+    "explanation": "定压下 \\(V_{\\rm air}\\propto T\\)，降温使充气艇变小。人和艇的总重近似不变，浮力平衡要求排水体积 \\(V_{\\rm 排}=G/(\\rho g)\\) 近似不变。当有效水线面积变小时，需有更大的吃水深度才能排开同样体积的水。题目按这一定性几何近似判断。 补足定性模型条件"
+  },
+  {
+    "id": "p-301",
+    "type": "single",
+    "points": 2,
+    "stem": "对 \\(1\\,\\mathrm{mol}\\) 理想气体，参考态为 \\((T_0,V_0)\\)，其熵为 \\(S_0\\)。若摩尔热容 \\(C_{V,m}\\) 和 \\(C_{p,m}\\) 为常数，则熵的表达式哪项正确？",
+    "options": [
+      "\\(S-S_0=C_{V,m}\\ln(T/T_0)+R\\ln(V/V_0)\\)",
+      "\\(S-S_0=C_{V,m}\\ln(T/T_0)-R\\ln(V/V_0)\\)",
+      "\\(S-S_0=C_{p,m}\\ln(T/T_0)-R\\ln(V/V_0)\\)",
+      "\\(S-S_0=C_{p,m}\\ln(T/T_0)+R\\ln(V/V_0)\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 301,
+    "explanation": "沿可逆路径有 \\(T\\mathrm dS=\\mathrm dU+p\\,\\mathrm dV\\)。代入 \\(\\mathrm dU=C_{V,m}\\mathrm dT\\) 与 \\(p=RT/V\\)，得到 \\(\\mathrm dS=C_{V,m}\\mathrm dT/T+R\\,\\mathrm dV/V\\)。积分即得 A。对数需取无量纲的温度比和体积比。"
+  },
+  {
+    "id": "p-303",
+    "type": "single",
+    "points": 1,
+    "stem": "已知理想气体分子的速率服从三维麦克斯韦速率分布。以分子平动动能 \\(\\varepsilon\\) 为变量，其概率密度满足哪一项？",
+    "options": [
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{1/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{3/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon^{5/2}e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)",
+      "\\(f(\\varepsilon)\\propto\\varepsilon e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 303,
+    "explanation": "麦克斯韦速率密度为 \\(f_v(v)\\propto v^2e^{-mv^2/(2k_{\\mathrm B}T)}\\)。由 \\(\\varepsilon=mv^2/2\\) 得 \\(v=\\sqrt{2\\varepsilon/m}\\) 以及 \\(\\mathrm dv/\\mathrm d\\varepsilon=1/(mv)\\)。相同小区间的概率必须相等，故 \\(f_\\varepsilon=f_v(v)\\lvert\\mathrm dv/\\mathrm d\\varepsilon\\rvert\\propto v e^{-\\varepsilon/(k_{\\mathrm B}T)}\\)。用 \\(v\\propto\\sqrt{\\varepsilon}\\) 即得 A。",
+    "archiveOnly": true,
+    "duplicateOf": "p-232"
+  },
+  {
+    "id": "p-305",
+    "type": "single",
+    "points": 1,
+    "stem": "以下关于温度、平衡与理想气体的说法哪项正确？",
+    "options": [
+      "温度用于描述物体之间的热平衡，也是平衡系统微观粒子热运动强弱的量度",
+      "飞机以 900 km/h 飞行，其舱内空气必然不是平衡态",
+      "处理理想气体压强时可不分析分子间碰撞，是因为理想气体分子从不相撞",
+      "热力学温标必须由理想气体的状态方程定义"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 305,
+    "explanation": "温度相同是建立热平衡的判据。整体的匀速平移不会破坏相对于机舱的内部热平衡；理想气体分子仍可有短时弹性碰撞。热力学温标可由可逆热机关系建立，不依赖某种具体测温物质。理想气体温标在适当定义下可与其一致，但不是它的定义依据。 明确温标干扰项的定义含义"
+  },
+  {
+    "id": "p-306",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体或实际气体经历绝热自由膨胀，从一个平衡态达到另一个平衡态。哪个量一定不变？",
+    "options": [
+      "内能",
+      "熵",
+      "焓",
+      "温度"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 306,
+    "explanation": "绝热使 \\(Q=0\\)，向真空自由膨胀使边界功 \\(W=0\\)。因此第一定律给出 \\(\\Delta U=0\\)，这对理想和实际气体均成立。自由膨胀不可逆，熵通常增加；实际气体内能还与体积有关，温度不一定不变。"
+  },
+  {
+    "id": "p-307",
+    "type": "single",
+    "points": 1,
+    "stem": "关于热力学量与过程量，下列哪项正确？",
+    "options": [
+      "焓是状态函数，与到达状态的路径无关",
+      "热量是状态函数，与过程有关",
+      "功是过程量，但与过程路径无关",
+      "内能是过程量，取决于过程路径"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 307,
+    "explanation": "焓 \\(H=U+pV\\)，右侧各量都是状态量，因此焓也是状态函数。热量和功描述跨越系统边界的能量传递，须指定路径；内能则由系统状态确定。"
+  },
+  {
+    "id": "p-308",
+    "type": "single",
+    "points": 2,
+    "stem": "由刚性双原子氧分子 \\(\\mathrm O_2\\) 构成的理想气体经历准静态绝热过程，满足哪条过程方程？",
+    "options": [
+      "\\(pV^{7/5}=C\\)",
+      "\\(pV^{5/3}=C\\)",
+      "\\(pV^{9/7}=C\\)",
+      "\\(pV^{11/9}=C\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 308,
+    "explanation": "氧分子按刚性双原子模型有 3 个平动和 2 个转动自由度，所以 \\(C_{V,m}=5R/2\\)，\\(C_{p,m}=C_{V,m}+R=7R/2\\)。准静态绝热过程满足 \\(pV^\\gamma=C\\)，其中 \\(\\gamma=C_{p,m}/C_{V,m}=7/5\\)，选 A。",
+    "archiveOnly": true,
+    "duplicateOf": "p-234"
+  },
+  {
+    "id": "p-309",
+    "type": "single",
+    "points": 1,
+    "stem": "两瓶不同种理想气体的分子平均平动动能相同，但分子数密度不同。下列哪项正确？",
+    "options": [
+      "温度相同，压强相同",
+      "温度相同，内能相同",
+      "温度相同，压强不同",
+      "温度不同，压强不同"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 309,
+    "explanation": "由平均平动动能 \\(3k_{\\mathrm B}T/2\\) 知道温度相等。设分子数密度为 \\(n_N=N/V\\)，有 \\(p=n_Nk_{\\mathrm B}T\\)，所以数密度不等导致压强不等。原题“密度”必须指分子数密度；若只说质量密度不同，则不同摩尔质量下不能确定压强关系。 补足分子数密度条件",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 168
+      }
+    ]
+  },
+  {
+    "id": "p-310",
+    "type": "multiple",
+    "points": 2,
+    "stem": "用 \\(\\Delta U=nC_{V,m}\\Delta T\\) 计算理想气体的内能变化。设物质的量 \\(n\\) 固定、摩尔定容热容 \\(C_{V,m}\\) 为常数，下列说法哪些错误？",
+    "options": [
+      "只适用于准静态等容过程",
+      "只适用于等容过程",
+      "即使某个端态无法用平衡温度描述，也总可以直接使用",
+      "对于始末均为平衡态的过程可以使用，不要求实际路径等容"
+    ],
+    "answer": [
+      0,
+      1,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 310,
+    "explanation": "一定量理想气体内能只取决于温度，因此有 \\(U_2-U_1=nC_{V,m}(T_2-T_1)\\)，并不要求实际路径等容或准静态。公式必须能为始、末态赋予明确温度，不能无条件套用到不存在整体平衡温度的端态。前三项错误。 区分平衡端态与路径"
+  },
+  {
+    "id": "p-311",
+    "type": "multiple",
+    "points": 2,
+    "stem": "设卡诺热机在绝对温度 \\(T_1>T_2>0\\) 的两热源之间工作。下列哪些说法正确？",
+    "options": [
+      "仅由热力学第一定律即可证明任何循环热机的效率不可能等于 1",
+      "热力学第二定律禁止循环热机仅从单一热源吸热并全部转化为功而无其他变化",
+      "仅由热力学第一定律即可证明任意工作物质的可逆卡诺效率等于 \\(1-T_2/T_1\\)",
+      "对理想气体的可逆卡诺循环，结合第一定律和理想气体等温、绝热关系可算得 \\(\\eta=1-T_2/T_1\\)"
+    ],
+    "answer": [
+      1,
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 311,
+    "explanation": "第一定律只约束能量收支，不能单独禁止从单一热源吸热完全变成功。该禁止由第二定律的开尔文表述给出，B 正确。对于理想气体，沿两段等温线有 \\(Q_1=nRT_1\\ln(V_b/V_a)\\) 和 \\(\\lvert Q_2\\rvert=nRT_2\\ln(V_c/V_d)\\)，两段绝热线给出两个体积比相等，所以 \\(\\eta=1-\\lvert Q_2\\rvert/Q_1=1-T_2/T_1\\)，D 正确。普适性还需第二定律，C 错。"
+  },
+  {
+    "id": "p-314",
+    "type": "multiple",
+    "points": 2,
+    "stem": "关于系统热容，下列哪些说法正确？",
+    "options": [
+      "系统的热容总是常数",
+      "在指定过程中，单位温度改变量对应的热量称为该过程的热容",
+      "热容与所选过程有关",
+      "热容与过程无关，只由所在状态决定"
+    ],
+    "answer": [
+      1,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 314,
+    "explanation": "沿指定过程定义 \\(C=\\delta Q/\\mathrm dT\\)。热量随路径不同而不同，所以同一状态下的定容热容、定压热容一般不同，且热容可以随温度改变。B、C 正确。"
+  },
+  {
+    "id": "p-315",
+    "type": "multiple",
+    "points": 2,
+    "stem": "下列哪些量不是热力学状态函数？",
+    "options": [
+      "内能",
+      "功",
+      "热量",
+      "焓",
+      "熵"
+    ],
+    "answer": [
+      1,
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 315,
+    "explanation": "内能 \\(U\\)、焓 \\(H=U+pV\\) 和熵 \\(S\\) 都由系统状态决定，其改变量只依赖始末态。功和热量是过程传递量，连接同一对始末态的不同路径可有不同 \\(W\\)、\\(Q\\)。"
+  },
+  {
+    "id": "p-316",
+    "type": "single",
+    "points": 1,
+    "stem": "两个长度均为 \\(L\\) 的同轴圆筒，内筒半径为 \\(R_1\\)，外筒半径为 \\(R_2\\)，并分别维持温度 \\(T_1>T_2\\)。忽略端部效应，空气的导热系数为 \\(\\kappa\\)。稳定后由内筒传到外筒的热流率是多少？",
+    "options": [
+      "\\(\\dfrac{2\\pi\\kappa L(T_2-T_1)}{\\ln(R_1/R_2)}\\)",
+      "\\(\\dfrac{2\\pi\\kappa L(R_2-R_1)}{\\ln(T_1/T_2)}\\)",
+      "\\(\\dfrac{2\\pi\\kappa L(T_1-T_2)}{R_2/R_1-1}\\)",
+      "\\(\\dfrac{2\\pi\\kappa L(T_2-T_1)}{1-R_1/R_2}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 316,
+    "explanation": "半径 \\(r\\) 处通过热流的圆柱面积为 \\(2\\pi rL\\)。稳态时傅里叶定律给出 \\(\\dot Q=-2\\pi rL\\kappa\\,\\mathrm dT/\\mathrm dr\\)，而 \\(\\dot Q\\) 不随 \\(r\\) 变化。分离变量积分得到 \\(T_1-T_2=\\dot Q\\ln(R_2/R_1)/(2\\pi L\\kappa)\\)，因此 \\(\\dot Q=2\\pi L\\kappa(T_1-T_2)/\\ln(R_2/R_1)\\)，与 A 等价。"
+  },
+  {
+    "id": "p-317",
+    "type": "single",
+    "points": 3,
+    "stem": "\\(3\\,\\mathrm{mol}\\) 理想气体初温为 \\(T_0\\)。先准静态等温膨胀至原体积的 5 倍，再等容加热到初始压强。若全过程吸热为 \\(15RT_0\\ln 5\\)，其绝热指数是多少？",
+    "options": [
+      "\\(\\dfrac{3+3\\ln5}{\\ln5}\\)",
+      "\\(\\dfrac{1+\\ln5}{\\ln5}\\)",
+      "\\(\\dfrac{3+\\ln5}{\\ln5}\\)",
+      "\\(\\dfrac{1+3\\ln5}{\\ln5}\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 317,
+    "explanation": "第一步等温，\\(\\Delta U_1=0\\)，故 \\(Q_1=W_1=3RT_0\\ln5\\)。末态压强等于初压而体积为原来的 5 倍，故末温为 \\(5T_0\\)。第二步定容，\\(Q_2=3C_{V,m}(5T_0-T_0)=12C_{V,m}T_0\\)。令 \\(Q_1+Q_2=15RT_0\\ln5\\)，得 \\(C_{V,m}=R\\ln5\\)，于是 \\(\\gamma=(C_{V,m}+R)/C_{V,m}=1+1/\\ln5\\)。"
+  },
+  {
+    "id": "p-318",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体先等容升温到初温的 4 倍，再等温膨胀到初体积的 2 倍。按刚球模型，末态的单个分子平均碰撞频率是初态的多少倍？",
+    "options": [
+      "1 倍",
+      "2 倍",
+      "8 倍",
+      "4 倍"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 318,
+    "explanation": "\\(Z=\\bar v/\\lambda\\)，且刚球模型下 \\(\\lambda\\propto1/n_N\\)、\\(\\bar v\\propto\\sqrt T\\)。末态数密度 \\(n_N=N/V\\) 减半，平均速率增至 2 倍，所以 \\(Z\\propto n_N\\sqrt T\\) 保持不变。"
+  },
+  {
+    "id": "p-319",
+    "type": "single",
+    "points": 1,
+    "stem": "室温为 \\(27\\,^\\circ\\mathrm C\\)，冰箱冷冻室为 \\(-3\\,^\\circ\\mathrm C\\)。从冷冻室取出 \\(1\\,\\mathrm J\\) 的热量，至少需要输入多少功？",
+    "options": [
+      "\\(0.09\\,\\mathrm J\\)",
+      "\\(10\\,\\mathrm J\\)",
+      "\\(9\\,\\mathrm J\\)",
+      "\\(0.11\\,\\mathrm J\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 319,
+    "explanation": "最小功对应可逆卡诺制冷机。温度须用开尔文，\\(T_h\\approx300\\,\\mathrm K\\)，\\(T_c\\approx270\\,\\mathrm K\\)。制冷系数 \\(\\varepsilon=Q_c/W=T_c/(T_h-T_c)\\approx9\\)，所以 \\(W_{\\min}=1/9\\,\\mathrm J\\approx0.11\\,\\mathrm J\\)。"
+  },
+  {
+    "id": "p-320",
+    "type": "single",
+    "points": 1,
+    "stem": "可逆卡诺机的高、低温热源分别为 \\(450\\,\\mathrm K\\) 和 \\(300\\,\\mathrm K\\)。若让它逆向运转，一周从低温热源吸热 \\(400\\,\\mathrm J\\)，外界必须做多少功？",
+    "options": [
+      "\\(200\\,\\mathrm J\\)",
+      "\\(400\\,\\mathrm J\\)",
+      "\\(100\\,\\mathrm J\\)",
+      "\\(300\\,\\mathrm J\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 320,
+    "explanation": "逆向运转为制冷循环。可逆循环有 \\(Q_h/T_h=Q_c/T_c\\)，故 \\(Q_h=400(450/300)=600\\,\\mathrm J\\)。由循环能量守恒 \\(W=Q_h-Q_c=200\\,\\mathrm J\\)。"
+  },
+  {
+    "id": "p-321",
+    "type": "single",
+    "points": 1,
+    "stem": "一台可逆卡诺热机的效率为 \\(40\\%\\)，低温热源为 \\(27\\,^\\circ\\mathrm C\\)。若低温热源温度不变，要把效率提高到 \\(50\\%\\)，高温热源温度应提高多少？",
+    "options": [
+      "\\(200\\,\\mathrm K\\)",
+      "\\(100\\,\\mathrm K\\)",
+      "\\(600\\,\\mathrm K\\)",
+      "\\(300\\,\\mathrm K\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 321,
+    "explanation": "由 \\(\\eta=1-T_c/T_h\\) 得 \\(T_h=T_c/(1-\\eta)\\)。取 \\(T_c\\approx300\\,\\mathrm K\\)，原高温为 \\(300/0.60=500\\,\\mathrm K\\)，新高温为 \\(300/0.50=600\\,\\mathrm K\\)，因此增加 \\(100\\,\\mathrm K\\)。",
+    "archiveOnly": true,
+    "duplicateOf": "b-49"
+  },
+  {
+    "id": "p-322",
+    "type": "single",
+    "points": 2,
+    "stem": "在温度 \\(T\\) 均匀、重力场均匀的大气中，分子数密度满足 \\(n_N(h)=n_N(0)\\exp[-Mgh/(RT)]\\)，其中 \\(M\\) 为空气摩尔质量。分子数密度降到地面值一半的高度为多少？",
+    "options": [
+      "\\(\\dfrac{RT\\ln2}{Mg}\\)",
+      "\\(\\dfrac{RT\\ln2}{2Mg}\\)",
+      "\\(\\dfrac{RT\\ln2}{4Mg}\\)",
+      "\\(\\dfrac{RT\\ln2}{8Mg}\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 322,
+    "explanation": "令 \\(n_N(h)/n_N(0)=1/2\\)。取自然对数得 \\(-Mgh/(RT)=\\ln(1/2)=-\\ln2\\)，解出 \\(h=RT\\ln2/(Mg)\\)。指数中的 \\(M\\) 是摩尔质量，与气体常数 \\(R\\) 配对。"
+  },
+  {
+    "id": "p-323",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体的熵为 \\(S=S_0+nR[\\frac52\\ln(U/U_0)+\\ln(V/V_0)]\\)。\\(S_0,U_0,V_0\\) 为参考量，物质的量 \\(n\\) 不变。气体的总定压热容是多少？",
+    "options": [
+      "\\(\\frac32 nR\\)",
+      "\\(\\frac52 nR\\)",
+      "\\(\\frac72 nR\\)",
+      "\\(3nR\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 323,
+    "explanation": "由基本关系 \\(1/T=(\\partial S/\\partial U)_{V,n}=5nR/(2U)\\)，得 \\(U=\\frac52 nRT\\)。定容热容为 \\(C_V=\\frac52nR\\)，而理想气体满足 \\(C_p=C_V+nR\\)，故为 \\(\\frac72nR\\)。原选项误多乘温度 \\(T\\)，不具备热容量纲，已改正。 热容量纲勘误",
+    "archiveOnly": true,
+    "duplicateOf": "v-43"
+  },
+  {
+    "id": "p-324",
+    "type": "single",
+    "points": 1,
+    "stem": "以下关于热力学第一定律的描述中，哪项有误？",
+    "options": [
+      "第一定律以能量守恒为基础",
+      "第一定律只能用于准静态过程",
+      "分析热机循环的能量收支是第一定律的应用",
+      "第一定律既适用于理想气体，也适用于实际气体"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 324,
+    "explanation": "第一定律 \\(\\Delta U=Q-W\\) 是能量守恒在热力学中的应用，对不可逆过程也成立。准静态条件有助于用系统压强计算边界功，但不是第一定律成立的条件。对热机一周有 \\(\\Delta U=0\\)，净吸热等于净做功。原题 D 的措辞也不正确，已改为准确表述，使 B 成为唯一错误选项。 修正存在两项错误的原选项"
+  },
+  {
+    "id": "p-325",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，一定量理想气体在 \\(p\\!-\\!V\\) 图上沿直线从 \\(a\\) 点（\\(p_1=4\\,\\mathrm{atm},V_1=2\\,\\mathrm L\\)）到 \\(b\\) 点（\\(p_2=2\\,\\mathrm{atm},V_2=4\\,\\mathrm L\\)）。对此过程，哪项正确？",
+    "options": [
+      "气体对外做正功，向外放热",
+      "气体对外做正功，从外界吸热",
+      "气体对外做负功，向外放热",
+      "气体对外做正功，内能减少"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 325,
+    "explanation": "两端 \\(p_1V_1=p_2V_2=8\\,\\mathrm{L\\,atm}\\)，故初末温度相同，\\(\\Delta U=0\\)。沿路径体积增加、压强为正，气体对外做功 \\(W=(4+2)(4-2)/2=6\\,\\mathrm{L\\,atm}>0\\)。由 \\(Q=\\Delta U+W\\) 知气体吸热。始末温度相同不等于过程处处等温。",
+    "image": "assets/p-v4/high-325.webp",
+    "archiveOnly": true,
+    "duplicateOf": "p-139"
+  },
+  {
+    "id": "p-326",
+    "type": "single",
+    "points": 1,
+    "stem": "某一定量理想气体在状态变化中内能始终与温度成正比。关于其过程类型，哪项正确？",
+    "options": [
+      "一定是等压过程",
+      "一定是等容过程",
+      "一定是绝热过程",
+      "上述过程均有可能"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 326,
+    "explanation": "\\(U\\propto T\\) 是取恒定热容和适当能量零点时的物态关系，不是对路径的约束。等压、等容和绝热过程中的每个平衡态都可以满足这个关系，无法据此判别实际过程。"
+  },
+  {
+    "id": "p-327",
+    "type": "single",
+    "points": 1,
+    "stem": "绝热刚性容器被隔板分成两等份，一半为真空，另一半装理想气体。撤去隔板使气体自由膨胀，达到新平衡后温度与熵如何变化？",
+    "options": [
+      "温度不变，熵增加",
+      "温度升高，熵增加",
+      "温度降低，熵增加",
+      "温度不变，熵不变"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 327,
+    "explanation": "容器绝热且不对外做功，故 \\(\\Delta U=Q-W=0\\)。理想气体内能只依赖温度，因此温度不变。熵是状态函数，可用同始末态的可逆等温路径计算 \\(\\Delta S=nR\\ln(V_2/V_1)=nR\\ln2>0\\)。绝热并不意味着不可逆过程中熵不变。"
+  },
+  {
+    "id": "p-328",
+    "type": "single",
+    "points": 3,
+    "stem": "如图，两台卡诺热机分别工作在 \\(T_1,T_3\\) 和 \\(T_2,T_3\\) 两对热源之间。若两个循环在 \\(p\\!-\\!V\\) 图上所包围的面积相等，下列哪项一定成立？",
+    "options": [
+      "两台热机的效率相等",
+      "两台热机从高温热源吸收的热量相等",
+      "两台热机向低温热源放出的热量相等",
+      "两台热机吸收热量与放出热量大小的差值相等"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 328,
+    "explanation": "顺时针循环的净功 \\(W=\\oint p\\,\\mathrm dV\\) 等于所包围面积，因此 \\(W_1=W_2\\)。对一个完整循环 \\(\\Delta U=0\\)，所以 \\(Q_h-\\lvert Q_c\\rvert=W\\)，D 成立。若热源温度不同，\\(\\eta=1-T_3/T_h\\) 一般不同；相等的净功也不要求吸热量或放热量各自相等。",
+    "image": "assets/p-v4/high-328.webp"
+  },
+  {
+    "id": "p-329",
+    "type": "single",
+    "points": 1,
+    "stem": "图 (a)、(b)、(c) 各画出两个相接的 \\(p\\!-\\!V\\) 循环。图 (c) 的两个圆半径相等，另两图的两个圆半径不等。将每幅图中两循环的功相加，结果如何？",
+    "options": [
+      "(a) 为负，(b) 为正，(c) 为零",
+      "(a) 为负，(b) 为负，(c) 为正",
+      "(a) 为负，(b) 为负，(c) 为零",
+      "(a) 为正，(b) 为正，(c) 为负"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 329,
+    "explanation": "气体净功等于 \\(p\\!-\\!V\\) 图的有向面积，顺时针为正、逆时针为负。(a) 和 (b) 均是较大的圆逆时针、较小的圆顺时针，故总功为负。(c) 两圆方向相反且面积相同，净功抵消为零。",
+    "image": "assets/p-v4/high-329.webp"
+  },
+  {
+    "id": "p-330",
+    "type": "single",
+    "points": 1,
+    "stem": "以下哪个过程在题设的理想化条件下可以是可逆过程？",
+    "options": [
+      "无摩擦活塞上无外加压力，气体向外突然膨胀",
+      "活塞与汽缸间存在很大摩擦，但让气体缓慢膨胀",
+      "活塞无摩擦，逐步调节外压使气体近似平衡地缓慢膨胀，同时不存在其他耗散",
+      "在绝热容器内搅拌液体使其升温"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 330,
+    "explanation": "可逆过程要求系统经过一系列近似平衡状态且没有摩擦等耗散。A 的有限压差、B 的摩擦以及 D 搅拌造成的耗散都会产生熵。C 可在压差趋于零、无其他不可逆因素的理想极限中实现可逆膨胀。",
+    "archiveOnly": true,
+    "duplicateOf": "d-262"
+  },
+  {
+    "id": "p-336",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量范德瓦耳斯气体发生绝热自由膨胀。下列哪个状态量一定不变？",
+    "options": [
+      "熵",
+      "内能",
+      "焓",
+      "温度"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 336,
+    "explanation": "绝热意味着 \\(Q=0\\)，向真空自由膨胀意味着对外做功 \\(W=0\\)。第一定律给出 \\(\\Delta U=Q-W=0\\)。范德瓦耳斯气体的内能通常同时依赖温度和体积，故温度未必不变；\\(H=U+pV\\) 也未必不变。自由膨胀不可逆，孤立系统的熵增加。"
+  },
+  {
+    "id": "p-337",
+    "type": "single",
+    "points": 1,
+    "stem": "下列热力学量中，哪个是广延量？",
+    "options": [
+      "熵",
+      "温度",
+      "压强",
+      "粒子数密度"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 337,
+    "explanation": "把两个相同、互不作用的平衡系统合在一起，熵相加为 \\(S_{\\mathrm{tot}}=S_1+S_2=2S_1\\)，属于广延量。温度、压强保持原值，粒子数和体积同时翻倍也保持 \\(N/V\\) 不变，三者都是强度量。"
+  },
+  {
+    "id": "p-340",
+    "type": "single",
+    "points": 2,
+    "stem": "如图，一定量理想气体从 \\(a\\) 到 \\(b\\) 可经历路径 ① 或 ②。\\(a\\) 与 \\(b\\) 位于同一条可逆绝热线（虚线）上。下列对两条路径热量的判断哪项正确？",
+    "options": [
+      "① 吸热，② 放热",
+      "① 放热，② 吸热",
+      "① 和 ② 都吸热",
+      "① 和 ② 都放热"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 340,
+    "explanation": "三条路径连接同样的两端，内能变化 \\(\\Delta U\\) 相同。沿可逆绝热线 \\(Q_{\\mathrm{ad}}=0\\)，故 \\(\\Delta U=-W_{\\mathrm{ad}}\\)。由图可见，膨胀时路径 ① 的压强低于绝热线，路径 ② 的压强高于绝热线，所以 \\(W_1<W_{\\mathrm{ad}}<W_2\\)。代入 \\(Q_i=W_i-W_{\\mathrm{ad}}\\)，得到 \\(Q_1<0\\) 和 \\(Q_2>0\\)。",
+    "image": "assets/p-v4/high-340.webp"
+  },
+  {
+    "id": "p-341",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，一定量热容可视为常数的理想气体经历循环。\\(A\\to B\\) 和 \\(C\\to D\\) 为等压过程，\\(B\\to C\\) 和 \\(D\\to A\\) 为可逆绝热过程。若 \\(T_C=300\\,\\mathrm K\\)、\\(T_B=400\\,\\mathrm K\\)，循环效率是多少？",
+    "options": [
+      "\\(15\\%\\)",
+      "\\(25\\%\\)",
+      "\\(75\\%\\)",
+      "\\(33\\%\\)"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 341,
+    "explanation": "由可逆绝热关系 \\(Tp^{(1-\\gamma)/\\gamma}=\\text{常数}\\)，两段绝热线连接同样的高、低压，故 \\(T_C/T_B=T_D/T_A=3/4\\)。高压等压段吸热 \\(Q_h=nC_{p,m}(T_B-T_A)\\)，低压等压段放热大小 \\(\\lvert Q_c\\rvert=nC_{p,m}(T_C-T_D)\\)。将 \\(T_C=3T_B/4\\)、\\(T_D=3T_A/4\\) 代入，得 \\(\\eta=1-\\lvert Q_c\\rvert/Q_h=1/4\\)。",
+    "image": "assets/p-v4/high-341.webp"
+  },
+  {
+    "id": "p-342",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，一定量理想气体从同一状态 \\(A\\) 膨胀至体积 \\(V_2\\)，路径 \\(A\\to B\\) 为等压，\\(A\\to C\\) 为等温，\\(A\\to D\\) 为绝热。哪条路径吸热最多？",
+    "options": [
+      "\\(A\\to B\\)",
+      "\\(A\\to C\\)",
+      "\\(A\\to D\\)",
+      "\\(A\\to B\\) 与 \\(A\\to C\\) 吸热相同"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 342,
+    "explanation": "等压路径的压强始终高于等温路径（除起点外），故 \\(W_{AB}>W_{AC}>0\\)。等压膨胀温度升高，\\(\\Delta U_{AB}>0\\)；等温路径 \\(\\Delta U_{AC}=0\\)。由 \\(Q=\\Delta U+W\\) 知 \\(Q_{AB}>Q_{AC}>0\\)，而绝热路径 \\(Q_{AD}=0\\)。",
+    "image": "assets/p-v4/high-342.webp"
+  },
+  {
+    "id": "p-343",
+    "type": "single",
+    "points": 1,
+    "stem": "判断下列过程中系统的熵是否增加。(1) 两种不同理想气体在同温同压下混合；(2) 理想气体等容冷却；(3) 液体等温汽化；(4) 理想气体可逆等温压缩；(5) 理想气体绝热自由膨胀。熵增加的过程是哪一组？",
+    "options": [
+      "(1)、(2)、(3)",
+      "(2)、(3)、(4)",
+      "(3)、(4)、(5)",
+      "(1)、(3)、(5)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 343,
+    "explanation": "(1) 移去隔板后各组分可占体积增大，混合熵为正。(2) \\(\\Delta S=nC_{V,m}\\ln(T_2/T_1)<0\\)。(3) 液体汽化吸收潜热，\\(\\Delta S=Q_{\\mathrm{rev}}/T>0\\)。(4) \\(\\Delta S=nR\\ln(V_2/V_1)<0\\)。(5) 自由膨胀不对外做功且绝热，理想气体温度不变，可借用可逆等温路径计算 \\(\\Delta S=nR\\ln(V_2/V_1)>0\\)。",
+    "archiveOnly": true,
+    "duplicateOf": "p-151"
+  },
+  {
+    "id": "p-344",
+    "type": "single",
+    "points": 1,
+    "stem": "下列对理想气体过程的描述中，哪一项可能发生？",
+    "options": [
+      "等容加热、内能减小、压强升高",
+      "等温压缩、吸热、压强升高",
+      "等压压缩、吸热、内能增加",
+      "绝热压缩、内能增加、压强升高"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 344,
+    "explanation": "绝热压缩有 \\(Q=0\\)、\\(W<0\\)，故 \\(\\Delta U=-W>0\\)，温度上升；同时体积减小，\\(p=nRT/V\\) 增大。等容加热时内能增加，等温压缩需要放热，等压压缩会降温，分别排除前三项。",
+    "archiveOnly": true,
+    "duplicateOf": "p-289"
+  },
+  {
+    "id": "p-345",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，麦克斯韦速率分布曲线下，被 \\(v_0\\) 分开的 A、B 两部分面积相等。下列关于 \\(v_0\\) 的说法哪项正确？",
+    "options": [
+      "它是最概然速率",
+      "它是平均速率",
+      "它是方均根速率",
+      "速率小于它和大于它的分子各占一半"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 345,
+    "explanation": "\\(\\int_0^{v_0}f(v)\\,\\mathrm dv\\) 是速率低于 \\(v_0\\) 的分子比例，\\(\\int_{v_0}^\\infty f(v)\\,\\mathrm dv\\) 是高于它的比例。两面积相等且总面积为 1，因此两部分各占 \\(1/2\\)，\\(v_0\\) 是分布的中位数。最概然速率对应曲线峰值，平均速率和方均根速率由分布的一阶、二阶矩决定。",
+    "image": "assets/p-v4/high-345.webp"
+  },
+  {
+    "id": "p-347",
+    "type": "single",
+    "points": 1,
+    "stem": "\\(1\\,\\mathrm{mol}\\) 刚性双原子理想气体在温度 \\(T\\) 时的内能为多少？",
+    "options": [
+      "\\(\\frac32RT\\)",
+      "\\(\\frac32k_{\\mathrm B}T\\)",
+      "\\(\\frac52RT\\)",
+      "\\(\\frac52k_{\\mathrm B}T\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 347,
+    "explanation": "单分子有 5 个有效自由度，平均能量为 \\(5k_{\\mathrm B}T/2\\)。一摩尔有 \\(N_{\\mathrm A}\\) 个分子，乘得 \\(U=5N_{\\mathrm A}k_{\\mathrm B}T/2=5RT/2\\)。D 是单分子平均能量。",
+    "archiveOnly": true,
+    "duplicateOf": "p-283"
+  },
+  {
+    "id": "p-348",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体等温膨胀。按刚球模型，单个分子的平均碰撞频率 \\(Z\\) 与平均自由程 \\(\\lambda\\) 如何变化？",
+    "options": [
+      "\\(Z\\) 减小，\\(\\lambda\\) 不变",
+      "\\(Z\\) 减小，\\(\\lambda\\) 增大",
+      "\\(Z\\) 增大，\\(\\lambda\\) 减小",
+      "\\(Z\\) 不变，\\(\\lambda\\) 增大"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 348,
+    "explanation": "温度不变，所以分子平均速率 \\(\\bar v\\) 不变。膨胀使数密度 \\(n_N=N/V\\) 下降，按 \\(\\lambda=1/(\\sqrt2\\pi d^2n_N)\\)，平均自由程增大。再由 \\(Z=\\bar v/\\lambda\\)，碰撞频率下降。",
+    "archiveOnly": true,
+    "duplicateOf": "d-179"
+  },
+  {
+    "id": "p-349",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体的温度为 \\(T\\)，单个分子的质量为 \\(m\\)。其速度在 \\(x\\) 方向分量的平方平均值 \\(\\overline{v_x^2}\\) 是多少？",
+    "options": [
+      "\\(\\sqrt{3k_{\\mathrm B}T/m}\\)",
+      "\\(\\dfrac13\\sqrt{3k_{\\mathrm B}T/m}\\)",
+      "\\(\\dfrac{3k_{\\mathrm B}T}{m}\\)",
+      "\\(\\dfrac{k_{\\mathrm B}T}{m}\\)"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 349,
+    "explanation": "按能量均分，每个平动方向贡献 \\(\\tfrac12 k_{\\mathrm B}T\\)，于是 \\(\\tfrac12m\\overline{v_x^2}=\\tfrac12 k_{\\mathrm B}T\\)，所以 \\(\\overline{v_x^2}=k_{\\mathrm B}T/m\\)。三方向相加才得到 \\(\\overline{v^2}=3k_{\\mathrm B}T/m\\)，选项 A、B 的量纲为速率。"
+  },
+  {
+    "id": "p-350",
+    "type": "single",
+    "points": 1,
+    "stem": "一个容器里有两种气体，各 \\(1\\,\\mathrm{mol}\\)，可视为达到热平衡的理想气体混合物。两种气体的分压分别为 \\(p_1\\) 和 \\(p_2\\)，它们的大小关系是什么？",
+    "options": [
+      "\\(p_1>p_2\\)",
+      "\\(p_1<p_2\\)",
+      "\\(p_1=p_2\\)",
+      "不能确定"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 350,
+    "explanation": "两种气体共享相同的容器体积 \\(V\\) 和平衡温度 \\(T\\)。由道尔顿分压定律，每种气体的分压为 \\(p_i=n_iRT/V\\)。两者物质的量相等，因此分压相等。分子质量不同会影响速率和质量密度，不会改变这里的分压关系。",
+    "archiveOnly": true,
+    "duplicateOf": "p-171"
+  },
+  {
+    "id": "p-351",
+    "type": "single",
+    "points": 1,
+    "stem": "刚性双原子分子组成的理想气体等压膨胀，从外界吸收 \\(700\\,\\mathrm J\\) 热量。气体对外做了多少功？",
+    "options": [
+      "\\(200\\,\\mathrm J\\)",
+      "\\(100\\,\\mathrm J\\)",
+      "\\(300\\,\\mathrm J\\)",
+      "\\(400\\,\\mathrm J\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 351,
+    "explanation": "刚性双原子分子有 5 个有效自由度，\\(C_{p,m}=C_{V,m}+R=7R/2\\)。等压过程的做功为 \\(W=p\\Delta V=nR\\Delta T\\)，吸热为 \\(Q=nC_{p,m}\\Delta T\\)，所以 \\(W=(2/7)Q=200\\,\\mathrm J\\)。其余 \\(500\\,\\mathrm J\\) 转为内能。",
+    "archiveOnly": true,
+    "duplicateOf": "p-170"
+  },
+  {
+    "id": "p-353",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，\\(p\\!-\\!V\\) 图上的准静态路径 \\(abc\\) 和 \\(adc\\) 连接相同的两个平衡态 \\(a,c\\)。下列结论哪项正确？",
+    "options": [
+      "一个过程是绝热的，另一个是等温的",
+      "两个过程的热量相同",
+      "两个过程所做的功相同",
+      "两个过程的内能变化相同"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 353,
+    "explanation": "内能 \\(U\\) 是状态函数，两条路径的始末状态相同，所以 \\(\\Delta U_{abc}=\\Delta U_{adc}\\)。图中 \\(abc\\) 处在 \\(adc\\) 上方，膨胀时它的 \\(\\int p\\,\\mathrm dV\\) 更大。由 \\(Q=\\Delta U+W\\)，两条路径的热量也不同。仅凭曲线形状不能判定过程是绝热或等温。",
+    "image": "assets/p-v4/high-353.webp"
+  },
+  {
+    "id": "p-354",
+    "type": "single",
+    "points": 1,
+    "stem": "如图，简单可压缩系统准静态地沿 \\(c\\to d\\to e\\) 变化。曲线 \\(ab\\) 是可逆绝热线，\\(c,e\\) 都在该绝热线上。题设系统在图示路径上的吸放热情况如何？",
+    "options": [
+      "始终放热",
+      "始终吸热",
+      "既吸热又放热，吸热总量小于放热总量",
+      "既吸热又放热，吸热总量大于放热总量"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 354,
+    "explanation": "用可逆绝热段 \\(e\\to c\\) 把路径补成闭合循环。图示方向是顺时针，故循环的净功 \\(\\oint p\\,\\mathrm dV\\) 为正，循环净吸热同样为正。回程绝热，因而 \\(c\\to d\\to e\\) 的净吸热为正。两端在同一绝热线上，\\(S_c=S_e\\)；图示路径有正热量输入且 \\(\\delta Q_{\\mathrm{rev}}=T\\,\\mathrm dS\\)，在正温度下熵回到同一数值要求路径中也有放热段。因此既吸热又放热，且吸热总量更大。",
+    "image": "assets/p-v4/high-354.webp"
+  },
+  {
+    "id": "p-355",
+    "type": "single",
+    "points": 1,
+    "stem": "下列关于热力学第二定律的表述中，哪项正确？",
+    "options": [
+      "任何过程中都不可能从单一热源吸收热量并全部变为有用的功",
+      "在任何可逆过程中，工质净吸收的热量都等于其对外做的功",
+      "摩擦生热的过程不可逆",
+      "热量在任何条件下都不能由低温物体传到高温物体"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 355,
+    "explanation": "摩擦把宏观机械能耗散为热，在宏观上产生熵，故 C 正确。A 缺少“循环且无其他变化”的限定，理想气体可逆等温膨胀会改变体积，同时可将吸热全部用于做功。B 只在 \\(\\Delta U=0\\) 时成立，可逆本身不保证内能不变。制冷机依靠外界做功将热从低温端传向高温端，故 D 错。"
+  },
+  {
+    "id": "p-357",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体的热容可视为常数，绝热指数为 \\(\\gamma=C_p/C_V>1\\)。下列哪个式子通常不能描述其可逆绝热过程？",
+    "options": [
+      "\\(TV^{\\gamma-1}=\\text{常量}\\)",
+      "\\(p^{\\gamma-1}T^{-\\gamma}=\\text{常量}\\)",
+      "\\(p^\\gamma V=\\text{常量}\\)",
+      "\\(pV^\\gamma=\\text{常量}\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 357,
+    "explanation": "由可逆绝热时的第一定律 \\(nC_{V,m}\\,\\mathrm dT=-p\\,\\mathrm dV\\) 和 \\(pV=nRT\\)，得 \\(\\mathrm dT/T=-(\\gamma-1)\\,\\mathrm dV/V\\)，积分得到 A。用 \\(T=pV/(nR)\\) 可得 D；再用 \\(V=nRT/p\\) 代入 D，得到 \\(T^\\gamma p^{1-\\gamma}\\) 为常量，取倒数就是 B。因此只有 C 不符合。",
+    "sourceAliases": [
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 186
+      },
+      {
+        "source": "热学450题题库",
+        "sourceNumber": 207
+      }
+    ]
+  },
+  {
+    "id": "p-359",
+    "type": "single",
+    "points": 1,
+    "stem": "原卷的《热学》课程规则题询问，总评不及格时所含的期末考试得分是多少？",
+    "options": [
+      "45",
+      "35",
+      "25",
+      "15"
+    ],
+    "answer": [
+      3
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 359,
+    "explanation": "原卷标注答案为 D（15）。该数值来自原卷的课程评分规则，仅适用于该规则所指情境，与热学知识点无关。",
+    "archiveOnly": true
+  },
+  {
+    "id": "p-374",
+    "type": "single",
+    "points": 2,
+    "stem": "设对流层空气处于静力平衡，可视为理想气体。在高度 \\(y\\) 处，温度近似满足 \\(T=T_0+ay\\)，其中 \\(a<0\\) 且 \\(T>0\\)。地面压强为 \\(p_0=1\\,\\mathrm{atm}\\)，定义 \\(b=\\mu g/(Ra)\\)，\\(\\mu\\) 为空气平均摩尔质量，\\(g\\) 为重力加速度。\\(p/p_0\\) 等于什么？",
+    "options": [
+      "\\(\\sqrt[b]{\\ln[T_0/(T_0-ay)]}\\)",
+      "\\(\\left(\\dfrac{T_0}{T_0+ay}\\right)^b\\)",
+      "\\(\\exp\\!\\left(\\dfrac{\\ln[1.013\\times10^5+b\\ln(T_0/(T_0+ay))]}{1.013\\times10^5}\\right)\\)",
+      "其余答案都不对"
+    ],
+    "answer": [
+      1
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 374,
+    "explanation": "静力平衡给出 \\(\\mathrm dp/\\mathrm dy=-\\rho g\\)。由理想气体状态方程 \\(\\rho=\\mu p/[R(T_0+ay)]\\)，故 \\(\\mathrm dp/p=-\\mu g\\,\\mathrm dy/[R(T_0+ay)]\\)。从地面积分得到 \\(\\ln(p/p_0)=-b\\ln[(T_0+ay)/T_0]\\)，所以 \\(p/p_0=[T_0/(T_0+ay)]^b\\)。升高时括号内大于 1 且 \\(b<0\\)，压强随高度下降。原卷 B 的指数符号有误，已在原位置改正。 修正 B 的指数符号并用压强比表示"
+  },
+  {
+    "id": "p-386",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体的熵为 \\(S=S_0+nR[\\frac52\\ln(U/U_0)+\\ln(V/V_0)]\\)。\\(S_0,U_0,V_0\\) 为参考量，物质的量 \\(n\\) 不变。气体的总定压热容是多少？",
+    "options": [
+      "\\(\\frac32 nR\\)",
+      "\\(\\frac52 nR\\)",
+      "\\(\\frac72 nR\\)",
+      "\\(3nR\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 386,
+    "explanation": "由基本关系 \\(1/T=(\\partial S/\\partial U)_{V,n}=5nR/(2U)\\)，得 \\(U=\\frac52 nRT\\)。定容热容为 \\(C_V=\\frac52nR\\)，而理想气体满足 \\(C_p=C_V+nR\\)，故为 \\(\\frac72nR\\)。原选项误多乘温度 \\(T\\)，不具备热容量纲，已改正。 热容量纲勘误",
+    "archiveOnly": true,
+    "duplicateOf": "v-43"
+  },
+  {
+    "id": "p-395",
+    "type": "single",
+    "points": 1,
+    "stem": "理想气体由初态 \\((p_1,V_1,T_1)\\) 绝热膨胀到末态 \\((p_2,V_2,T_2)\\)。把外界对气体做的功记为 \\(W_{\\mathrm{on}}\\)。设 \\(C_V,C_p\\) 是该气体恒定的总热容，\\(W_{\\mathrm{on}}\\) 等于什么？",
+    "options": [
+      "\\(C_V(T_2-T_1)\\)",
+      "\\(C_p(T_2-T_1)\\)",
+      "\\(-C_V(T_2-T_1)\\)",
+      "\\(-C_p(T_2-T_1)\\)"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 395,
+    "explanation": "以外界对气体做功为正，第一定律为 \\(\\Delta U=Q+W_{\\mathrm{on}}\\)。绝热过程 \\(Q=0\\)，而理想气体 \\(\\Delta U=C_V(T_2-T_1)\\) 对任意路径成立，故 \\(W_{\\mathrm{on}}=C_V(T_2-T_1)\\)。若是对外做正功的绝热膨胀，气体降温且 \\(W_{\\mathrm{on}}<0\\)。 明确外界对气体做功的符号约定",
+    "archiveOnly": true,
+    "duplicateOf": "b-40"
+  },
+  {
+    "id": "p-412",
+    "type": "single",
+    "points": 1,
+    "stem": "一定量理想气体的熵为 \\(S=S_0+nR[\\frac52\\ln(U/U_0)+\\ln(V/V_0)]\\)。\\(S_0,U_0,V_0\\) 为参考量，物质的量 \\(n\\) 不变。气体的总定压热容是多少？",
+    "options": [
+      "\\(\\frac32 nR\\)",
+      "\\(\\frac52 nR\\)",
+      "\\(\\frac72 nR\\)",
+      "\\(3nR\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 412,
+    "explanation": "由基本关系 \\(1/T=(\\partial S/\\partial U)_{V,n}=5nR/(2U)\\)，得 \\(U=\\frac52 nRT\\)。定容热容为 \\(C_V=\\frac52nR\\)，而理想气体满足 \\(C_p=C_V+nR\\)，故为 \\(\\frac72nR\\)。原选项误多乘温度 \\(T\\)，不具备热容量纲，已改正。 热容量纲勘误",
+    "archiveOnly": true,
+    "duplicateOf": "v-43"
+  },
+  {
+    "id": "p-426",
+    "type": "single",
+    "points": 1,
+    "stem": "下列哪个系统未处于热力学平衡态？",
+    "options": [
+      "两端分别浸入恒温冷水和恒温热水、内部已有稳定温度分布的铁棒",
+      "匀速列车密封车厢内温度、压强均匀且相对车厢静止的空气",
+      "均匀重力场下处于等温静力平衡的理想大气",
+      "室温下放置很久且达到平衡的一杯密封水"
+    ],
+    "answer": [
+      0
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 426,
+    "explanation": "铁棒内虽然温度分布可保持稳定，却有持续热流从热端流向冷端，存在温度梯度和熵产生，属于非平衡稳态。系统整体匀速平动不妨碍其内部平衡；在重力场中，等温气体的压强梯度若恰好与重力平衡，也可处于平衡。密封水已达到热平衡。原题的实际地球大气也可能不平衡，故明确 C 为等温静力平衡模型。 补足平衡条件，保证唯一答案"
+  },
+  {
+    "id": "p-446",
+    "type": "single",
+    "points": 1,
+    "stem": "\\(1\\,\\mathrm{mol}\\) 理想气体由初态 \\((p_1,V_1,T_1)\\) 绝热膨胀至末态 \\((p_2,V_2,T_2)\\)。\\(C_V,C_p\\) 是该气体恒定的总热容，气体对外做功 \\(W\\) 等于什么？",
+    "options": [
+      "\\(C_V(T_2-T_1)\\)",
+      "\\(C_p(T_2-T_1)\\)",
+      "\\(-C_V(T_2-T_1)\\)",
+      "\\(-C_p(T_2-T_1)\\)"
+    ],
+    "answer": [
+      2
+    ],
+    "source": "热学450题题库",
+    "sourceNumber": 446,
+    "explanation": "采用气体对外做功为正的约定，\\(\\Delta U=Q-W\\)。绝热时 \\(Q=0\\)，因此 \\(W=-\\Delta U\\)。理想气体的内能只取决于温度，即使路径并非等容，也有 \\(\\Delta U=C_V(T_2-T_1)\\)。故 \\(W=-C_V(T_2-T_1)\\)。",
+    "archiveOnly": true,
+    "duplicateOf": "b-40"
+  }
 ]);
