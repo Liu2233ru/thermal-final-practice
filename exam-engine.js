@@ -45,17 +45,21 @@
     return bank;
   }
 
-  function eligibleGroups(bank, excludedIds) {
+  function eligibleQuestions(bank, excludedIds) {
     const excluded = new Set(excludedIds);
     for (const question of bank) {
       if (question.archiveOnly === true && question.duplicateOf && excluded.has(question.id)) {
         excluded.add(question.duplicateOf);
       }
     }
+    return bank.filter((question) => question.archiveOnly !== true && !excluded.has(question.id));
+  }
+
+  function eligibleGroups(bank, excludedIds) {
+    const eligible = eligibleQuestions(bank, excludedIds);
     return blueprint.map((group) => ({
       ...group,
-      questions: bank.filter((question) => question.type === group.type
-        && question.points === group.points && question.archiveOnly !== true && !excluded.has(question.id)),
+      questions: eligible.filter((question) => question.type === group.type && question.points === group.points),
     }));
   }
 
@@ -75,28 +79,67 @@
     return shuffled;
   }
 
+  function takeQuestions(questions, required, usedFamilies) {
+    const distinct = [];
+    const similar = [];
+    for (const question of questions) {
+      if (question.family && usedFamilies.has(question.family)) {
+        similar.push(question);
+      } else {
+        distinct.push(question);
+        if (question.family) usedFamilies.add(question.family);
+        if (distinct.length === required) break;
+      }
+    }
+    return [...distinct, ...similar.slice(0, required - distinct.length)];
+  }
+
   function makeExam(bank, excludedIds = []) {
     const groups = eligibleGroups(bank, excludedIds);
     if (groups.some(({ questions, required }) => questions.length < required)) {
       throw new Error('剩余题目不足以按指定配额生成一套完整试卷。');
     }
     const usedFamilies = new Set();
-    const exam = [];
-    for (const { questions, required } of groups) {
-      const distinct = [];
-      const similar = [];
-      for (const question of shuffle(questions)) {
-        if (question.family && usedFamilies.has(question.family)) {
-          similar.push(question);
-        } else {
-          distinct.push(question);
-          if (question.family) usedFamilies.add(question.family);
-          if (distinct.length === required) break;
-        }
-      }
-      exam.push(...distinct, ...similar.slice(0, required - distinct.length));
+    return shuffle(groups.flatMap(({ questions, required }) => takeQuestions(shuffle(questions), required, usedFamilies)));
+  }
+
+  function chapterGroups(bank, topicById, topicIds, excludedIds) {
+    const groups = new Map(topicIds.map((id) => [id, []]));
+    for (const question of eligibleQuestions(bank, excludedIds)) {
+      groups.get(topicById[question.id])?.push(question);
     }
-    return shuffle(exam);
+    return groups;
+  }
+
+  function chapterAvailability(bank, topicById, topicIds, excludedIds = []) {
+    return Array.from(chapterGroups(bank, topicById, topicIds, excludedIds), ([id, questions]) => ({
+      id, available: questions.length,
+    }));
+  }
+
+  function makeChapterExam(bank, topicById, topicIds, count, excludedIds = []) {
+    if (!validTopicIds(topicIds) || !Number.isInteger(count) || count < topicIds.length || count > examLength) {
+      throw new Error('请选择知识点，题量须至少等于所选知识点数，且最多为 60 道。');
+    }
+    const groups = shuffle([...chapterGroups(bank, topicById, topicIds, excludedIds).values()]).map(shuffle);
+    if (groups.some((questions) => !questions.length) || groups.flat().length < count) {
+      throw new Error('所选知识点剩余题目不足。');
+    }
+    const usedFamilies = new Set();
+    const first = groups.map((questions) => {
+      const index = questions.findIndex((question) => !usedFamilies.has(question.family));
+      const [question] = questions.splice(Math.max(0, index), 1);
+      if (question.family) usedFamilies.add(question.family);
+      return question;
+    });
+    if (first.length === count) return shuffle(first);
+    const remainder = [];
+    for (let index = 0; groups.some((questions) => index < questions.length); index++) {
+      for (const questions of groups) {
+        if (index < questions.length) remainder.push(questions[index]);
+      }
+    }
+    return shuffle([...first, ...takeQuestions(remainder, count - first.length, usedFamilies)]);
   }
 
   function grade(exam, answersById) {
@@ -117,7 +160,7 @@
   }
 
   function summarizeResults(results) {
-    const summary = { score: 0, full: 0, partial: 0, zero: 0, unanswered: 0, results: [] };
+    const summary = { score: 0, maxScore: 0, full: 0, partial: 0, zero: 0, unanswered: 0, results: [] };
     for (const item of results) {
       const { selected, score, max } = item;
       let status = 'incorrect';
@@ -133,6 +176,7 @@
       }
       if (!score) summary.zero++;
       summary.score += score;
+      summary.maxScore += max;
       summary.results.push({ ...item, status });
     }
     return summary;
@@ -150,11 +194,30 @@
     return typeof date === 'string' && Number.isFinite(Date.parse(date));
   }
 
+  function validTopicIds(ids) {
+    return Array.isArray(ids) && ids.length > 0
+      && ids.every(validId) && new Set(ids).size === ids.length;
+  }
+
+  function validPaper(record, count) {
+    if (record.mode === undefined) return count === examLength;
+    return record.mode === 'chapter' && validTopicIds(record.topicIds)
+      && Number.isInteger(count) && count >= record.topicIds.length && count <= examLength
+      && Number.isInteger(record.maxScore) && record.maxScore >= count && record.maxScore <= 3 * count;
+  }
+
+  function chapterFields(record) {
+    return record.mode === 'chapter'
+      ? { mode: record.mode, topicIds: record.topicIds.slice(), maxScore: record.maxScore }
+      : {};
+  }
+
   function validAttempt(attempt) {
     return attempt && validId(attempt.id) && validDate(attempt.date)
-      && Number.isInteger(attempt.score) && attempt.score >= 0 && attempt.score <= 100
-      && attempt.total === examLength && Number.isInteger(attempt.answered)
-      && attempt.answered >= 0 && attempt.answered <= examLength;
+      && validPaper(attempt, attempt.total)
+      && Number.isInteger(attempt.score) && attempt.score >= 0
+      && attempt.score <= (attempt.mode === 'chapter' ? attempt.maxScore : 100)
+      && Number.isInteger(attempt.answered) && attempt.answered >= 0 && attempt.answered <= attempt.total;
   }
 
   function validOptionIndexes(selected) {
@@ -164,8 +227,8 @@
 
   function normalizeAttempt(attempt) {
     const { id, date, score, answered, total, elapsedSeconds, results } = attempt;
-    const summary = { id, date, score, answered, total };
-    if (elapsedSeconds === undefined && results === undefined) return summary;
+    const summary = { id, date, score, answered, total, ...chapterFields(attempt) };
+    if (attempt.mode === undefined && elapsedSeconds === undefined && results === undefined) return summary;
     if (!Number.isSafeInteger(elapsedSeconds) || elapsedSeconds < 0
         || !Array.isArray(results) || results.length !== total) {
       throw new Error('备份中的试卷明细无效。');
@@ -188,7 +251,7 @@
     });
     const scored = summarizeResults(items);
     if (scored.score !== score || total - scored.unanswered !== answered
-        || items.reduce((sum, item) => sum + item.max, 0) !== 100) {
+        || scored.maxScore !== (summary.maxScore ?? 100)) {
       throw new Error('备份中的试卷明细与成绩不一致。');
     }
     return { ...summary, elapsedSeconds, results: items };
@@ -268,10 +331,10 @@
   function normalizeDraft(draft) {
     if (draft === null || draft === undefined) return null;
     const { questionIds, answers, position, startedAt } = draft;
-    if (!Array.isArray(questionIds) || questionIds.length !== examLength
-        || !questionIds.every(validId) || new Set(questionIds).size !== examLength
+    if (!Array.isArray(questionIds) || !validPaper(draft, questionIds.length)
+        || !questionIds.every(validId) || new Set(questionIds).size !== questionIds.length
         || !answers || typeof answers !== 'object' || Array.isArray(answers)
-        || !Number.isInteger(position) || position < 0 || position >= examLength
+        || !Number.isInteger(position) || position < 0 || position >= questionIds.length
         || !validDate(startedAt)) {
       throw new Error('记录中的未交卷内容无效。');
     }
@@ -282,7 +345,7 @@
       }
       normalizedAnswers[id] = [...new Set(selected)];
     }
-    return { questionIds, answers: normalizedAnswers, position, startedAt };
+    return { questionIds, answers: normalizedAnswers, position, startedAt, ...chapterFields(draft) };
   }
 
   function parseBackup(text) {
@@ -357,5 +420,6 @@
   root.HeatExam = {
     validateBank, availability, makeExam, grade, loadProgress, saveProgress, parseBackup, mergeProgress,
     recordSubmission, clearProgress, syncProgress, removeWrongQuestion, summarizeResults,
+    chapterAvailability, makeChapterExam,
   };
 })(typeof window === 'undefined' ? globalThis : window);

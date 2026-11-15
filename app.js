@@ -20,6 +20,7 @@
   const typeLabel = (type) => type === "multiple" ? "多选" : "单选";
   const dateFormat = new Intl.DateTimeFormat("zh-CN", { dateStyle: "medium", timeStyle: "short" });
   const examLimitSeconds = 100 * 60;
+  const examLength = 60;
   const libraryPageSize = 16;
   const questionPanel = `
     <section class="panel question-panel" aria-labelledby="question-heading">
@@ -42,11 +43,17 @@
   }
 
   const byId = new Map(bank.map((question) => [question.id, question]));
+  const topics = window.HEAT_TOPICS ?? [];
+  const topicById = window.HEAT_TOPIC_BY_ID ?? {};
+  const topicLabels = new Map(topics.map(({ id, label }) => [id, label]));
   const eligibleCount = bank.filter((question) => question.archiveOnly !== true).length;
   const sourceOptions = [...new Set(bank.flatMap((question) => questionSources(question).map((item) => item.source)))];
   let progress = { answeredIds: [], attempts: [], draft: null, questionHistory: {} };
   let storage;
   let skipAnswered = false;
+  let practiceMode = "full";
+  let chapterCount = "20";
+  const selectedTopics = new Set();
   let screen = "setup";
   let currentExam = [];
   let position = 0;
@@ -57,7 +64,7 @@
   let libraryScope = "wrong";
   let libraryFilter = "all";
   let libraryPage = 0;
-  const bankFilters = { search: "", source: "", type: "", points: "" };
+  const bankFilters = { search: "", topic: "", source: "", type: "", points: "" };
   let bankPage = 0;
   let recordsPage = 0;
   let activeAttemptId = "";
@@ -166,9 +173,12 @@
   }
 
   function updateExamTimer() {
-    const remaining = examLimitSeconds - elapsedExamSeconds();
-    const overdue = remaining <= 0;
-    const display = overdue ? formatOvertime(-remaining) : `剩余 ${formatClock(remaining)}`;
+    const elapsed = elapsedExamSeconds();
+    const chapter = progress.draft.mode === "chapter";
+    const remaining = examLimitSeconds - elapsed;
+    const overdue = !chapter && remaining <= 0;
+    const display = chapter ? `用时 ${formatClock(elapsed)}`
+      : overdue ? formatOvertime(-remaining) : `剩余 ${formatClock(remaining)}`;
     if (headerState.textContent !== display) headerState.textContent = display;
     headerState.classList.toggle("overdue", overdue);
   }
@@ -220,6 +230,10 @@
   }
 
   function showAvailability() {
+    if (practiceMode === "chapter") {
+      showChapterAvailability();
+      return;
+    }
     const quotas = engine.availability(bank, availableIds());
     const quotaRows = document.getElementById("quota-rows");
     quotaRows.replaceChildren();
@@ -244,6 +258,36 @@
     }
   }
 
+  function showChapterAvailability() {
+    const counts = engine.chapterAvailability(bank, topicById, [...topicLabels.keys()], availableIds());
+    let available = 0;
+    const empty = [];
+    for (const row of counts) {
+      document.getElementById("topic-count-" + row.id).textContent = `${row.available} 题`;
+      if (!selectedTopics.has(row.id)) continue;
+      available += row.available;
+      if (row.available === 0) empty.push(topicLabels.get(row.id));
+    }
+    const count = Number(chapterCount);
+    const selections = selectedTopics.size;
+    let warning = "";
+    if (!selections) warning = "请至少选择一个知识点。";
+    else if (!Number.isInteger(count) || count < 1 || count > examLength) warning = "题量须为 1 到 60 的整数。";
+    else if (count < selections) warning = `已选 ${selections} 个知识点，至少需要抽 ${selections} 道题。`;
+    else if (empty.length) warning = `${empty.join("、")}已无可抽题。${skipAnswered
+      ? "请调整知识点或关闭「跳过做过的题」。" : "请选择有可抽题目的知识点。"}`;
+    else if (count > available) warning = `所选知识点剩余 ${available} 道可抽题，请减少题量或增加知识点。`;
+    document.getElementById("chapter-availability").textContent = `已选 ${selections} 个知识点 · 可抽 ${available} 道`;
+    document.getElementById("start-exam").disabled = Boolean(warning);
+    notice(warning);
+  }
+
+  function paperLabel(paper, includeTopics = false) {
+    if (paper.mode !== "chapter") return "期末模拟";
+    if (!includeTopics) return "知识点练习";
+    return "知识点练习 · " + paper.topicIds.map((id) => topicLabels.get(id) ?? id).join("、");
+  }
+
   function renderHistory() {
     const completed = new Set(progress.answeredIds.filter((id) => byId.has(id))).size;
     document.getElementById("history-count").textContent = `已答 ${completed} 题`;
@@ -260,9 +304,9 @@
     for (const entry of progress.attempts.slice().sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5)) {
       const item = element("li");
       const date = new Date(entry.date);
-      const label = dateFormat.format(date);
+      const label = dateFormat.format(date) + (entry.mode === "chapter" ? " · 知识点练习" : "");
       const record = button("", "record-link", () => openAttempt(entry.id));
-      record.append(element("span", "", label), element("strong", "", `${entry.score} / 100`));
+      record.append(element("span", "", label), element("strong", "", `${entry.score} / ${entry.maxScore ?? 100}`));
       item.append(record);
       list.append(item);
     }
@@ -277,17 +321,27 @@
       <section class="hero" aria-labelledby="setup-heading">
         <div>
           <h1 id="setup-heading" tabindex="-1">热学期末模拟</h1>
-          <p>可抽题目 ${eligibleCount} 道 · 按 2025–2026 热学 A 卷结构组卷</p>
+          <p>可抽题目 ${eligibleCount} 道 · 整卷按 2025–2026 热学 A 卷结构组卷</p>
         </div>
         <dl class="hero-stats">
-          <div class="hero-stat"><dt>计分题数</dt><dd>60</dd></div>
-          <div class="hero-stat"><dt>满分</dt><dd>100</dd></div>
+          <div class="hero-stat"><dt>整卷题数</dt><dd>60</dd></div>
+          <div class="hero-stat"><dt>整卷满分</dt><dd>100</dd></div>
         </dl>
       </section>
       <div class="columns setup-columns">
         <section class="panel" aria-labelledby="start-heading">
-          <h2 id="start-heading">开始模拟考试</h2>
-          <p class="panel-copy">每套限时 100 分钟，超时后仍可作答。交卷后查看得分和正确答案。</p>
+          <h2 id="start-heading">选择组卷方式</h2>
+          <fieldset class="practice-mode" aria-label="组卷方式" ${topics.length ? "" : "hidden"}>
+            <label>
+              <input type="radio" name="practice-mode" value="full" checked>
+              <span>期末整卷模拟</span>
+            </label>
+            <label>
+              <input type="radio" name="practice-mode" value="chapter">
+              <span>按知识点组卷</span>
+            </label>
+          </fieldset>
+          <p class="panel-copy" id="practice-description"></p>
           <label class="setting" for="skip-answered">
             <span><strong>跳过做过的题</strong><small>已交卷且作答过的题会从本次抽题中排除。</small></span>
             <input class="switch" type="checkbox" id="skip-answered" role="switch">
@@ -296,8 +350,20 @@
             <thead><tr><th scope="col">题型与分值</th><th scope="col">每卷所需</th><th scope="col">可抽题数</th></tr></thead>
             <tbody id="quota-rows"></tbody>
           </table>
+          <section id="chapter-settings" hidden aria-label="知识点练习设置">
+            <fieldset class="chapter-topics">
+              <legend>选择知识点（可多选）</legend>
+              <div class="chapter-topics-grid" id="chapter-topics-grid"></div>
+            </fieldset>
+            <div class="chapter-count-row">
+              <label for="chapter-count">本次题量</label>
+              <input id="chapter-count" type="number" min="1" max="60" inputmode="numeric" step="1" required>
+              <p id="chapter-availability" role="status" aria-live="polite"></p>
+            </div>
+          </section>
           <p class="notice setup-notice" id="setup-notice" role="status" hidden></p>
           <div class="button-row setup-actions" id="setup-actions"></div>
+          <p id="resume-info" class="panel-copy" hidden></p>
         </section>
         <aside class="panel" aria-labelledby="history-heading">
           <div class="panel-heading"><h2 id="history-heading">最近考试</h2><span class="count" id="history-count"></span></div>
@@ -317,8 +383,14 @@
     const actions = document.getElementById("setup-actions");
     const start = button("随机组卷", progress.draft ? "secondary" : "primary", begin);
     start.id = "start-exam";
-    if (progress.draft) actions.append(button("继续上次作答", "primary", resume));
+    if (progress.draft) {
+      actions.append(button("继续上次作答", "primary", resume));
+      const info = document.getElementById("resume-info");
+      info.textContent = `待继续 · ${paperLabel(progress.draft, true)} · ${progress.draft.questionIds.length} 题`;
+      info.hidden = false;
+    }
     actions.append(start);
+    setupPracticeControls();
     const wrong = button("错题库", "secondary compact", () => openLibrary("wrong"));
     wrong.id = "wrong-questions";
     document.getElementById("library-actions").append(
@@ -338,9 +410,67 @@
       ))
     );
     renderHistory();
-    showAvailability();
     showBackupNotice();
     if (focus) document.getElementById("setup-heading").focus();
+  }
+
+  function setupPracticeControls() {
+    const grid = document.getElementById("chapter-topics-grid");
+    for (const { id, label, description } of topics) {
+      const card = element("label", "chapter-topic");
+      const control = element("input");
+      control.type = "checkbox";
+      control.value = id;
+      control.checked = selectedTopics.has(id);
+      control.addEventListener("change", () => {
+        if (control.checked) selectedTopics.add(id);
+        else selectedTopics.delete(id);
+        showAvailability();
+      });
+      const count = element("span", "chapter-topic-count");
+      count.id = "topic-count-" + id;
+      const info = element("span", "chapter-topic-info");
+      const name = element("span", "chapter-topic-label", label);
+      name.id = "topic-label-" + id;
+      info.append(name);
+      control.setAttribute("aria-labelledby", name.id);
+      if (description) {
+        const detail = element("span", "chapter-topic-detail", description);
+        detail.id = "topic-description-" + id;
+        info.append(detail);
+        control.setAttribute("aria-describedby", detail.id + " " + count.id);
+      } else {
+        control.setAttribute("aria-describedby", count.id);
+      }
+      card.append(control, info, count);
+      grid.append(card);
+    }
+    const count = document.getElementById("chapter-count");
+    count.value = chapterCount;
+    count.addEventListener("input", () => {
+      chapterCount = count.value;
+      showAvailability();
+    });
+    for (const control of view.querySelectorAll('[name="practice-mode"]')) {
+      control.checked = control.value === practiceMode;
+      control.addEventListener("change", () => {
+        practiceMode = control.value;
+        renderPracticeMode();
+      });
+    }
+    renderPracticeMode();
+  }
+
+  function renderPracticeMode() {
+    const chapter = practiceMode === "chapter";
+    document.getElementById("chapter-settings").hidden = !chapter;
+    view.querySelector(".quotas").hidden = chapter;
+    document.getElementById("start-exam").textContent = chapter ? "开始知识点练习" : "随机组卷";
+    document.getElementById("practice-description").textContent = chapter
+      ? "选定知识点和题量后随机出题，记录实际用时。各题按原分值计分。"
+      : "每套限时 100 分钟，超时后仍可作答。交卷后查看得分和正确答案。";
+    headerState.textContent = chapter ? "知识点练习" : "模拟考试";
+    showAvailability();
   }
 
   function historyFor(id) {
@@ -558,7 +688,7 @@
       <section class="page-heading" aria-labelledby="bank-heading">
         <div>
           <h1 id="bank-heading" tabindex="-1">题库全览</h1>
-          <p class="panel-copy">按题干、题型或来源找题，打开后可看答案和解析。</p>
+          <p class="panel-copy">按题干、知识点、题型或来源找题，打开后可看答案和解析。</p>
         </div>
         <p class="page-count">${bank.length} 道题${eligibleCount < bank.length ? ` · ${eligibleCount} 道可抽取` : ""}</p>
       </section>
@@ -567,6 +697,8 @@
           <h2 id="bank-controls-heading">筛选题目</h2>
           <label for="bank-search">搜索</label>
           <input id="bank-search" type="search" placeholder="题干、来源或原卷题号" autocomplete="off">
+          <label for="bank-topic" ${topics.length ? "" : "hidden"}>知识点</label>
+          <select id="bank-topic" ${topics.length ? "" : "hidden"}><option value="">全部知识点</option></select>
           <label for="bank-source">题目来源</label>
           <select id="bank-source"><option value="">全部来源</option></select>
           <label for="bank-type">题型</label>
@@ -590,6 +722,12 @@
       const option = element("option", "", name);
       option.value = name;
       source.append(option);
+    }
+    const topicInput = document.getElementById("bank-topic");
+    for (const { id, label } of topics) {
+      const option = element("option", "", label);
+      option.value = id;
+      topicInput.append(option);
     }
     for (const key of Object.keys(bankFilters)) {
       const input = document.getElementById("bank-" + key);
@@ -620,10 +758,12 @@
     const matches = bank.filter((question) => {
       if (bankFilters.type && question.type !== bankFilters.type) return false;
       if (bankFilters.points && String(question.points) !== bankFilters.points) return false;
+      if (bankFilters.topic && topicById[question.id] !== bankFilters.topic) return false;
       const sources = questionSources(question);
       if (bankFilters.source && !sources.some(({ source }) => source === bankFilters.source)) return false;
       if (!words.length) return true;
-      const searchable = normalizeSearch([question.stem, ...question.options, ...sources.map(sourceLabel)].join(" "));
+      const topic = topicLabels.get(topicById[question.id]) ?? "";
+      const searchable = normalizeSearch([question.stem, ...question.options, topic, ...sources.map(sourceLabel)].join(" "));
       return words.every((word) => searchable.includes(word));
     });
     const pages = Math.max(1, Math.ceil(matches.length / libraryPageSize));
@@ -637,6 +777,8 @@
       const title = element("span", "library-question-title");
       appendPreview(title, question);
       const meta = element("span", "library-question-meta", `${typeLabel(question.type)} · ${question.points} 分`);
+      const topic = topicLabels.get(topicById[question.id]);
+      if (topic) meta.append(element("span", "", topic));
       if (question.archiveOnly === true) meta.append(element("span", "chip", "仅供查阅"));
       control.append(title, meta);
       appendSourceLine(control, bankFilters.source ? { source: bankFilters.source } : question);
@@ -698,11 +840,12 @@
 
   function renderRecordEntries() {
     const entries = progress.attempts.slice().sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
-    const scores = entries.map((entry) => entry.score);
+    const ratios = entries.map((entry) => entry.score / (entry.maxScore ?? 100));
+    const formatRate = (ratio) => `${(100 * ratio).toFixed(1)}%`;
     document.getElementById("record-metrics").replaceChildren(summaryMetrics([
       ["完成试卷", `${entries.length} 套`],
-      ["平均分", entries.length ? `${(scores.reduce((sum, score) => sum + score, 0) / entries.length).toFixed(1)} 分` : "—"],
-      ["最高分", entries.length ? `${scores.reduce((highest, score) => Math.max(highest, score), 0)} 分` : "—"],
+      ["平均得分率", entries.length ? formatRate(ratios.reduce((sum, ratio) => sum + ratio, 0) / entries.length) : "—"],
+      ["最高得分率", entries.length ? formatRate(ratios.reduce((highest, ratio) => Math.max(highest, ratio), 0)) : "—"],
     ]));
     const pages = Math.max(1, Math.ceil(entries.length / libraryPageSize));
     recordsPage = Math.min(recordsPage, pages - 1);
@@ -715,10 +858,11 @@
       const title = element("span", "library-question-title", dateFormat.format(new Date(entry.date)));
       const meta = element("span", "library-question-meta");
       meta.append(
+        element("span", "", paperLabel(entry, true)),
         element("span", "", `已答 ${entry.answered} / ${entry.total} 题`),
         element("span", "", entry.results ? `用时 ${formatClock(entry.elapsedSeconds)}` : "旧版成绩记录")
       );
-      control.append(title, element("strong", "record-score", `${entry.score} / 100`), meta);
+      control.append(title, element("strong", "record-score", `${entry.score} / ${entry.maxScore ?? 100}`), meta);
       row.append(control);
       holder.append(row);
     }
@@ -758,10 +902,10 @@
       </section>
       <div id="attempt-metrics"></div>
       <div id="attempt-detail"></div>`;
-    document.getElementById("attempt-date").textContent = dateFormat.format(new Date(attempt.date));
+    document.getElementById("attempt-date").textContent = `${dateFormat.format(new Date(attempt.date))} · ${paperLabel(attempt, true)}`;
     document.getElementById("attempt-navigation").append(button("返回考试记录", "secondary", () => showRecords(attempt.id)));
     document.getElementById("attempt-metrics").append(summaryMetrics([
-      ["成绩", `${attempt.score} / 100`],
+      ["成绩", `${attempt.score} / ${attempt.maxScore ?? 100}`],
       ["用时", attempt.results ? formatClock(attempt.elapsedSeconds) : "旧版未记录"],
       ["作答", `${attempt.answered} / ${attempt.total} 题`],
     ]));
@@ -925,11 +1069,15 @@
 
   function begin() {
     if (!refreshForAction()) return;
+    const chapter = practiceMode === "chapter";
+    const topicIds = topics.filter(({ id }) => selectedTopics.has(id)).map(({ id }) => id);
     const startNewExam = () => {
       if (!refreshForAction()) return;
       let nextExam;
       try {
-        nextExam = engine.makeExam(bank, availableIds());
+        nextExam = chapter
+          ? engine.makeChapterExam(bank, topicById, topicIds, Number(chapterCount), availableIds())
+          : engine.makeExam(bank, availableIds());
       } catch (error) {
         console.error(error);
         renderHistory();
@@ -941,6 +1089,7 @@
         answers: {},
         position: 0,
         startedAt: new Date().toISOString(),
+        ...(chapter ? { mode: "chapter", topicIds, maxScore: nextExam.reduce((sum, question) => sum + question.points, 0) } : {}),
       };
       currentExam = nextExam;
       position = 0;
@@ -960,8 +1109,8 @@
     if (!refreshForAction() || !progress.draft) return;
     const draft = progress.draft;
     const selected = draft.questionIds.map((id) => byId.get(id));
-    if (selected.length !== 60 || selected.some((question) => !question)
-        || selected.reduce((total, question) => total + question.points, 0) !== 100) {
+    if (selected.some((question) => !question)
+        || selected.reduce((total, question) => total + question.points, 0) !== (draft.maxScore ?? 100)) {
       notice("题库已更新，这份暂存试卷无法继续。可以重新组卷。");
       return;
     }
@@ -1166,6 +1315,7 @@
     activateSection("exam");
     if (review) stopExamTimer("交卷结果");
     else startExamTimer();
+    const paper = review ? result : progress.draft;
     view.innerHTML = `
       <div id="result-summary"></div>
       <div class="columns">
@@ -1175,12 +1325,16 @@
             <h2 id="answer-card-heading">${review ? "作答结果" : "答题卡"}</h2>
             <span id="progress-count" class="progress-label" aria-live="polite"></span>
           </div>
-          <progress id="exam-progress" aria-label="作答进度" value="0" max="60" ${review ? "hidden" : ""}></progress>
+          <progress id="exam-progress" aria-label="作答进度" value="0" max="${currentExam.length}" ${review ? "hidden" : ""}></progress>
+          <p id="exam-scope" class="panel-copy" ${paper.mode === "chapter" ? "" : "hidden"}></p>
           ${review ? '<p class="panel-copy">点击题号查看得分和答案。</p>' : ""}
           <nav class="question-grid" id="question-grid" aria-label="跳到指定题目"></nav>
           <div class="button-row answer-actions" id="answer-actions"></div>
         </aside>
       </div>`;
+    if (paper.mode === "chapter") {
+      document.getElementById("exam-scope").textContent = paperLabel(paper, true);
+    }
 
     const question = currentExam[position];
     const item = review ? result.results[position] : null;
@@ -1238,13 +1392,13 @@
     const summary = document.getElementById("result-summary");
     summary.className = "panel result-strip";
     const score = element("div", "score-title", "本次成绩 ");
-    score.append(element("strong", "", result.score), document.createTextNode(" / 100 分"));
+    score.append(element("strong", "", result.score), document.createTextNode(` / ${result.maxScore} 分`));
     const counts = element("div", "result-counts");
     counts.append(
       ...scoreChips(result),
       element("span", "chip", `用时 ${formatClock(result.elapsedSeconds)}`)
     );
-    if (result.elapsedSeconds >= examLimitSeconds) {
+    if (result.mode !== "chapter" && result.elapsedSeconds >= examLimitSeconds) {
       counts.append(element("span", "chip incorrect", formatOvertime(result.elapsedSeconds - examLimitSeconds)));
     }
     summary.append(score, counts);
@@ -1261,9 +1415,9 @@
 
   function submit() {
     if (screen !== "exam" || !progress.draft) return;
-    const answers = progress.draft.answers;
+    const { answers, mode, topicIds } = progress.draft;
     const elapsedSeconds = elapsedExamSeconds();
-    result = { ...engine.grade(currentExam, answers), elapsedSeconds };
+    result = { ...engine.grade(currentExam, answers), elapsedSeconds, mode, topicIds };
     const answered = currentExam.length - result.unanswered;
     const date = new Date().toISOString();
     const id = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -1271,6 +1425,7 @@
     progress.attempts.unshift({
       id, date, score: result.score, answered, total: currentExam.length, elapsedSeconds,
       results: result.results.map(({ status, ...item }) => item),
+      ...(mode === "chapter" ? { mode, topicIds, maxScore: result.maxScore } : {}),
     });
     progress.draft = null;
     if (persist() === "reset") return;
@@ -1280,7 +1435,7 @@
     renderExam();
     const summary = document.getElementById("result-summary");
     summary.tabIndex = -1;
-    summary.setAttribute("aria-label", `本次成绩 ${result.score} / 100 分`);
+    summary.setAttribute("aria-label", `本次成绩 ${result.score} / ${result.maxScore} 分`);
     window.scrollTo(0, 0);
     summary.focus({ preventScroll: true });
   }
